@@ -1,0 +1,2647 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luyện Tập Trắc Nghiệm - Văn Học Hán Tạng</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --correct-color: #27ae60;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .btn-shuffle {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-shuffle:hover {
+            background-color: var(--secondary-color);
+        }
+        .btn-random-single {
+            background-color: #8e44ad; /* Màu tím nổi bật */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-left: 15px; /* Khoảng cách với nút Trộn */
+        }
+
+        .btn-random-single:hover {
+            background-color: #9b59b6;
+        }
+        .question-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .question-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .options-list {
+            list-style-type: none;
+            margin-bottom: 20px;
+        }
+
+        .option-item {
+            background-color: #ecf0f1;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .option-item:hover {
+            background-color: #dfe6e9;
+        }
+
+        .btn-reveal {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-reveal:hover {
+            background-color: #2980b9;
+        }
+
+        .answer-section {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #bdc3c7;
+            animation: fadeIn 0.5s;
+        }
+
+        .correct-ans {
+            color: var(--correct-color);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .btn-special-essay:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .btn-special-essay {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+         .btn-structure {
+            background: linear-gradient(135deg, #16a085, #1abc9c);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+
+        .btn-structure:hover {
+            background-color: #138d75;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        .explanation {
+            background-color: #e8f8f5;
+            padding: 15px;
+            border-left: 4px solid var(--correct-color);
+            border-radius: 0 5px 5px 0;
+            color: #2c3e50;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Luyện Tập Trắc Nghiệm: Văn Học Hán Tạng</h1>
+            <p>Đọc kỹ câu hỏi, tự tư duy chọn đáp án trước khi bấm xem giải thích nhé!</p>
+        </header>
+
+        <div class="controls">
+            <a href="ht00.html" class="btn-structure" target="_blank">📋 CẤU TRÚC ĐỀ THI</a>
+            <a href="ht22.html" class="btn-special-essay" target="_blank">📝 CÂU TỰ LUẬN ĐẶC BIỆT</a>
+            <button class="btn-shuffle" onclick="renderQuiz()">🔀 Trộn Ngẫu Nhiên & Làm Lại</button>
+            <button class="btn-random-single" onclick="renderSingleRandomQuiz()">🎯 Khảo Bài 1 Câu Ngẫu Nhiên</button>
+        </div>
+
+        <div id="quiz-container">
+            </div>
+    </div>
+
+    <script>
+        // Mảng chứa dữ liệu 10 câu hỏi của bạn
+        const questionData = [
+            {
+                q: '"Đại tạng kinh" hiểu theo nghĩa hẹp là chỉ cho phần nào?',
+                options: [
+                    "A. Kinh tạng và Luật tạng",
+                    "B. Tam tạng: Kinh, Luật, Luận",
+                    "C. Kinh tạng và Luận tạng",
+                    "D. Kinh bộ (Kinh tạng) trong Tam tạng"
+                ],
+                answer: "D",
+                exp: "Theo bài giảng, chữ 'tạng' vốn có nghĩa là cái giỏ tre chứa đựng kinh điển. Về nghĩa hẹp, Đại tạng kinh chỉ đề cập đến phần Kinh bộ."
+            },
+            {
+                q: '"Đại tạng kinh" hiểu theo nghĩa rộng bao gồm những gì?',
+                options: [
+                    "A. Kinh điển Đại thừa",
+                    "B. Tam tạng: Kinh, Luật, Luận",
+                    "C. Kinh điển Nguyên thủy",
+                    "D. Kinh tạng và Luật tạng"
+                ],
+                answer: "B",
+                exp: "Khi thêm chữ 'Đại' (lớn), nghĩa rộng của Đại tạng kinh bao trùm toàn bộ Tam tạng gồm Kinh, Luật và Luận."
+            },
+            {
+                q: 'Tam tạng thánh điển Phật giáo khi xưa còn được gọi bằng những danh xưng nào trước khi có từ "Đại tạng kinh"?',
+                options: [
+                    "A. Chúng kinh, quần kinh, nhất thiết kinh",
+                    "B. Chánh tạng, Tục tạng",
+                    "C. Toàn thư, bách khoa Phật giáo",
+                    "D. Cổ dật, Nghi tợ"
+                ],
+                answer: "A",
+                exp: "Trong giai đoạn đầu, kinh điển được gọi là toàn thư, chúng kinh, quần kinh hoặc nhất thiết kinh."
+            },
+            {
+                q: 'Danh xưng "Đại tạng kinh" bắt đầu xuất hiện từ triều đại nào của Trung Quốc trở về sau?',
+                options: [
+                    "A. Đời Hán",
+                    "B. Đời Tấn",
+                    "C. Đời Tùy",
+                    "D. Đời Đường"
+                ],
+                answer: "C",
+                exp: "Thầy giáo nhấn mạnh từ đời Tùy trở về sau thì tên gọi 'Đại tạng kinh' mới chính thức xuất hiện. Trước đó (như đời Hán) thì chưa có danh xưng này."
+            },
+            {
+                q: 'Hán văn Đại tạng kinh bao gồm những nội dung chủ yếu nào?',
+                options: [
+                    "A. Chỉ gồm kinh điển phiên dịch từ tiếng Phạn",
+                    "B. Phần kinh điển phiên dịch và phần trước tác Phật học do người Trung Quốc biên soạn",
+                    "C. Chỉ gồm các tác phẩm do các cao tăng Trung Quốc viết",
+                    "D. Kinh điển hệ A Hàm và Nikaya"
+                ],
+                answer: "B",
+                exp: "Đây là điểm Ni sư rất lưu ý: Đại tạng kinh Hán văn không chỉ có kinh sách được dịch từ Ấn Độ sang, mà bắt buộc phải bao gồm cả phần 'trước tác' (sớ giải, ngữ lục, sử truyện...) do các vị cao tăng, học giả Trung Quốc (và cả Cao Ly, Nhật Bản) biên soạn."
+            },
+            {
+                q: 'Lần kiết tập kinh điển thứ nhất được tổ chức với số lượng bao nhiêu vị và vào thời gian nào?',
+                options: [
+                    "A. 500 vị - Mùa hạ năm Đức Phật nhập Niết bàn",
+                    "B. 700 vị - Sau 100 năm Đức Phật nhập Niết bàn",
+                    "C. 1000 vị - Mùa hạ năm Đức Phật nhập Niết bàn",
+                    "D. 500 vị - Sau 400 năm"
+                ],
+                answer: "A",
+                exp: "Mẹo học số lượng tham dự 4 kỳ kiết tập do Ni sư hướng dẫn: 500 -> 700 -> 1000 -> 500. Lần thứ nhất là 500 vị, diễn ra ngay mùa hạ năm Phật nhập diệt."
+            },
+            {
+                q: 'Nguyên nhân chính dẫn đến kỳ kiết tập kinh điển lần thứ nhất là gì?',
+                options: [
+                    "A. Do ngoại đạo trà trộn vào Tăng đoàn",
+                    "B. Chư tăng có kiến giải bất đồng về kinh điển",
+                    "C. Nhóm tỳ-kheo Bạt Kỳ đưa ra 10 điều phi pháp",
+                    "D. Tỳ-kheo Bạc Nan Đà vui mừng khi nghe tin Đức Phật nhập Niết bàn"
+                ],
+                answer: "D",
+                exp: "Tỳ-kheo Bạc Nan Đà cho rằng Phật nhập diệt là một sự 'giải thoát' khỏi các giới luật ràng buộc. Lời nói này khiến ngài Đại Ca Diếp lo ngại chánh pháp bị mai một nên đã lập tức triệu tập hội nghị."
+            },
+            {
+                q: 'Trong kỳ kiết tập thứ nhất, ngài U-ba-ly (Upali) và ngài A Nan đã trùng tuyên những gì?',
+                options: [
+                    "A. Ngài U-ba-ly trùng tuyên Kinh tạng, ngài A Nan trùng tuyên Luật tạng",
+                    "B. Ngài U-ba-ly trùng tuyên Luật tạng trước (Bát thập tụng luật), ngài A Nan trùng tuyên Kinh tạng (Hệ A Hàm)",
+                    "C. Cả hai ngài cùng trùng tuyên Luận tạng",
+                    "D. Ngài A Nan trùng tuyên Luật tạng trước"
+                ],
+                answer: "B",
+                exp: "Thứ tự kiết tập là Luật trước, Kinh sau. Ngài U-ba-ly tụng Luật 80 lần (Bát thập tụng luật). Ngài A Nan tụng Kinh tạng. Vì đây là môn Văn học Hán Tạng, nên hệ kinh ngài A Nan tụng được xác định là hệ A Hàm (chứ không gọi là Nikaya như bên Nam truyền)."
+            },
+            {
+                q: 'Kỳ kiết tập lần thứ hai được tổ chức tại đâu và vì nguyên nhân gì?',
+                options: [
+                    "A. Vương Xá - Tỳ kheo Bạc Nan Đà",
+                    "B. Ca Thấp Di La - Kiến giải bất đồng",
+                    "C. Tỳ Xá Ly - 10 điều phi pháp của nhóm Tỳ-kheo Bạt Kỳ",
+                    "D. Hoa Thị - Ngoại đạo trà trộn"
+                ],
+                answer: "C",
+                exp: "Lần 2 diễn ra tại thành Tỳ Xá Ly (sau 100 năm), do ngài Trưởng lão Da Xá chủ trì để giải quyết 10 điều luật bị coi là phi pháp do nhóm Tỳ-kheo Bạt Kỳ đưa ra."
+            },
+            {
+                q: 'Kỳ kiết tập kinh điển lần thứ ba do ai bảo trợ và có điểm gì đặc biệt về nội dung?',
+                options: [
+                    "A. Vua A Xà Thế - Có đầy đủ Kinh và Luật",
+                    "B. Vua Ca Nị Sắc Ca - Xuất hiện sớ giải",
+                    "C. Vua A Dục (Asoka) - Lần đầu tiên có đầy đủ Kinh, Luật và Luận",
+                    "D. Vua Hán Minh Đế - Bắt đầu dịch ra tiếng Hán"
+                ],
+                answer: "C",
+                exp: "Dưới sự bảo trợ của Vua A Dục, kỳ kiết tập lần 3 (1000 vị, tại Hoa Thị) đánh dấu sự ra đời và hoàn thiện của Luận tạng, nên có đầy đủ Kinh, Luật, Luận."
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 10 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Chủ tọa của kỳ kiết tập kinh điển lần thứ tư là ai?',
+                options: [
+                    "A. Ngài Đại Ca Diếp",
+                    "B. Đệ nhất chủ tọa là Thế Hữu, đệ nhị là Hiếp Tôn Giả",
+                    "C. Trưởng lão Da Xá",
+                    "D. Ngài Mục Kiền Liên Tử Đế Tu"
+                ],
+                answer: "B",
+                exp: "Lần thứ 4 tổ chức tại Ca Thấp Di La do vua Ca Nị Sắc Ca bảo trợ. Ngài Hiếp Tôn Giả là người khởi xướng nhưng đã nhường vị trí Đệ nhất chủ tọa cho ngài Thế Hữu vì nể phục tài trí."
+            },
+            {
+                q: 'Theo thuyết được công nhận, quyển kinh Phật đầu tiên truyền vào Trung Quốc bằng hình thức "khẩu truyền" (truyền miệng) là quyển nào và vào thời nào?',
+                options: [
+                    "A. Kinh Tứ Thập Nhị Chương - Đời Đông Hán",
+                    "B. Kinh Phù Đồ - Cuối thời Tây Hán (Tiền Hán)",
+                    "C. Kinh Đạo Hành Bát Nhã - Thời Tam Quốc",
+                    "D. Kinh Bát Đại Nhân Giác - Đời Tùy"
+                ],
+                answer: "B",
+                exp: 'Truyền thuyết "khẩu truyền Phật giáo của Y Tồn" ghi nhận sứ giả Y Tồn (nước Đại Nguyệt Chi) đã khẩu truyền kinh Phù Đồ vào năm -2 (trước Tây lịch), tức là cuối thời Tây Hán (hay Tiền Hán).'
+            },
+            {
+                q: 'Quyển kinh đầu tiên được chính thức "phiên dịch" ra tiếng Hán là quyển nào, do ai dịch?',
+                options: [
+                    "A. Kinh Phù Đồ do Y Tồn dịch",
+                    "B. Kinh An Ban Thủ Ý do An Thế Cao dịch",
+                    "C. Tứ Thập Nhị Chương do Ca Diếp Ma Đằng và Trúc Pháp Lan dịch",
+                    "D. Đạo Hành Bát Nhã do Chi Lâu Ca Sấm dịch"
+                ],
+                answer: "C",
+                exp: "Dưới thời vua Hán Minh Đế (năm 67 s.CN), ngài Ca Diếp Ma Đằng và Trúc Pháp Lan đã dùng ngựa trắng chở kinh về và dịch quyển Tứ Thập Nhị Chương."
+            },
+            {
+                q: 'Ngôi chùa Phật giáo đầu tiên được xây dựng tại Trung Quốc mang tên là gì?',
+                options: [
+                    "A. Hồng Lô Tự",
+                    "B. Thiếu Lâm Tự",
+                    "C. Bạch Mã Tự (Chùa Bạch Mã)",
+                    "D. Khai Nguyên Tự"
+                ],
+                answer: "C",
+                exp: 'Thầy giáo rất lưu ý điểm này: "Hồng Lô Tự" chỉ là cơ quan hành chính tiếp khách quốc tế nơi 2 ngài ở tạm ban đầu. Sau đó nhà vua mới cho xây dựng "Bạch Mã Tự" để kỷ niệm việc dùng ngựa trắng chở kinh. Đây mới là ngôi chùa đầu tiên.'
+            },
+            {
+                q: 'Các hình thức lưu truyền của Đại tạng kinh phát triển theo thứ tự nào?',
+                options: [
+                    "A. Khắc in -> Tụng đọc -> Điện tử -> Chép tay",
+                    "B. Chép tay -> Khắc đá -> Tụng đọc -> Điện tử",
+                    "C. Tụng đọc -> Chép (lá bối/giấy) -> Khắc in (mộc bản/đá) -> Điện tử",
+                    "D. Tụng đọc -> Điện tử -> Chép tay -> Khắc in"
+                ],
+                answer: "C",
+                exp: "Quy trình phát triển: Ban đầu là tụng đọc (khẩu truyền) -> Sau đó chép tay (trước tiên trên lá bối, sau đó trên giấy/máu) -> Khắc in (khắc lên vách đá rồi in mộc bản) -> Thời nay là số hóa điện tử (CD, Internet)"
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 15 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Lịch sử phiên dịch kinh điển Phật giáo ra tiếng Hán được chia thành mấy thời kỳ theo thứ tự thời gian?',
+                options: [
+                    "A. 4 thời kỳ (Lưỡng Hán, Tam Quốc, Tùy Đường, Tống)",
+                    "B. 5 thời kỳ (Lưỡng Hán Tam Quốc, Lưỡng Tấn Nhị Tần, Nam Bắc Triều, Tùy Đường, Tống)",
+                    "C. 3 thời kỳ (Lưỡng Hán, Nam Bắc Triều, Tùy Đường)",
+                    "D. 6 thời kỳ"
+                ],
+                answer: "B",
+                exp: "Ni sư có chỉ một mẹo để nhớ thứ tự 5 thời kỳ rất hay: Thời kỳ 3 có 3 chữ (Nam Bắc Triều), thời kỳ 4 giảm còn 2 chữ (Tùy Đường), thời kỳ 5 còn 1 chữ (Tống). Bạn cứ dựa vào mẹo đếm chữ này để đánh trắc nghiệm khi bị hỏi về thứ tự các thời kỳ nhé."
+            },
+            {
+                q: 'Ngài An Thế Cao (người nước An Tức, đời Hậu Hán) chuyên dịch các kinh điển thuộc hệ tư tưởng nào?',
+                options: [
+                    "A. Phật giáo Nguyên thủy (Thượng tọa bộ)",
+                    "B. Phật giáo Đại thừa phát triển",
+                    "C. Mật Tông",
+                    "D. Tịnh Độ Tông"
+                ],
+                answer: "A",
+                exp: 'Các nhà phán giáo Trung Quốc xếp kinh điển ngài An Thế Cao dịch vào hệ Nguyên Thủy (hoặc họ gọi là Tiểu thừa). Mẹo thi: Thấy chữ "An" thì nhớ ngài là người nước "An Tức", chuyên dịch kinh Nguyên thủy.'
+            },
+            {
+                q: 'Từ quyển kinh "An Ban Thủ Ý" do ngài An Thế Cao dịch, Đạo giáo đã lấy pháp môn trong đó để lập ra pháp gì?',
+                options: [
+                    "A. Lục diệu pháp môn",
+                    "B. Pháp Thai tức (Tức là hơi thở)",
+                    "C. Pháp Niệm Phật",
+                    "D. Pháp Thanh đàm"
+                ],
+                answer: "B",
+                exp: 'Kinh An Ban Thủ Ý hướng dẫn tu thiền đếm hơi thở. Đạo giáo rất xem trọng quyển kinh này và mượn nó để lập ra "pháp Thai tức". Còn "Lục diệu pháp môn" là do ngài Trí Giả đại sư (Phật giáo) lập ra cũng dựa trên quyển kinh này.'
+            },
+            {
+                q: 'Câu nói nổi tiếng "Duy tuệ thị nghiệp" (Chỉ lấy trí tuệ làm sự nghiệp) xuất phát từ quyển kinh nào do ngài An Thế Cao dịch?',
+                options: [
+                    "A. Kinh Bát Châu Tam Muội",
+                    "B. Kinh Tứ Thập Nhị Chương",
+                    "C. Kinh Bát Đại Nhân Giác",
+                    "D. Kinh Phù Đồ"
+                ],
+                answer: "C",
+                exp: 'Ni sư nhấn mạnh đây là quyển kinh rất quan trọng ở bậc Trung cấp Phật học. Câu "duy tuệ thị nghiệp" nằm ở điều giác ngộ thứ ba trong kinh Bát Đại Nhân Giác.'
+            },
+            {
+                q: 'Ngài Chi Lâu Ca Sấm (người nước Đại Nguyệt Chi, đời Hậu Hán) chuyên dịch các kinh điển thuộc hệ tư tưởng nào?',
+                options: [
+                    "A. Phật giáo Nguyên thủy",
+                    "B. Phật giáo Đại thừa phát triển",
+                    "C. Mật giáo",
+                    "D. Luật tạng"
+                ],
+                answer: "B",
+                exp: 'Ngược lại với ngài An Thế Cao, ngài Chi Lâu Ca Sấm (hay gọi tắt là ngài Chi Sấm) dịch kinh thuộc hệ Đại thừa phát triển. Mẹo thi: Thấy chữ "Chi" thì nhớ ngài là người nước Đại Nguyệt "Chi".'
+            },
+            {
+                q: 'Nền triết học Huyền học (Thanh Đàm) thời Ngụy Tấn chịu ảnh hưởng sâu sắc từ quyển kinh nào do ngài Chi Lâu Ca Sấm dịch?',
+                options: [
+                    "A. Kinh Đạo Hành Bát Nhã",
+                    "B. Kinh Bát Châu Tam Muội",
+                    "C. Kinh Pháp Hoa",
+                    "D. Kinh Duy Ma"
+                ],
+                answer: "A",
+                exp: 'Ngài Chi Lâu Ca Sấm dịch kinh Đạo Hành Bát Nhã. Tư tưởng "Tánh Không" của Bát Nhã có nhiều nét tương đồng với Huyền học (đề cao sự bất lập văn tự), nên Huyền học bị ảnh hưởng và nhờ đó Bát Nhã cũng phát triển mạnh tại Trung Quốc thời đó.'
+            },
+            {
+                q: 'Ai là vị tu sĩ người Trung Quốc đầu tiên (xuất gia nhưng chưa thọ đại giới tỳ-kheo)?',
+                options: [
+                    "A. Ngài Chu Sĩ Hành",
+                    "B. Cư sĩ Chi Khiêm",
+                    "C. Ngài Nghiêm Phật Điều",
+                    "D. Ngài Đạo An"
+                ],
+                answer: "C",
+                exp: "Ngài Nghiêm Phật Điều là đệ tử của ngài An Thế Cao, được đắp y Sa-di. Ngài là người Trung Quốc đầu tiên xuất gia nhưng lúc bấy giờ chưa có giới đàn nên chưa được thọ giới Tỳ-kheo."
+            },
+            {
+                q: 'Vào thời Ngụy (thuộc Tam Quốc), ngài Đàm Ma Ca La và ngài Đàm Đế đã có cống hiến gì quan trọng nhất?',
+                options: [
+                    "A. Dịch kinh Bát Nhã",
+                    "B. Dịch Tăng Kỳ Giới Bổn và Tứ phần Đàm Vô Đức Yết ma, thỉnh 10 vị Sa môn lập giới đàn",
+                    "C. Dịch kinh Pháp Hoa",
+                    "D. Đi Tây Vực cầu pháp"
+                ],
+                answer: "B",
+                exp: "Dưới thời Ngụy, hai ngài họ Đàm đã dịch giới luật và pháp Yết ma, sau đó mời 10 vị Sa môn Ấn Độ sang lập giới đàn. Từ đây Trung Quốc mới có giới đàn truyền đại giới tỳ-kheo chính thức."
+            },
+            {
+                q: 'Ai là người Trung Quốc đầu tiên được thọ đại giới Tỳ-kheo và cũng là người mở đường "Nhập trúc cầu pháp" (đi Ấn Độ/Tây Vực thỉnh kinh)?',
+                options: [
+                    "A. Ngài Huyền Trang",
+                    "B. Ngài Pháp Hiển",
+                    "C. Ngài Nghiêm Phật Điều",
+                    "D. Ngài Chu Sĩ Hành"
+                ],
+                answer: "D",
+                exp: 'Nhờ có giới đàn do 2 ngài họ Đàm lập ra, ngài Chu Sĩ Hành trở thành người đầu tiên thọ đại giới. Trong quá trình giảng kinh Bát Nhã thấy chỗ tối nghĩa, ngài đã lặn lội đi Tây Vực thỉnh kinh, trở thành vị Tăng tiên phong mở đường cầu pháp (dù cuối cùng ngài viên tịch ở nước ngoài).'
+            },
+            {
+                q: 'Ngài Khương Tăng Hội, vị đại sư sang truyền đạo và dịch "Lục độ tập kinh" tại nước Ngô (thời Tam Quốc), được sinh ra và xuất gia tại đâu?',
+                options: [
+                    "A. Nước Khương Cư",
+                    "B. Lạc Dương (Trung Quốc)",
+                    "C. Giao Châu (Việt Nam)",
+                    "D. Ấn Độ"
+                ],
+                answer: "C",
+                exp: "Ni sư đặc biệt nhấn mạnh điểm tự hào này. Tổ tiên ngài ở Khương Cư nhưng cha mẹ sang Giao Châu lập nghiệp. Ngài sinh ra, lớn lên và xuất gia thọ giới tại Việt Nam, sau đó mới sang nước Ngô (Trung Quốc) để hoằng pháp."
+            },
+            {
+                q: 'Câu nói "Thiên hạ bát tri, bất xuất tam chi" (Sự hiểu biết trong thiên hạ không vượt qua ba vị họ Chi) là để tôn xưng ba vị nào thời Tam Quốc?',
+                options: [
+                    "A. Chi Lâu Ca Sấm, Chi Lượng, Chi Khiêm",
+                    "B. Chi Pháp Hộ, Chi Lượng, Chi Khiêm",
+                    "C. Chi Lâu Ca Sấm, Chi Pháp Hộ, Chi Khiêm",
+                    "D. Chi Độn, Chi Lượng, Chi Khiêm"
+                ],
+                answer: "A",
+                exp: '"Tam chi" gồm: Sư tổ Chi Lâu Ca Sấm (gọi tắt là Chi Sấm) -> truyền cho đệ tử là Chi Lượng -> truyền cho cư sĩ Chi Khiêm. Khi làm bài nhớ mẹo loại trừ, đáp án nào có "Chi Lâu Ca Sấm" và "Chi Sấm" cùng lúc là sai vì đó chỉ là một người.'
+            },
+            {
+                q: 'Tác phẩm "Phật thuyết bột kinh sao" do cư sĩ Chi Khiêm dịch sang tiếng Hán, được Hòa thượng Hành Trụ dịch sang tiếng Việt với nhan đề là gì?',
+                options: [
+                    "A. Kinh Bách Duyên",
+                    "B. Kinh Lục Độ",
+                    "C. Kinh Hiền Nhân",
+                    "D. Kinh Duy Ma Cật"
+                ],
+                answer: "C",
+                exp: 'Chữ "Bột" là âm cổ của từ "Bụt/Buddha" (nghĩa là bậc hiền nhân). Ở Việt Nam, quyển kinh này rất quen thuộc với tên gọi Kinh Hiền Nhân.'
+            },
+            {
+                q: 'Vị cao tăng nào thời Tây Tấn được nhận định là "Kinh điển sở dĩ được lưu hành rộng rãi tại Trung Quốc đa số đều nhờ công sức của ngài"?',
+                options: [
+                    "A. Ngài Cưu Ma La Thập",
+                    "B. Ngài Trúc Pháp Hộ (Chi Pháp Hộ)",
+                    "C. Ngài Đạo An",
+                    "D. Ngài Huyền Trang"
+                ],
+                answer: "B",
+                exp: "Ngài Trúc Pháp Hộ là 1 trong 3 cột mốc vĩ đại của lịch sử dịch thuật Trung Quốc (Trúc Pháp Hộ -> Cưu Ma La Thập -> Huyền Trang). Ngài dịch lượng kinh khổng lồ (hàng trăm quyển), giúp Phật giáo phổ biến rộng rãi."
+            },
+            {
+                q: 'Học giả Lương Khải Siêu đánh giá hai quyển kinh nào do ngài Trúc Pháp Hộ dịch là "Phật giáo đại sự biểu" (Việc lớn của Phật giáo) của Trung Hoa?',
+                options: [
+                    "A. Kinh Niết Bàn và kinh Pháp Hoa",
+                    "B. Kinh Hoa Nghiêm và kinh Pháp Hoa",
+                    "C. Kinh Vu Lan và kinh Bát Nhã",
+                    "D. Kinh Duy Ma và kinh Kim Cang"
+                ],
+                answer: "A",
+                exp: 'Đừng nhầm lẫn với kinh Vu Lan nhé. Kinh Vu Lan do ngài dịch rất nổi tiếng trong dân gian, nhưng 2 quyển được giới học thuật xem là "Đại sự biểu" phải là Niết Bàn và Pháp Hoa.'
+            },
+            {
+                q: 'Vị cao tăng nào thời Hậu Triệu (Đông Tấn - Thập lục quốc) KHÔNG trực tiếp dịch kinh nhưng có công lớn trong việc thu nhận người Hán xuất gia và được vua suy tôn là "Quốc chi đại bảo"?',
+                options: [
+                    "A. Ngài Đạo An",
+                    "B. Ngài Huệ Viễn",
+                    "C. Ngài Phật Đồ Trừng",
+                    "D. Ngài Giác Hiền"
+                ],
+                answer: "C",
+                exp: "Ngài Phật Đồ Trừng là người Tây Vực, có nhiều thần thông cảm hóa được hai cha con vị vua bạo chúa Thạch Lặc/Thạch Hổ. Dù không dịch kinh nhưng ngài độ cho hàng trăm đệ tử xuất gia (trong đó có ngài Đạo An), xây hàng ngàn ngôi chùa."
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 30 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Ai là vị cao tăng khởi xướng việc Tăng Ni xuất gia lấy họ "Thích" (thay vì lấy họ theo Sư phụ)?',
+                options: [
+                    "A. Ngài Phật Đồ Trừng",
+                    "B. Ngài Cưu Ma La Thập",
+                    "C. Ngài Đạo An",
+                    "D. Ngài Huệ Viễn"
+                ],
+                answer: "C",
+                exp: "Trước ngài Đạo An, người xuất gia thường lấy họ theo nguồn gốc của thầy mình (ví dụ ngài Chu Sĩ Hành lấy họ thầy là Trúc). Từ ngài Đạo An (thời Tiền Tần), quy định Tăng Ni đều mang họ Thích mới bắt đầu được áp dụng và truyền đến Việt Nam ngày nay."
+            },
+            {
+                q: 'Tác phẩm "Tổng lý chúng kinh mục lục" (còn gọi tắt là An Lục) là của vị cao tăng nào?',
+                options: [
+                    "A. Ngài Trúc Pháp Hộ",
+                    "B. Ngài Đạo An",
+                    "C. Ngài Tăng Triệu",
+                    "D. Ngài Giác Hiền"
+                ],
+                answer: "B",
+                exp: 'Nếu ngài Trúc Pháp Hộ có công "lưu hành kinh điển rộng rãi", thì ngài Đạo An có công "chuyên chú giải, làm sáng nghĩa kinh điển". Ngài đã làm ra quyển mục lục kinh Phật đầu tiên (An Lục) và đưa ra quy tắc giải thích kinh gồm 3 phần: Lời tựa, Chánh tông, Lưu thông.'
+            },
+            {
+                q: 'Vị cao tăng nào thời Đông Tấn đã y cứ vào kinh Bát Chu Tam Muội để kiết xã niệm Phật và được tôn làm Sơ tổ Tịnh Độ tông?',
+                options: [
+                    "A. Ngài Cưu Ma La Thập",
+                    "B. Ngài Đạo Sanh",
+                    "C. Ngài Huệ Viễn",
+                    "D. Ngài Đàm Vô Sấm"
+                ],
+                answer: "C",
+                exp: "Ngài Huệ Viễn là đệ tử xuất sắc của ngài Đạo An. Ngài ở núi Lư Sơn 30 năm không xuống núi, lập Bạch Liên Xã niệm Phật. Đời sau tôn ngài làm Sơ tổ của Tịnh Độ Tông."
+            },
+            {
+                q: 'Tác phẩm "Sa môn bất bái vương giả luận" (Người xuất gia không lạy vua chúa) là do vị cao tăng nào soạn ra để bảo vệ sự độc lập của Phật giáo trước thế quyền?',
+                options: [
+                    "A. Ngài Phật Đồ Trừng",
+                    "B. Ngài Huệ Viễn",
+                    "C. Ngài Đạo An",
+                    "D. Ngài Chân Đế"
+                ],
+                answer: "B",
+                exp: "Thời Đông Tấn, quyền thần Hoàn Huyền ép người xuất gia phải lạy vua. Ngài Huệ Viễn đã viết bài luận này để khẳng định người xuất gia không vướng danh lợi, không cần đảnh lễ vua chúa, khiến thế quyền phải nể phục."
+            },
+            {
+                q: 'Đại dịch giả Cưu Ma La Thập (Kumārajīva) được thỉnh về Trường An dịch kinh dưới triều đại nào?',
+                options: [
+                    "A. Tiền Tần",
+                    "B. Hậu Tần (vua Diêu Hưng)",
+                    "C. Tây Tấn",
+                    "D. Hậu Triệu"
+                ],
+                answer: "B",
+                exp: "Mẹo thi: Nhớ cặp đôi triều đại: Ngài Đạo An thuộc thời Tiền Tần (vua Phù Kiên), còn ngài Cưu Ma La Thập thuộc thời Hậu Tần (vua Diêu Hưng). Ngài bị giam lỏng mười mấy năm ở Hậu Lương trước khi được vua Diêu Hưng rước về tôn làm Quốc sư."
+            },
+            {
+                q: 'Bản dịch của ngài Cưu Ma La Thập đối với những quyển kinh nào dưới đây được giới Phật học xem là "Định bản" (bản dịch chuẩn mực nhất)?',
+                options: [
+                    "A. Kinh Bát Đại Nhân Giác, Kinh Tứ Thập Nhị Chương",
+                    "B. Kinh Niết Bàn, Kinh Hoa Nghiêm",
+                    "C. Kinh Duy Ma, Kinh Pháp Hoa, Kinh Kim Cang",
+                    "D. Kinh Vu Lan, Kinh Lục Độ Tập"
+                ],
+                answer: "C",
+                exp: 'Ni sư đặc biệt nhấn mạnh chữ "Định bản". Kinh Duy Ma (3 bản dịch), Kinh Pháp Hoa (3 bản dịch), và Kinh Kim Cang (6 bản dịch) đều chọn bản dịch của ngài Cưu Ma La Thập làm bản chuẩn nhất để tụng đọc và nghiên cứu cho tới tận ngày nay.'
+            },
+            {
+                q: 'Dịch phẩm "Kinh Kim Cang" của ngài Cưu Ma La Thập có ảnh hưởng sâu sắc đến sự hình thành và phát triển của tông phái nào ở Trung Quốc?',
+                options: [
+                    "A. Tịnh Độ Tông",
+                    "B. Thiền Tông",
+                    "C. Luật Tông",
+                    "D. Hoa Nghiêm Tông"
+                ],
+                answer: "B",
+                exp: "Mẹo thi: Kim Cang -> Thiền Tông (nhớ điển tích Lục Tổ Huệ Năng nghe kinh Kim Cang mà giác ngộ). Pháp Hoa -> Thiên Thai tông. A Di Đà -> Tịnh Độ tông."
+            },
+            {
+                q: 'Nhóm "Tứ Luận" (gồm Trung Luận, Bách Luận, Thập Nhị Môn Luận và Đại Trí Độ Luận) do ngài Cưu Ma La Thập dịch là kinh điển y cứ của tông phái nào?',
+                options: [
+                    "A. Tam Luận tông",
+                    "B. Duy Thức tông",
+                    "C. Thành Thực tông",
+                    "D. Nhiếp Luận tông"
+                ],
+                answer: "A",
+                exp: 'Nhóm luận này chứa đựng tư tưởng Bát Nhã "Tánh Không". Ngài dịch Tứ Luận, và đời sau lấy đó làm nền tảng lập ra Tam Luận Tông. (Riêng Thành Thực Luận thì lập ra Thành Thực Tông).'
+            },
+            {
+                q: 'Vị đệ tử xuất sắc của ngài Cưu Ma La Thập đưa ra tư tưởng "Nhất xiển đề cũng có thể thành Phật" (Phật tánh luận) là ai?',
+                options: [
+                    "A. Ngài Tăng Triệu",
+                    "B. Ngài Đạo Sanh",
+                    "C. Ngài Đạo Dung",
+                    "D. Ngài Đạo Hằng"
+                ],
+                answer: "B",
+                exp: 'Ngài Đạo Sanh khẳng định "Nhất xiển đề" (kẻ cực ác, không tin nhân quả) vẫn có Phật tánh và có thể thành Phật. Lúc đầu ngài bị Tăng chúng đuổi đi vì trái với kinh điển đương thời, nhưng sau đó khi toàn bộ Kinh Niết Bàn được dịch, mọi người mới nể phục tư tưởng đi trước thời đại của ngài.'
+            },
+            {
+                q: 'Đệ tử xuất sắc của ngài Cưu Ma La Thập được tôn xưng là "Giải không đệ nhất" (giống như ngài Tu Bồ Đề thời Đức Phật) là ai?',
+                options: [
+                    "A. Ngài Đạo Sanh",
+                    "B. Ngài Tăng Triệu",
+                    "C. Ngài Giác Hiền",
+                    "D. Ngài Trúc Pháp Hộ"
+                ],
+                answer: "B",
+                exp: 'Ngài Tăng Triệu đã kế thừa xuất sắc tư tưởng Tánh Không của thầy mình, viết ra "Triệu Luận" đập tan sự sai lệch của Huyền học, đưa tư tưởng Bát Nhã về đúng với tinh thần gốc, nên được xưng là Giải Không Đệ Nhất.'
+            },
+            {
+                q: 'Vị cao tăng nào thời Đông Tấn là dịch giả của bộ kinh Hoa Nghiêm 60 quyển?',
+                options: [
+                    "A. Ngài Đàm Vô Sấm",
+                    "B. Ngài Thực Xoa Nan Đà",
+                    "C. Ngài Giác Hiền (Phật Đà Bạc Đà La)",
+                    "D. Ngài Huyền Trang"
+                ],
+                answer: "C",
+                exp: "Mẹo thi: Hoa Nghiêm 60 quyển thời Đông Tấn là của ngài Giác Hiền. Còn Hoa Nghiêm 80 quyển thời Đường là của ngài Thực Xoa Nan Đà. Đừng để lộn hai con số này nhé!"
+            },
+            {
+                q: 'Ở thời Bắc Lương (thuộc Thập lục quốc), ngài Đàm Vô Sấm đã dịch bộ kinh nào cực kỳ quan trọng làm nền tảng cho tư tưởng Phật tánh?',
+                options: [
+                    "A. Kinh Lăng Già",
+                    "B. Kinh Thắng Man",
+                    "C. Đại Bát Niết Bàn Kinh",
+                    "D. Kinh Giải Thâm Mật"
+                ],
+                answer: "C",
+                exp: "Ngài Đàm Vô Sấm (Dharmakṣema) dịch kinh Đại Bát Niết Bàn ở phương Bắc (gọi là Bắc bản). Bộ kinh này xác nhận tất cả chúng sanh đều có Phật tánh, chứng minh cho luận điểm đi trước thời đại của ngài Đạo Sanh."
+            },
+            {
+                q: 'Bước sang thời kỳ phiên dịch thứ ba (Nam Bắc Triều), đặc điểm nổi bật của kinh điển được dịch trong thời kỳ này tập trung vào hệ tư tưởng nào?',
+                options: [
+                    "A. Huyền học Thanh Đàm",
+                    "B. Phật tánh luận",
+                    "C. Mật giáo",
+                    "D. Luật tạng nguyên thủy"
+                ],
+                answer: "B",
+                exp: "Ni sư rất nhấn mạnh: Thời Nam Bắc Triều là kỷ nguyên của Phật tánh luận. Tăng sĩ Trung Quốc trực tiếp qua Ấn Độ thỉnh các bộ kinh nói về Phật tánh mang về dịch (như Niết Bàn, Thắng Man, Lăng Già, Giải Thâm Mật)."
+            },
+            {
+                q: 'Bộ luận nào do ngài Bồ Đề Lưu Chi dịch thời Nam Bắc Triều đã ảnh hưởng trực tiếp đến sự thành lập Địa Luận Tông?',
+                options: [
+                    "A. Nhiếp Đại Thừa Luận",
+                    "B. Thập Địa Kinh Luận",
+                    "C. Đại Trí Độ Luận",
+                    "D. Trung Luận"
+                ],
+                answer: "B",
+                exp: 'Thấy chữ "Địa" là chọn "Địa": Thập Địa kinh luận -> Địa Luận tông.'
+            },
+            {
+                q: 'Tác phẩm "Nhiếp Đại Thừa Luận" ảnh hưởng đến việc thành lập Nhiếp Luận Tông (tiền thân của Duy Thức tông) là do vị đại dịch giả nào dịch?',
+                options: [
+                    "A. Ngài Chân Đế",
+                    "B. Ngài Huyền Trang",
+                    "C. Ngài Bồ Đề Lưu Chi",
+                    "D. Ngài Bất Không"
+                ],
+                answer: "A",
+                exp: 'Ngài Chân Đế (Paramārtha) là 1 trong Tứ Đại Dịch Giả. Ở thời Nam Bắc Triều, ngài đã chịu nhiều gian khổ gánh kinh chạy loạn để dịch bộ "Nhiếp Đại Thừa Luận", tạo tiền đề cho tông Duy Thức sau này.'
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 45 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Ngài Huyền Trang (thời nhà Đường) đã dịch bộ kinh Đại Bát Nhã với số lượng là bao nhiêu quyển?',
+                options: [
+                    "A. 100 quyển",
+                    "B. 600 quyển (chiếm 3 tập của Đại Chánh Tạng)",
+                    "C. 40 quyển",
+                    "D. 80 quyển"
+                ],
+                answer: "B",
+                exp: "Lúc đầu ngài Huyền Trang định dịch tóm tắt, nhưng cảm thấy tâm bất an. Khi ngài quyết định dịch trọn vẹn nguyên bản 600 quyển thì điềm lành xuất hiện. Số lượng này cực kỳ đồ sộ, chiếm hẳn 3 tập dày cộm của Đại Chánh Tạng."
+            },
+            {
+                q: 'Bên cạnh bộ kinh đồ sộ Đại Bát Nhã, ngài Huyền Trang còn là dịch giả của một quyển kinh cực kỳ ngắn (chỉ hơn 200 chữ) được tụng đọc hàng ngày ở các chùa Bắc Tông. Đó là kinh gì?',
+                options: [
+                    "A. Kinh Phù Đồ",
+                    "B. Kinh Di Đà",
+                    "C. Bát Nhã Ba La Mật Đa Tâm Kinh (Tâm Kinh)",
+                    "D. Kinh Bát Đại Nhân Giác"
+                ],
+                answer: "C",
+                exp: "Ni sư rất hay nhắc chi tiết đối lập này để dễ nhớ: Ngài Huyền Trang dịch bộ kinh dài nhất (Đại Bát Nhã - 600 quyển) và cũng dịch quyển kinh ngắn nhất (Tâm Kinh Bát Nhã - hơn 200 chữ)."
+            },
+            {
+                q: 'Nhờ dịch các tác phẩm như Giải Thâm Mật, Du Già Sư Địa Luận, Nhiếp Đại Thừa Luận, ngài Huyền Trang được tôn làm sơ tổ của tông phái nào?',
+                options: [
+                    "A. Tam Luận tông",
+                    "B. Thiền tông",
+                    "C. Duy Thức tông (Pháp Tướng tông)",
+                    "D. Hoa Nghiêm tông"
+                ],
+                answer: "C",
+                exp: 'Mẹo thi: Nếu ngài Cưu Ma La Thập với "Tứ Luận" ảnh hưởng Tam Luận tông, thì ngài Huyền Trang với các bộ luận về tâm thức là sơ tổ của Duy Thức tông.'
+            },
+            {
+                q: 'Nguyên tắc dịch thuật nổi tiếng "Ngũ chủng bất phiên" (5 trường hợp không dịch nghĩa mà giữ nguyên âm Phạn) là lý luận của vị đại sư nào?',
+                options: [
+                    "A. Ngài Cưu Ma La Thập",
+                    "B. Ngài Huyền Trang",
+                    "C. Ngài Đạo An",
+                    "D. Ngài Chân Đế"
+                ],
+                answer: "B",
+                exp: "5 trường hợp không dịch nghĩa gồm: Bí mật bất phiên (thần chú), Đa nghĩa bất phiên (1 từ có nhiều nghĩa như Bhagavat), Phi hữu bất phiên (Trung Quốc không có vật đó), Cổ dịch bất phiên (người xưa đã dịch quen rồi), Thất nghĩa bất phiên (dịch ra sẽ mất đi ý nghĩa mầu nhiệm như từ Bát Nhã)."
+            },
+            {
+                q: 'Vị cao tăng nào là tác giả của quyển "Đại Đường Tây Vực Ký" và đã dịch "Đạo Đức Kinh" (của Lão Tử) ngược từ tiếng Hán sang tiếng Phạn?',
+                options: [
+                    "A. Ngài Nghĩa Tịnh",
+                    "B. Ngài Bồ Đề Lưu Chi",
+                    "C. Ngài Huyền Trang",
+                    "D. Ngài Đạo Sanh"
+                ],
+                answer: "C",
+                exp: "Đây là trường hợp cực kỳ đặc biệt. Ngài Huyền Trang quá uyên bác nên không chỉ dịch kinh Phạn sang Hán, mà ngài còn dịch cả sách của Đạo giáo (Đạo Đức Kinh) và Đại thừa khởi tín luận từ tiếng Hán ngược lại sang tiếng Phạn."
+            },
+            {
+                q: 'Dịch giả của bộ kinh "Hoa Nghiêm 80 quyển" thời nhà Đường là ai?',
+                options: [
+                    "A. Ngài Giác Hiền",
+                    "B. Ngài Thực Xoa Nan Đà",
+                    "C. Ngài Huyền Trang",
+                    "D. Ngài Bất Không"
+                ],
+                answer: "B",
+                exp: 'Mẹo thi "chết sống" từ Ni sư: Hoa Nghiêm 60 quyển (Đông Tấn) là của ngài Giác Hiền. Hoa Nghiêm 80 quyển (đời Đường) là của ngài Thực Xoa Nan Đà. Nhớ kỹ con số để không bị lừa.'
+            },
+            {
+                q: 'Thời Tùy Đường, ngài Bất Không nổi tiếng chuyên dịch các kinh điển thuộc tông phái nào?',
+                options: [
+                    "A. Mật tông",
+                    "B. Tịnh độ tông",
+                    "C. Luật tông",
+                    "D. Thiên Thai tông"
+                ],
+                answer: "A",
+                exp: "Thời Đường Mật tông phát triển rất mạnh, ảnh hưởng đến cả triều đình. Ngài Bất Không là tổ sư sáng lập và dịch rất nhiều kinh điển của Mật tông."
+            },
+            {
+                q: 'Đệ tử nối pháp của ngài Bất Không là ngài Huệ Quả. Ngài Huệ Quả sau đó đã truyền pháp cho vị nào để vị này mang về Nhật Bản khai sáng Chân Ngôn tông?',
+                options: [
+                    "A. Ngài Tối Trừng",
+                    "B. Ngài Nhật Liên",
+                    "C. Ngài Không Hải",
+                    "D. Ngài Đạo Nguyên"
+                ],
+                answer: "C",
+                exp: "Dòng truyền thừa Mật tông: Ngài Bất Không -> Ngài Huệ Quả -> Ngài Không Hải (mang về Nhật Bản lập ra Chân Ngôn tông)."
+            },
+            {
+                q: 'Danh xưng "Tứ đại dịch giả" của Phật giáo Trung Quốc gồm 4 vị nào?',
+                options: [
+                    "A. Cưu Ma La Thập, Chân Đế, Huyền Trang, Bất Không (hoặc Nghĩa Tịnh)",
+                    "B. Trúc Pháp Hộ, Cưu Ma La Thập, Huyền Trang, Đạo An",
+                    "C. An Thế Cao, Chi Lâu Ca Sấm, Huyền Trang, Nghĩa Tịnh",
+                    "D. Đàm Vô Sấm, Chân Đế, Bồ Đề Lưu Chi, Cưu Ma La Thập"
+                ],
+                answer: "A",
+                exp: "Tứ đại dịch giả gồm: Cưu Ma La Thập, Chân Đế, Huyền Trang. Vị thứ 4 tùy theo tài liệu có thể xếp là ngài Bất Không hoặc ngài Nghĩa Tịnh đều được chấp nhận. (Khác với 3 cột mốc dịch kinh là: Trúc Pháp Hộ, La Thập, Huyền Trang)."
+            },
+            {
+                q: 'Bước sang thời nhà Tống (thời kỳ thứ 5), đặc điểm nổi bật nhất của Đại Tạng Kinh là gì?',
+                options: [
+                    "A. Chủ yếu dịch kinh điển Nam truyền (Pali)",
+                    "B. Bắt đầu dịch kinh Mật tông",
+                    "C. Việc dịch kinh không còn như xưa, chủ yếu là những tác phẩm TRƯỚC TÁC do người Trung Quốc biên soạn",
+                    "D. Dịch các bộ luận của Bồ Tát Long Thọ"
+                ],
+                answer: "C",
+                exp: "Sang thời Tống, kỷ nguyên phiên dịch kinh điển (từ Phạn sang Hán) coi như khép lại. Đại Tạng kinh thời kỳ này phần lớn là thu thập các bài chú giải, ngữ lục, sớ sao (trước tác) của chính các thiền sư, tổ sư Trung Quốc."
+            },
+            {
+                q: 'Bộ Đại Tạng Kinh chữ Hán ĐẦU TIÊN được khắc in mộc bản (bản gỗ) là bộ nào?',
+                options: [
+                    "A. Triệu Thành Tạng",
+                    "B. Khai Bảo Tạng",
+                    "C. Kính Sơn Tạng",
+                    "D. Càn Long Tạng"
+                ],
+                answer: "B",
+                exp: 'Mẹo thi: Chữ "Khai" mang nghĩa là khai mở, bắt đầu. Khai Bảo Tạng được khắc in vào đời Tống (niên hiệu Khai Bảo), là bộ Đại Tạng Kinh in mộc bản đầu tiên trong lịch sử.'
+            },
+            {
+                q: 'Bộ Khai Bảo Tạng có điểm gì khác biệt cốt lõi so với các bản Đại Tạng Kinh khác thời nhà Tống?',
+                options: [
+                    "A. Là bộ duy nhất được dịch từ tiếng Pali",
+                    "B. Là bộ duy nhất do NHÀ NƯỚC (triều đình) đứng ra khắc in",
+                    "C. Là bộ duy nhất dùng máu để chép",
+                    "D. Là bộ duy nhất được đóng bằng chỉ mây"
+                ],
+                answer: "B",
+                exp: "Thời Tống có 8 lần khắc in Đại Tạng Kinh, nhưng chỉ duy nhất bộ Khai Bảo Tạng là do nhà nước làm. Tất cả các bộ còn lại (Viên Giác tạng, Tư Phước tạng, Thích Sa tạng...) đều do chùa chiền hoặc TƯ NHÂN tự đóng góp khắc in."
+            },
+            {
+                q: 'Cô Thôi Pháp Trân đã chặt cánh tay của mình để hóa duyên, khuyến mộ mọi người quyên tiền khắc in bộ Đại Tạng Kinh nào thời Tống?',
+                options: [
+                    "A. Khai Bảo Tạng",
+                    "B. Triệu Thành Tạng",
+                    "C. Kính Sơn Tạng",
+                    "D. Càn Long Tạng"
+                ],
+                answer: "B",
+                exp: "Công hạnh in kinh của người xưa rất vĩ đại. Cô Thôi Pháp Trân đã chặt tay khất thực để lấy tiền in bộ Triệu Thành tạng (bộ cuối cùng của đời Tống). Sau khi in xong dâng lên vua, cô được vua độ cho xuất gia làm Tỳ-kheo ni và ban hiệu là Hoằng Giáo đại sư."
+            },
+            {
+                q: 'Bộ Đại Tạng Kinh chữ Hán ĐẦU TIÊN sử dụng phương pháp đóng sách bằng "chỉ mây" (thay vì xếp gấp như cây quạt) là bộ nào?',
+                options: [
+                    "A. Kính Sơn Tạng (Gia Hưng Tạng)",
+                    "B. Phổ Ninh Tạng",
+                    "C. Cao Ly Tạng",
+                    "D. Vạn Lịch Tạng"
+                ],
+                answer: "A",
+                exp: "Trước đó kinh sách thường in theo dạng sớ xếp gấp (như cây quạt, rơi xuống sẽ bị bung ra rất khó xếp lại). Đến đời Minh, bộ Kính Sơn Tạng (còn gọi là Gia Hưng Tạng) là bộ đầu tiên dùng chỉ mây để đóng gáy thành từng cuốn rất nhẹ và tiện lợi."
+            },
+            {
+                q: 'Bản Cao Ly Đại Tạng Kinh khắc lần thứ hai (của nước Cao Ly/Hàn Quốc ngày nay) vô cùng nổi tiếng và được UNESCO đánh giá cao, còn được gọi bằng cái tên nào khác?',
+                options: [
+                    "A. Thất vạn Đại Tạng Kinh",
+                    "B. Cửu vạn Đại Tạng Kinh",
+                    "C. Bát vạn Đại Tạng Kinh",
+                    "D. Thập vạn Đại Tạng Kinh"
+                ],
+                answer: "C",
+                exp: 'Gọi là "Bát vạn" (8 vạn) vì bộ Đại Tạng Kinh này được khắc trên khoảng 80.000 tấm mộc bản (gỗ). Vua Cao Ly cho khắc bộ này với niềm tin tâm linh nhằm đẩy lùi sự xâm lược của quân Mông Cổ. Hiện vẫn được lưu giữ tại chùa Hải Ấn (Haeinsa)'
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 60 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Bộ "Đại Chánh Tân Tu Đại Tạng Kinh" (gọi tắt là Đại Chánh tạng) do quốc gia nào biên soạn và ấn hành?',
+                options: [
+                    "A. Trung Quốc",
+                    "B. Hàn Quốc (Cao Ly)",
+                    "C. Nhật Bản",
+                    "D. Việt Nam"
+                ],
+                answer: "C",
+                exp: "Bộ Đại tạng kinh này do các học giả Nhật Bản (như Cao Nam Thuận Thứ Lang, Độ Biên Hải Húc) đi du học phương Tây về phát tâm biên soạn trong niên hiệu Đại Chánh của Nhật Bản. Tên đầy đủ là Đại Nhật Bổn Chánh Tân Tu Đại Tạng Kinh."
+            },
+            {
+                q: 'Toàn bộ Đại Chánh Tạng gồm có bao nhiêu tập và được chia làm mấy phần chính?',
+                options: [
+                    "A. 55 tập, chia làm 2 phần",
+                    "B. 100 tập, chia làm 3 phần",
+                    "C. 100 quyển, chia làm 2 phần",
+                    "D. 80 tập, chia làm 3 phần"
+                ],
+                answer: "B",
+                exp: "Đại Chánh tạng gồm tổng cộng 100 tập (tập, không gọi là quyển để tránh nhầm lẫn với quyển kinh) và được chia làm 3 phần lớn: Chánh tạng, Tục tạng và Biệt quyển."
+            },
+            {
+                q: 'Số lượng tập được phân bổ trong 3 phần: Chánh tạng, Tục tạng và Biệt quyển lần lượt là bao nhiêu?',
+                options: [
+                    "A. 50 tập, 30 tập, 20 tập",
+                    "B. 55 tập, 30 tập, 15 tập",
+                    "C. 60 tập, 25 tập, 15 tập",
+                    "D. 55 tập, 35 tập, 10 tập"
+                ],
+                answer: "B",
+                exp: "💡 Mẹo ghi nhớ từ Ni sư: Chánh tạng chiếm hơn một nửa (55 tập). Hai phần còn lại thì Tục tạng (30 tập) gấp đôi số lượng của Biệt quyển (15 tập). Tổng cộng: 55 + 30 + 15 = 100 tập."
+            },
+            {
+                q: 'Phần Chánh tạng (55 tập) được chia làm 2 mảng nội dung chính nào với số lượng tập ra sao?',
+                options: [
+                    "A. Kinh điển phiên dịch (30 tập) và Trước tác soạn thuật (25 tập)",
+                    "B. Kinh điển phiên dịch (32 tập) và Trước tác soạn thuật (23 tập)",
+                    "C. Kinh điển Đại thừa (40 tập) và Kinh điển Tiểu thừa (15 tập)",
+                    "D. Kinh tạng (30 tập) và Luật tạng (25 tập)"
+                ],
+                answer: "B",
+                exp: "💡 Mẹo ghi nhớ: Nhớ con số đảo ngược. Phần phiên dịch là 32 tập, phần trước tác (hay còn gọi là Tạp tạng) là 23 tập. 32 + 23 = 55 tập."
+            },
+            {
+                q: 'Phần Kinh điển phiên dịch (32 tập) gồm Kinh, Luật, Luận được chia thành bao nhiêu bộ?',
+                options: [
+                    "A. 16 bộ (Kinh 10 bộ, Luật 1 bộ, Luận 5 bộ)",
+                    "B. 15 bộ (Kinh 5 bộ, Luật 5 bộ, Luận 5 bộ)",
+                    "C. 10 bộ (Kinh 8 bộ, Luật 1 bộ, Luận 1 bộ)",
+                    "D. 20 bộ (Kinh 10 bộ, Luật 5 bộ, Luận 5 bộ)"
+                ],
+                answer: "A",
+                exp: "Phiên dịch có 16 bộ, trong đó Kinh chiếm 10 bộ (A Hàm, Bản Duyên, Bát Nhã, Pháp Hoa, Hoa Nghiêm, Bảo Tích, Niết Bàn, Đại Tập, Kinh Tập, Mật Giáo), Luật có 1 bộ và Luận có 5 bộ."
+            },
+            {
+                q: 'Khi đề bài hỏi "Kinh tạng gồm có những bộ nào?", bạn CẦN LOẠI BỎ những bộ nào dưới đây ra khỏi đáp án?',
+                options: [
+                    "A. A Hàm, Bản duyên, Bát Nhã",
+                    "B. Pháp Hoa, Hoa Nghiêm, Bảo Tích",
+                    "C. Niết Bàn, Đại Tập, Mật Giáo",
+                    "D. Tỳ Đàm, Trung Quán, Du Già, Thích Kinh Luận, Luận Tập"
+                ],
+                answer: "D",
+                exp: '💡 Mẹo thi cực hay của Ni sư để đánh trắc nghiệm: Khi hỏi "Kinh tạng gồm có", bạn hãy tìm các đáp án có chứa chữ "Luận" (Thích kinh luận bộ, Luận tập bộ) và 3 cái tên lạ (Tỳ đàm, Trung Quán, Du già) để LOẠI TRỪ ngay lập tức, vì đó là 5 bộ thuộc Luận tạng chứ không phải Kinh tạng.'
+            },
+            {
+                q: 'Trong phần "Tục tạng" (30 tập), 2 bộ kinh điển nào dưới đây thuộc về Kinh điển Đôn Hoàng (Trung Quốc) chứ không phải của Nhật Bản?',
+                options: [
+                    "A. Tục kinh sớ bộ, Tục luật sớ bộ",
+                    "B. Tất Đàm bộ, Tục luận sớ bộ",
+                    "C. Cổ dật bộ, Nghi tợ bộ",
+                    "D. Chư tông bộ, Sự hối bộ"
+                ],
+                answer: "C",
+                exp: 'Tục tạng đa số là sách của người Nhật, nhưng có 2 bộ của Đôn Hoàng là "Cổ dật" (sách cổ bị thất lạc) và "Nghi tợ" (sách bị nghi ngờ không chính thống, ví dụ chuyện ngài Đạo An đi nghe ngài Huệ Viễn giảng kinh là sai lịch sử).'
+            },
+            {
+                q: 'Phần "Biệt quyển" (15 tập) của Đại Chánh Tạng được phân chia cấu trúc như thế nào?',
+                options: [
+                    "A. Đồ họa (10 tập), Tổng mục lục (5 tập)",
+                    "B. Đồ họa (12 tập), Tổng mục lục (3 tập)",
+                    "C. Tự điển (10 tập), Đồ họa (5 tập)",
+                    "D. Hình ảnh (5 tập), Mục lục (10 tập)"
+                ],
+                answer: "B",
+                exp: "Biệt quyển chia làm Đồ họa (12 tập) cung cấp hình ảnh chân thực về tượng Phật, Bồ Tát, đàn tràng, mạn đà la... và Tổng mục lục (3 tập) giúp tra cứu kinh sách dễ dàng."
+            },
+            {
+                q: 'Đặc điểm nổi bật nào dưới đây là một trong những ƯU ĐIỂM cốt lõi của Đại Chánh Tạng khiến giới học giả đánh giá rất cao?',
+                options: [
+                    "A. Phạm - Hán đối chiếu (Có kèm tiếng Phạn nguyên ngữ)",
+                    "B. Biên soạn bằng chữ Hán giản thể",
+                    "C. Chỉ chuyên tập hợp kinh điển Nam truyền (Pali)",
+                    "D. Bỏ đi các phần sớ giải của tổ sư Trung Quốc"
+                ],
+                answer: "A",
+                exp: 'Ban biên tập đi du học phương Tây về nên làm việc rất khoa học. Một ưu điểm lớn là "Phạm Hán đối chiếu" (các tên người, tên đất, tên kinh đều có đối chiếu với nguyên ngữ tiếng Phạn), giúp ích rất lớn cho việc nghiên cứu và dịch thuật.'
+            },
+            {
+                q: 'Đại Chánh Tạng có kỹ thuật in ấn nào mang tính đột phá, hỗ trợ lớn cho người đọc so với các bộ Đại tạng kinh cổ?',
+                options: [
+                    "A. In chữ to trên giấy A4",
+                    "B. Khắc trên mộc bản",
+                    "C. Xếp in và chấm câu (Có dấu câu rõ ràng)",
+                    "D. In kèm hình ảnh 3D"
+                ],
+                answer: "C",
+                exp: 'Các bộ kinh cổ khắc trên gỗ không có dấu chấm, phẩy, khiến người đọc dễ hiểu sai ý nghĩa (ví dụ: "trâu cày không được giết"). Đại Chánh tạng có "xếp in và chấm câu" rõ ràng, chia làm 3 cột (thượng, trung, hạ), rất tiện lợi.'
+            },
+            {
+                q: 'Đâu là một KHUYẾT ĐIỂM của Đại Chánh Tân Tu Đại Tạng Kinh trong quá trình thu thập tài liệu?',
+                options: [
+                    "A. Bỏ sót nhiều tác phẩm trước tác Phật giáo Trung Quốc (Ví dụ: Ngũ Đăng Hội Nguyên)",
+                    "B. Không có mục lục tra cứu",
+                    "C. Dùng giấy quá xấu để in",
+                    "D. Không đưa kinh điển Nhật Bản vào"
+                ],
+                answer: "A",
+                exp: 'Dù quy động đến 450.000 người, Đại Chánh tạng vẫn mắc khuyết điểm là "Bỏ sót sách". Một ví dụ điển hình mà Ni sư nhắc đến là bộ Ngũ Đăng Hội Nguyên bị bỏ sót không được đưa vào tạng.'
+            },
+            {
+                q: 'Về mặt học thuật, KHUYẾT ĐIỂM lớn nhất trong cách phân loại của Đại Chánh Tạng là gì?',
+                options: [
+                    "A. Phân loại theo vần ABC",
+                    "B. Phân loại không hợp lý, dùng khái niệm \"Tiểu thừa\" và \"Đại thừa\" lẫn lộn",
+                    "C. Phân loại theo năm sinh của người dịch",
+                    "D. Tách riêng kinh và luật quá cứng nhắc"
+                ],
+                answer: "B",
+                exp: 'Đại Chánh tạng phân loại không hợp lý khi vẫn dùng tư tưởng phán giáo cũ của Trung Quốc, xếp hệ A Hàm vào "Tiểu thừa", và đôi khi xếp lẫn lộn kinh điển Nguyên thủy vào chung với Đại thừa.'
+            },
+            {
+                q: 'Phần "Tạp tạng" (Trước tác soạn thuật - 23 tập) gồm 8 bộ, KHÔNG bao gồm bộ nào dưới đây?',
+                options: [
+                    "A. Kinh sớ bộ, Luật sớ bộ, Luận sớ bộ",
+                    "B. Chư tông bộ, Sử truyện bộ",
+                    "C. Tỳ đàm bộ, Du già bộ",
+                    "D. Sự hối bộ, Ngoại giáo bộ, Mục lục bộ"
+                ],
+                answer: "C",
+                exp: '💡 Mẹo thi: Tỳ đàm và Du già là các bộ thuộc phần Luận tạng (trong Kinh điển phiên dịch 32 tập). Phần Trước tác (Tạp tạng) chủ yếu là các phần "Sớ" (chú giải) của tổ sư Trung Quốc (Kinh sớ, Luật sớ, Luận sớ) và các sách sử truyện, tông phái.'
+            },
+            {
+                q: 'Trong Tục tạng (30 tập) của Đại Chánh Tạng, có một bộ mang tên "Tất Đàm bộ". Bộ này liên quan đến nội dung gì?',
+                options: [
+                    "A. Kinh điển Đôn Hoàng",
+                    "B. Tác phẩm của người Nhật Bản, sưu tầm tài liệu liên quan đến chữ Tất Đàm (Sanskrit)",
+                    "C. Các bộ luật của Mật tông",
+                    "D. Lịch sử Phật giáo Nhật Bản"
+                ],
+                answer: "B",
+                exp: 'Ngoài các bộ "Tục kinh sớ, Tục luật sớ...", bộ "Tất Đàm" là điểm đặc biệt của người Nhật đưa vào Tục tạng, chuyên sưu tầm văn bản, tài liệu liên quan đến chữ viết Tất Đàm (Sanskrit) có nguồn gốc từ Ấn Độ.'
+            },
+            {
+                q: 'Về mặt hình thức tra cứu hiện đại, trang web nổi tiếng nào đã số hóa toàn bộ Đại Chánh Tân Tu Đại Tạng Kinh giúp học giả tra cứu kinh sách dễ dàng theo từng trang, cột, dòng?',
+                options: [
+                    "A. Wikipedia",
+                    "B. CBETA (Tài liệu điện tử Hiệp hội Phật giáo Trung Hoa)",
+                    "C. Google Scholar",
+                    "D. Baidu Baike"
+                ],
+                answer: "B",
+                exp: "Ni sư nhiều lần giới thiệu trang CBETA, một dự án số hóa vĩ đại giúp người dùng dễ dàng tra cứu Đại Chánh tạng điện tử chính xác đến từng tập, trang, và cột (thượng/A, trung/B, hạ/C)."
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 75 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Phật giáo Trung Quốc đã tổ chức đại lễ kỷ niệm 2000 năm Phật giáo truyền vào Trung Quốc vào năm nào?',
+                options: [
+                    "A. Năm 1996",
+                    "B. Năm 1998",
+                    "C. Năm 2000",
+                    "D. Năm 2004"
+                ],
+                answer: "B",
+                exp: "Thuyết truyền vào Trung Quốc đầu tiên được ghi nhận là vào năm 2 trước Công Nguyên (2 TCN). Lấy năm 1998 cộng với 2 năm TCN sẽ ra tròn 2000 năm."
+            },
+            {
+                q: 'Trong 12 truyền thuyết về Phật giáo truyền vào Trung Quốc, hai truyền thuyết nào hiện nay được giới Phật giáo công nhận chính thức?',
+                options: [
+                    "A. Thuyết Tam đại ngũ hoàng và Thuyết Khổng Tử",
+                    "B. Thuyết Vua A Dục và Thuyết Thích Lợi Phòng",
+                    "C. Thuyết Khẩu truyền Phật giáo của sứ giả Y Tồn và Thuyết Vua Hán Minh Đế",
+                    "D. Thuyết Trương Khiên và Thuyết Đông Phương Sóc"
+                ],
+                answer: "C",
+                exp: "Ni sư nhấn mạnh trong 12 thuyết, chỉ có thuyết thứ 11 (sứ giả Y Tồn khẩu truyền, năm 2 TCN) và thuyết thứ 12 (Vua Hán Minh Đế, năm 67) là được giới Phật giáo công nhận."
+            },
+            {
+                q: 'Thuyết khẩu truyền Phật giáo của sứ giả Y Tồn (nước Đại Nguyệt Chi) diễn ra vào thời kỳ nào của Trung Quốc?',
+                options: [
+                    "A. Cuối thời Tây Hán (Đầu thời Tiền Hán)",
+                    "B. Đầu thời Đông Hán",
+                    "C. Thời Tam Quốc",
+                    "D. Thời Tùy Đường"
+                ],
+                answer: "A",
+                exp: "Sự kiện sứ giả Y Tồn khẩu truyền diễn ra vào khoảng năm -2 (trước Tây lịch), tương ứng với giai đoạn cuối thời Tây Hán (hoặc có thể gọi là cuối Tiền Hán)."
+            },
+            {
+                q: 'Quyển kinh Phật ĐẦU TIÊN được truyền vào Trung Quốc bằng hình thức "Khẩu truyền" (truyền miệng) là quyển kinh nào?',
+                options: [
+                    "A. Kinh Tứ Thập Nhị Chương",
+                    "B. Kinh An Ban Thủ Ý",
+                    "C. Kinh Bát Đại Nhân Giác",
+                    "D. Kinh Phù Đồ"
+                ],
+                answer: "D",
+                exp: 'Sứ giả Y Tồn đã dùng miệng để đọc/kể lại kinh Phù Đồ cho học giả Cảnh Lô chép lại, vì lúc này chưa có văn bản giấy tờ mang sang. "Phù Đồ" chính là âm dịch cổ của từ "Buddha".'
+            },
+            {
+                q: 'Khi ngài Ca Diếp Ma Đằng và Trúc Pháp Lan mới dùng ngựa trắng chở kinh đến Trung Quốc, Vua Hán Minh Đế đã bố trí cho hai ngài lưu trú tạm thời tại cơ quan nào trước khi xây chùa Bạch Mã?',
+                options: [
+                    "A. Thiếu Lâm Tự",
+                    "B. Hồng Lô Tự",
+                    "C. Khai Nguyên Tự",
+                    "D. Lạc Dương Tự"
+                ],
+                answer: "B",
+                exp: 'Ni sư rất lưu ý chữ "Tự" ở đây. "Hồng Lô Tự" không phải là ngôi chùa, mà là cơ quan hành chính cao cấp của triều đình chuyên dùng để đón tiếp khách quốc tế (khách VIP). Sau này nhà vua mới cho xây "Bạch Mã Tự", đó mới là ngôi chùa Phật giáo đầu tiên thực sự.'
+            },
+            {
+                q: 'Nguyên nhân cốt lõi dẫn đến việc ngài Đại Ca Diếp triệu tập kỳ kiết tập kinh điển lần thứ nhất là gì?',
+                options: [
+                    "A. Do 10 điều phi pháp của nhóm Tỳ-kheo Bạt Kỳ",
+                    "B. Do ngoại đạo trà trộn vào Tăng đoàn",
+                    "C. Do Tỳ-kheo Bạc Nan Đà vui mừng khi nghe tin Đức Phật nhập Niết bàn",
+                    "D. Do chư tăng các bộ phái có kiến giải bất đồng"
+                ],
+                answer: "C",
+                exp: "Khi Phật nhập diệt, các phàm tăng đều khóc lóc, riêng Tỳ-kheo Bạc Nan Đà lại thốt lên vui mừng vì từ nay không còn ai quản thúc, cấm đoán nữa. Điều này khiến ngài Ca Diếp lo sợ chánh pháp bị mai một nên lập tức triệu tập hội nghị."
+            },
+            {
+                q: 'Trong kỳ kiết tập lần thứ nhất, ngài Ưu-ba-ly (Upali) và ngài A Nan phụ trách trùng tuyên nội dung gì?',
+                options: [
+                    "A. Cả hai ngài cùng trùng tuyên Kinh tạng",
+                    "B. Ngài Ưu-ba-ly trùng tuyên Luật tạng trước, ngài A Nan trùng tuyên Kinh tạng sau",
+                    "C. Ngài A Nan trùng tuyên Luật tạng trước, ngài Ưu-ba-ly trùng tuyên Kinh tạng sau",
+                    "D. Ngài Ưu-ba-ly trùng tuyên Luận tạng, ngài A Nan trùng tuyên Kinh tạng"
+                ],
+                answer: "B",
+                exp: "Thứ tự kiết tập luôn là Luật trước, Kinh sau. Ngài Ưu-ba-ly (trì giới đệ nhất) trùng tụng Luật tạng, sau đó ngài A Nan (đa văn đệ nhất) mới trùng tụng Kinh tạng (Hệ A Hàm)."
+            },
+            {
+                q: 'Bộ luật đầu tiên do ngài Ưu-ba-ly trùng tụng trong kỳ kiết tập thứ nhất có tên gọi là gì?',
+                options: [
+                    "A. Tứ phần luật",
+                    "B. Ngũ phần luật",
+                    "C. Tăng kỳ luật",
+                    "D. Bát thập tụng luật"
+                ],
+                answer: "D",
+                exp: 'Ngài Ưu-ba-ly đã trùng tụng đi trùng tụng lại các giới điều tới 80 lần để đại chúng cùng ghi nhớ và thông qua, do đó bộ luật này có tên là "Bát thập tụng luật" (Luật tụng 80 lần).'
+            },
+            {
+                q: 'Nguyên nhân dẫn đến kỳ kiết tập kinh điển lần thứ hai là gì?',
+                options: [
+                    "A. Sự suy tàn của Phật giáo tại Ấn Độ",
+                    "B. Tỳ-kheo Bạc Nan Đà phát ngôn ngông cuồng",
+                    "C. Ngoại đạo trà trộn vào tăng đoàn",
+                    "D. 10 điều phi pháp của nhóm Tỳ-kheo Bạt Kỳ"
+                ],
+                answer: "D",
+                exp: "Nhóm Tỳ-kheo Bạt Kỳ ở thành Tỳ Xá Ly đưa ra 10 điều lệ mới (như cất giữ vàng bạc, ăn chiều, ăn thức ăn qua đêm...). Trưởng lão Da Xá thấy vậy đã phản đối và triệu tập đại hội để kết luận đây là 10 điều phi pháp."
+            },
+            {
+                q: 'Địa điểm tổ chức 4 kỳ kiết tập kinh điển lần lượt theo thứ tự là gì?',
+                options: [
+                    "A. Vương Xá -> Hoa Thị -> Tỳ Xá Ly -> Ca Thấp Di La",
+                    "B. Vương Xá -> Tỳ Xá Ly -> Hoa Thị -> Ca Thấp Di La",
+                    "C. Tỳ Xá Ly -> Vương Xá -> Ca Thấp Di La -> Hoa Thị",
+                    "D. Hoa Thị -> Ca Thấp Di La -> Vương Xá -> Tỳ Xá Ly"
+                ],
+                answer: "B",
+                exp: "Ni sư đã chỉ mẹo đọc theo thứ tự để nhớ: Lần 1 ở Vương Xá, lần 2 ở Tỳ Xá Ly, lần 3 ở Hoa Thị, lần 4 là cái tên 4 chữ khó nhớ nhất: Ca Thấp Di La."
+            },
+            {
+                q: 'Số lượng đại biểu tham dự 4 kỳ kiết tập kinh điển lần lượt là bao nhiêu?',
+                options: [
+                    "A. 500 -> 1000 -> 700 -> 500",
+                    "B. 500 -> 700 -> 1000 -> 500",
+                    "C. 700 -> 500 -> 1000 -> 500",
+                    "D. 1000 -> 700 -> 500 -> 500"
+                ],
+                answer: "B",
+                exp: "Mẹo đếm số của Ni sư: Lần 1 (500), lần 2 tăng lên (700), lần 3 tăng lên đông nhất (1000), lần 4 quay ngược lại (500). Cứ nhớ dãy số 500-700-1000-500 là làm được."
+            },
+            {
+                q: 'Thời gian tổ chức 4 kỳ kiết tập kinh điển lần lượt diễn ra vào lúc nào?',
+                options: [
+                    "A. Mùa hạ năm Phật nhập diệt -> Sau 100 năm -> Sau 200 năm -> Sau 400 năm",
+                    "B. Mùa hạ năm Phật nhập diệt -> Sau 50 năm -> Sau 100 năm -> Sau 300 năm",
+                    "C. Sau 100 năm -> Sau 200 năm -> Sau 300 năm -> Sau 400 năm",
+                    "D. Khi Phật còn tại thế -> Mùa hạ năm Phật nhập diệt -> Sau 100 năm -> Sau 200 năm"
+                ],
+                answer: "A",
+                exp: "Mẹo của Ni sư: Lần 1 là ngay năm Phật nhập diệt. Sau đó cứ tịnh tiến lên: Sau 100 năm (Lần 2), Sau 200 năm (Lần 3), Sau 400 năm (Lần 4)."
+            },
+            {
+                q: 'Đặc điểm nội dung nổi bật nhất của kỳ kiết tập kinh điển lần thứ ba (do vua A Dục bảo trợ) là gì?',
+                options: [
+                    "A. Chỉ có Luật tạng",
+                    "B. Mới chỉ có Kinh và Luật",
+                    "C. Lần đầu tiên xuất hiện đầy đủ cả 3 tạng: Kinh, Luật và Luận",
+                    "D. Lần đầu tiên có các bản sớ giải"
+                ],
+                answer: "C",
+                exp: "Lần 1 và lần 2 mới chỉ có Kinh tạng và Luật tạng. Phải đến kỳ kiết tập lần thứ 3 (do ngài Mục Kiền Liên Tử Đế Tu làm chủ tọa), phần Luận tạng mới chính thức ra đời, tạo thành Tam tạng hoàn chỉnh."
+            },
+            {
+                q: 'Trong kỳ kiết tập kinh điển lần thứ tư, ai là người giữ vai trò Đệ nhất chủ tọa và Đệ nhị chủ tọa?',
+                options: [
+                    "A. Đệ nhất: Trưởng lão Da Xá, Đệ nhị: Ngài A Nan",
+                    "B. Đệ nhất: Ngài Thế Hữu, Đệ nhị: Ngài Hiếp Tôn Giả",
+                    "C. Đệ nhất: Ngài Hiếp Tôn Giả, Đệ nhị: Ngài Thế Hữu",
+                    "D. Đệ nhất: Ngài Đại Ca Diếp, Đệ nhị: Ngài Mục Kiền Liên Tử Đế Tu"
+                ],
+                answer: "B",
+                exp: "Dù ngài Hiếp Tôn Giả là người khởi xướng và được Vua Ca Nị Sắc Ca rất kính trọng, nhưng ngài thấy ngài Thế Hữu (dù trẻ tuổi) có kiến giải siêu phàm, thần thông vượt trội nên đã nhường ngôi vị Đệ nhất chủ tọa cho ngài Thế Hữu, còn bản thân ngài lùi xuống làm Đệ nhị chủ tọa."
+            },
+            {
+                q: 'Đặc điểm nội dung nổi bật nhất của kỳ kiết tập kinh điển lần thứ tư (do vua Ca Nị Sắc Ca bảo trợ) là gì?',
+                options: [
+                    "A. Lần đầu tiên có Kinh tạng",
+                    "B. Lần đầu tiên có Luận tạng",
+                    "C. Xuất hiện các bộ Sớ giải (chú thích) cho cả Kinh, Luật và Luận",
+                    "D. Bắt đầu dịch kinh sang tiếng Hán"
+                ],
+                answer: "C",
+                exp: "Nếu lần 3 đánh dấu sự ra đời của \"Luận\", thì lần 4 đánh dấu sự ra đời của \"Sớ giải\" (những bài phân tích, chú thích chi tiết cho Kinh, Luật, Luận)."
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 90 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Đâu là một trong những ƯU ĐIỂM cốt lõi của bộ Đại Chánh Tân Tu Đại Tạng Kinh?',
+                options: [
+                    "A. Phân loại không hợp lý",
+                    "B. Bỏ sót các trước tác Phật giáo Trung Quốc",
+                    "C. Nghiêm mật bát thiệp hiệu đính (Hiệu đính chặt chẽ, rộng rãi)",
+                    "D. Chấm câu không chính xác"
+                ],
+                answer: "C",
+                exp: '💡 Mẹo thi từ Ni sư: Khi đề hỏi "Ưu điểm", bạn hãy tìm các từ mang nghĩa tiêu cực (Bỏ sót, không chính xác, không hợp lý) để LOẠI TRỪ ngay. Các ưu điểm thực sự bao gồm: Nghiêm mật bát thiệp hiệu đính, Biên soạn thanh tân châu mật, Phạm Hán đối chiếu, Chế định sách dẫn, Tiện lợi giá cả thấp, và Xếp in có chấm câu.'
+            },
+            {
+                q: 'Mặc dù huy động tới 450.000 người tham gia biên soạn, Đại Chánh Tạng vẫn mắc phải KHUYẾT ĐIỂM lớn nào dưới đây?',
+                options: [
+                    "A. Bỏ sót các tác phẩm trước tác Phật giáo Trung Quốc",
+                    "B. Không có Phạm - Hán đối chiếu",
+                    "C. Không có phần Đồ họa hình ảnh",
+                    "D. Chỉ sử dụng bản khắc gỗ để in"
+                ],
+                answer: "A",
+                exp: '💡 Mẹo thi: Khi hỏi "Khuyết điểm", hãy tìm các từ như "Bỏ sót", "Không hợp lý", "Không chính xác". Dù đầu tư tài chính và nhân lực khổng lồ, ban biên tập vẫn sơ suất bỏ sót một số sách quan trọng.'
+            },
+            {
+                q: 'Tác phẩm nổi tiếng nào của Phật giáo Trung Quốc đã bị "bỏ sót" (không được đưa vào) trong Đại Chánh Tạng?',
+                options: [
+                    "A. Sa môn bất bái vương giả luận",
+                    "B. Đại Đường Tây Vực Ký",
+                    "C. Ngũ Đăng Hội Nguyên",
+                    "D. Lục độ tập kinh"
+                ],
+                answer: "C",
+                exp: 'Ni sư đặc biệt nhấn mạnh chi tiết này. Khi Ni sư muốn tra cứu tác phẩm Ngũ Đăng Hội Nguyên trong Đại Chánh Tạng thì tìm mãi không thấy, từ đó mới phát hiện ra khuyết điểm "bỏ sót sách" của bộ đại tạng này.'
+            },
+            {
+                q: 'Khuyết điểm "Phân loại không hợp lý" của Đại Chánh Tạng chủ yếu nằm ở vấn đề gì?',
+                options: [
+                    "A. Xếp chung kinh điển Đôn Hoàng với kinh điển Ấn Độ",
+                    "B. Sử dụng khái niệm \"Tiểu thừa\" và \"Đại thừa\" lẫn lộn, ví dụ xếp hệ A Hàm vào Tiểu thừa",
+                    "C. Không phân chia rõ Kinh, Luật và Luận",
+                    "D. Tách riêng phần dịch thuật và trước tác"
+                ],
+                answer: "B",
+                exp: 'Các học giả Nhật Bản vẫn bị ảnh hưởng bởi tư tưởng phán giáo cũ của Trung Quốc, nên đã dùng từ "Tiểu thừa" để chỉ hệ kinh A Hàm (Phật giáo Nguyên thủy) và đôi khi xếp lẫn lộn kinh điển Nguyên thủy vào Đại thừa, gây ra sự không hợp lý về mặt học thuật.'
+            },
+            {
+                q: 'Trong phần "Tục tạng" (30 tập), 2 bộ kinh điển Cổ Dật Bộ và Nghi Tợ Bộ có nguồn gốc từ đâu?',
+                options: [
+                    "A. Nhật Bản",
+                    "B. Cao Ly (Hàn Quốc)",
+                    "C. Đôn Hoàng (Trung Quốc)",
+                    "D. Ấn Độ"
+                ],
+                answer: "C",
+                exp: 'Trong Tục tạng, 5 bộ đầu là của Nhật Bản (Tục kinh sớ, Tất Đàm bộ...). Riêng 2 bộ cuối là "Cổ dật" (sách cổ thất lạc) và "Nghi tợ" (sách bị nghi ngờ tính chính thống, ví dụ ghi sai lịch sử ngài Đạo An) là lấy từ di tích Đôn Hoàng của Trung Quốc.'
+            },
+            {
+                q: 'Trong kỳ kiết tập kinh điển lần thứ nhất, vì sao ban đầu Tôn giả A Nan KHÔNG được ngài Đại Ca Diếp cho phép tham dự hội nghị?',
+                options: [
+                    "A. Vì ngài A Nan bận đi khất thực ở xa",
+                    "B. Vì ngài A Nan đang bị bệnh nặng",
+                    "C. Vì ngài A Nan chưa chứng đắc thánh quả A La Hán",
+                    "D. Vì ngài A Nan là người trẻ tuổi nhất"
+                ],
+                answer: "C",
+                exp: 'Ngài A Nan dù là người "Đa văn đệ nhất" (nghe nhiều nhớ dai) nhưng lúc hội nghị chuẩn bị diễn ra, ngài vẫn chưa chứng thánh quả. Ngài Ca Diếp kiên quyết không cho vào. Nhờ đó, ngài A Nan đã nỗ lực tột cùng và chứng quả A La Hán ngay trong đêm trước ngày khai mạc hội nghị.'
+            },
+            {
+                q: 'Trong kỳ kiết tập lần thứ nhất, bộ luật do ngài Ưu-ba-ly (Upali) trùng tụng có tên là gì và vì sao có tên gọi đó?',
+                options: [
+                    "A. Tứ phần luật - Vì chia làm 4 phần",
+                    "B. Bát thập tụng luật - Vì ngài phải tụng đi tụng lại tới 80 lần",
+                    "C. Tăng kỳ luật - Vì dành cho đại chúng",
+                    "D. Ngũ phần luật - Vì chia làm 5 phần"
+                ],
+                answer: "B",
+                exp: 'Thời đó chưa chép ra giấy mà phải "khẩu truyền" (đọc bằng miệng). Ngài Ưu-ba-ly đã đọc đi đọc lại các giới điều tới 80 lần để đại chúng nghe, ghi nhớ và thông qua, nên bộ luật đầu tiên này gọi là Bát Thập Tụng Luật.'
+            },
+            {
+                q: 'Trong kỳ kiết tập lần thứ nhất, ngài A Nan đã trùng tuyên hệ kinh điển nào (theo quan điểm của Văn học Hán Tạng)?',
+                options: [
+                    "A. Hệ kinh Nikaya (Trường Bộ, Trung Bộ...)",
+                    "B. Kinh điển Đại thừa (Pháp Hoa, Hoa Nghiêm)",
+                    "C. Hệ kinh A Hàm (Trường A Hàm, Trung A Hàm...)",
+                    "D. Kinh điển Mật Tông"
+                ],
+                answer: "C",
+                exp: 'Ni sư lưu ý phân biệt: Nếu học Văn học Pali (Nam truyền), ta nói ngài A Nan trùng tuyên hệ Nikaya. Nhưng vì chúng ta đang thi môn Văn học Hán Tạng (Bắc truyền), đáp án đúng bắt buộc phải là hệ kinh A Hàm.'
+            },
+            {
+                q: 'Sau kỳ kiết tập kinh điển lần thứ hai (giải quyết 10 điều phi pháp), Tăng đoàn Phật giáo đã xảy ra sự kiện lịch sử quan trọng nào?',
+                options: [
+                    "A. Bắt đầu dịch kinh sang tiếng Hán",
+                    "B. Thống nhất toàn bộ các tư tưởng bất đồng",
+                    "C. Phân chia thành hai bộ phái đầu tiên: Thượng Tọa Bộ và Đại Chúng Bộ",
+                    "D. Bắt đầu chép kinh trên lá bối"
+                ],
+                answer: "C",
+                exp: 'Sự bất đồng sâu sắc về 10 giới điều (giữa nhóm Tỳ-kheo Bạt Kỳ và các vị Trưởng lão) đã khiến Tăng đoàn chính thức phân nứt thành 2 bộ phái gốc: Thượng Tọa Bộ (nhóm trưởng lão giữ nguyên giới luật) và Đại Chúng Bộ (nhóm Bạt Kỳ muốn linh hoạt giới luật).'
+            },
+            {
+                q: '"Kim ngân tịnh" - một trong 10 điều phi pháp bị phản đối trong kỳ kiết tập lần thứ hai có nghĩa là gì?',
+                options: [
+                    "A. Tỳ kheo được quyền ăn chiều",
+                    "B. Tỳ kheo được cất giữ vàng bạc, tiền bạc",
+                    "C. Tỳ kheo được uống rượu lên men",
+                    "D. Tỳ kheo được đi xem ca múa nhạc"
+                ],
+                answer: "B",
+                exp: '"Kim ngân" là vàng bạc. Nhóm Tỳ-kheo Bạt Kỳ cho rằng việc cất giữ tiền bạc vàng bạc là hợp pháp (tịnh), nhưng ngài Da Xá và các vị trưởng lão phản đối kịch liệt và phán quyết đây là điều phi pháp.'
+            },
+            {
+                q: 'Bốn kỳ kiết tập kinh điển được tổ chức lần lượt tại 4 địa điểm nào?',
+                options: [
+                    "A. Hoa Thị -> Vương Xá -> Tỳ Xá Ly -> Ca Thấp Di La",
+                    "B. Vương Xá -> Hoa Thị -> Tỳ Xá Ly -> Ca Thấp Di La",
+                    "C. Vương Xá -> Tỳ Xá Ly -> Hoa Thị -> Ca Thấp Di La",
+                    "D. Tỳ Xá Ly -> Vương Xá -> Ca Thấp Di La -> Hoa Thị"
+                ],
+                answer: "C",
+                exp: '💡 Mẹo thi: Nhớ đúng thứ tự do Ni sư dạy: Lần 1 (Vương Xá) -> Lần 2 (Tỳ Xá Ly) -> Lần 3 (Hoa Thị) -> Lần 4 (tên 4 chữ khó nhớ nhất: Ca Thấp Di La).'
+            },
+            {
+                q: 'Sự kiện nổi bật nhất về mặt NỘI DUNG của kỳ kiết tập kinh điển lần thứ 3 (do vua A Dục bảo trợ) là gì?',
+                options: [
+                    "A. Lần đầu tiên có sớ giải",
+                    "B. Lần đầu tiên xuất hiện đầy đủ Tam Tạng: Kinh, Luật và Luận",
+                    "C. Lần đầu tiên có kinh điển Đại thừa",
+                    "D. Chỉ mới có Kinh và Luật"
+                ],
+                answer: "B",
+                exp: 'Lần 1 và 2 chỉ mới có Kinh và Luật. Phải đến lần thứ 3, Luận tạng mới chính thức ra đời, tạo thành Tam tạng (Kinh, Luật, Luận) hoàn chỉnh.'
+            },
+            {
+                q: 'Sự kiện nổi bật nhất về mặt NỘI DUNG của kỳ kiết tập kinh điển lần thứ 4 (do vua Ca Nị Sắc Ca bảo trợ) là gì?',
+                options: [
+                    "A. Đầy đủ Kinh, Luật, Luận",
+                    "B. Xuất hiện các bộ Sớ giải (chú thích) cho Kinh, Luật và Luận",
+                    "C. Trùng tụng Bát thập tụng luật",
+                    "D. Phân chia bộ phái"
+                ],
+                answer: "B",
+                exp: 'Lần 3 có "Luận", thì lần 4 có thêm "Sớ giải" (những bản chú thích, phân tích chi tiết cho kinh, luật, luận do chư Tăng các bộ phái biên soạn để thống nhất kiến giải).'
+            },
+            {
+                q: 'Khi làm trắc nghiệm, nếu đề bài hỏi "Kinh tạng gồm có những bộ nào?", bạn CẦN LOẠI BỎ những bộ nào dưới đây ra khỏi đáp án để chọn trúng?',
+                options: [
+                    "A. A Hàm, Bản duyên, Bát Nhã",
+                    "B. Pháp Hoa, Hoa Nghiêm, Bảo Tích",
+                    "C. Tỳ Đàm, Trung Quán, Du Già, Thích Kinh Luận, Luận Tập",
+                    "D. Niết Bàn, Đại Tập, Kinh Tập, Mật Giáo"
+                ],
+                answer: "C",
+                exp: '💡 Mẹo "sống còn" từ Ni sư: Khi hỏi "Kinh tạng", hãy tìm đáp án nào chứa các chữ "Luận" hoặc các tên kỳ lạ như "Tỳ Đàm", "Trung Quán", "Du Già" để gạch bỏ ngay lập tức, vì đó là 5 bộ thuộc phần Luận tạng.'
+            },
+            {
+                q: 'Trong Đại Chánh Tạng, phần "Tạp tạng" (Trước tác soạn thuật - 23 tập) gồm 8 bộ, KHÔNG bao gồm bộ nào dưới đây?',
+                options: [
+                    "A. Kinh sớ bộ, Luật sớ bộ, Luận sớ bộ",
+                    "B. Tỳ đàm bộ, Du già bộ",
+                    "C. Chư tông bộ, Sử truyện bộ",
+                    "D. Sự hối bộ, Ngoại giáo bộ, Mục lục bộ"
+                ],
+                answer: "B",
+                exp: 'Tương tự mẹo ở trên, Tỳ đàm và Du già là tên các bộ thuộc phần Luận tạng (Nằm trong 32 tập Phiên dịch). Phần Tạp tạng (Trước tác) chủ yếu chứa các bản "Sớ" (chú giải của tổ sư Trung Quốc) và các loại sử sách, tông phái.'
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 105 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Danh xưng "Tứ đại dịch giả" (4 vị dịch giả vĩ đại nhất) của Phật giáo Trung Quốc gồm những ai?',
+                options: [
+                    "A. Trúc Pháp Hộ, Cưu Ma La Thập, Huyền Trang, Đạo An",
+                    "B. Cưu Ma La Thập, Chân Đế, Huyền Trang, Bất Không (hoặc Nghĩa Tịnh)",
+                    "C. An Thế Cao, Chi Lâu Ca Sấm, Huyền Trang, Nghĩa Tịnh",
+                    "D. Đàm Vô Sấm, Chân Đế, Bồ Đề Lưu Chi, Cưu Ma La Thập"
+                ],
+                answer: "B",
+                exp: "Tứ đại dịch giả gồm 4 vị: Cưu Ma La Thập, Chân Đế, Huyền Trang. Vị thứ tư tùy theo tài liệu có thể xếp là ngài Bất Không hoặc ngài Nghĩa Tịnh đều được chấp nhận."
+            },
+            {
+                q: 'Lịch sử phiên dịch kinh điển Phật giáo Trung Quốc có 3 cột mốc vĩ đại (3 vị đại sư) nào?',
+                options: [
+                    "A. Trúc Pháp Hộ, Cưu Ma La Thập, Huyền Trang",
+                    "B. An Thế Cao, Chi Lâu Ca Sấm, Huyền Trang",
+                    "C. Phật Đồ Trừng, Đạo An, Huệ Viễn",
+                    "D. Đàm Ma Ca La, Chu Sĩ Hành, Khương Tăng Hội"
+                ],
+                answer: "A",
+                exp: '💡 Lưu ý từ Ni sư: Đừng nhầm lẫn giữa "Tứ đại dịch giả" (4 người) và "3 cột mốc dịch kinh". 3 cột mốc đánh dấu sự phát triển rực rỡ của lịch sử phiên dịch Hán Tạng là: Ngài Trúc Pháp Hộ -> Ngài Cưu Ma La Thập -> Ngài Huyền Trang. Bản dịch của các ngài đời sau thường được gọi là "tân dịch" so với các bản "cựu dịch" đời trước.'
+            },
+            {
+                q: 'Ngài Khương Tăng Hội - người dịch quyển "Lục độ tập kinh" thời Tam Quốc có nguồn gốc xuất thân như thế nào?',
+                options: [
+                    "A. Người Trung Quốc 100%, sang Ấn Độ thỉnh kinh",
+                    "B. Tổ tiên người Khương Cư, cha mẹ sang Giao Châu (Việt Nam) lập nghiệp, ngài sinh ra và xuất gia tại Việt Nam",
+                    "C. Người nước Đại Nguyệt Chi, đi đường bộ sang Trung Quốc",
+                    "D. Người Ấn Độ, theo thuyền buôn đến Trung Quốc"
+                ],
+                answer: "B",
+                exp: "Ni sư rất tự hào và nhấn mạnh chi tiết này: Tổ tiên ngài ở Khương Cư, nhưng cha mẹ ngài sang Giao Châu lập nghiệp. Ngài sinh ra, lớn lên và xuất gia thọ giới tại Việt Nam, sau đó mới sang nước Ngô (Trung Quốc) để hành đạo. Hiện nay tại Nam Kinh vẫn còn tổ sư đường thờ ngài."
+            },
+            {
+                q: 'Ai là vị tu sĩ người Trung Quốc ĐẦU TIÊN được thọ đại giới Tỳ-kheo và cũng là người mở đường "Nhập trúc cầu pháp" (đi Tây Vực thỉnh kinh)?',
+                options: [
+                    "A. Ngài Huyền Trang",
+                    "B. Ngài Nghiêm Phật Điều",
+                    "C. Ngài Chu Sĩ Hành",
+                    "D. Ngài Đạo An"
+                ],
+                answer: "C",
+                exp: "Ngài Nghiêm Phật Điều là người xuất gia đầu tiên nhưng chưa thọ đại giới. Nhờ thời Ngụy có ngài Đàm Ma Ca La dịch Yết ma và lập giới đàn, ngài Chu Sĩ Hành mới trở thành người đầu tiên được thọ giới Tỳ-kheo. Sau đó, ngài cũng là người tiên phong đi Thiên Trúc thỉnh kinh (mở đường cầu pháp)."
+            },
+            {
+                q: 'Vào thời Nam Bắc Triều, những bộ kinh nào dưới đây được thỉnh về để khai sáng và phát triển tư tưởng "Phật tánh luận"?',
+                options: [
+                    "A. Kinh Bát Nhã, Kinh Pháp Hoa, Kinh Duy Ma",
+                    "B. Kinh A Hàm, Kinh Bổn Duyên, Kinh Pháp Cú",
+                    "C. Kinh Đại Bát Niết Bàn, Kinh Thắng Man, Kinh Lăng Già, Kinh Giải Thâm Mật",
+                    "D. Kinh Hoa Nghiêm, Kinh Bảo Tích, Kinh Địa Tạng"
+                ],
+                answer: "C",
+                exp: 'Kỷ nguyên Nam Bắc Triều nổi bật nhất với tư tưởng "Phật tánh luận". Tăng sĩ Trung Quốc đã sang Ấn Độ thỉnh các bộ kinh chuyên về Phật tánh như: Đại Bát Niết Bàn, Thắng Man, Lăng Già và Giải Thâm Mật mang về dịch.'
+            },
+            {
+                q: 'Dịch phẩm "Thập trụ Tỳ bà sa luận" của ngài Cưu Ma La Thập là kinh điển y cứ, ảnh hưởng đến sự thành lập của tông phái nào?',
+                options: [
+                    "A. Thiên Thai Tông",
+                    "B. Hoa Nghiêm Tông",
+                    "C. Tam Luận Tông",
+                    "D. Tịnh Độ Tông"
+                ],
+                answer: "B",
+                exp: '💡 Mẹo thi: Các tác phẩm của ngài La Thập ảnh hưởng đến nhiều tông phái: Pháp Hoa -> Thiên Thai Tông; Tứ Luận -> Tam Luận Tông; Kim Cang -> Thiền Tông. Riêng quyển "Thập trụ Tỳ bà sa luận" hơi khó nhớ, bạn cần khắc cốt ghi tâm nó thuộc về Hoa Nghiêm Tông.'
+            },
+            {
+                q: 'Khi đề bài yêu cầu tìm "Ưu điểm" (hoặc Tôn chỉ biên tập) của Đại Chánh Tân Tu Đại Tạng Kinh, bạn CẦN CHỌN những đặc điểm nào?',
+                options: [
+                    "A. Bỏ sót sách, phân loại không hợp lý",
+                    "B. Chấm câu không chính xác",
+                    "C. Nghiêm mật bát thiệp hiệu đính, Phạm Hán đối chiếu, xếp in và chấm câu",
+                    "D. Chỉ sử dụng bản khắc gỗ để in"
+                ],
+                answer: "C",
+                exp: '💡 Mẹo thi cực hay từ Ni sư: Khi đề hỏi "Ưu điểm", hãy gạch bỏ ngay những đáp án có từ mang nghĩa tiêu cực như "Bỏ sót", "Không hợp lý", "Sai sót". Các ưu điểm phải là từ ngữ hoa mỹ: Nghiêm mật bát thiệp hiệu đính (hiệu đính chặt chẽ), Thanh tân châu mật, Phạm Hán đối chiếu (đối chiếu tiếng Phạn), Tiện lợi giá thấp, Xếp in có chấm câu.'
+            },
+            {
+                q: 'Ngược lại, khi đề bài yêu cầu tìm "Khuyết điểm" của Đại Chánh Tạng, bạn CẦN TÌM đáp án chứa những từ khóa nào?',
+                options: [
+                    "A. Nghiêm mật bát thiệp hiệu đính",
+                    "B. Bỏ sót các trước tác, phân loại không hợp lý, chấm câu không chính xác",
+                    "C. Phạm Hán đối chiếu",
+                    "D. Nội dung phong phú, phân loại đặc sắc"
+                ],
+                answer: "B",
+                exp: '💡 Mẹo thi: Hỏi khuyết điểm thì tìm cái dở. Dù huy động 450.000 người, Đại Chánh tạng vẫn mắc lỗi: "Bỏ sót sách" (điển hình là cuốn Ngũ Đăng Hội Nguyên), "Phân loại không hợp lý" (dùng lẫn lộn từ Tiểu thừa/Đại thừa), và đôi chỗ "Chấm câu không chính xác".'
+            },
+            {
+                q: 'Để ủng hộ Phật pháp, Vua A Dục (người bảo trợ kỳ kiết tập thứ 3) đã có hành động vĩ đại nào đối với gia đình mình?',
+                options: [
+                    "A. Ép tất cả các quan lại phải cạo đầu",
+                    "B. Cho hoàng tử (Ma Sán Đà) và công chúa (Tăng Già Mật Đa), cùng em trai xuất gia, sau đó cử đi truyền giáo",
+                    "C. Nhường ngôi vua cho các vị Tỳ-kheo",
+                    "D. Xây dựng cung điện bằng vàng cho Tăng đoàn"
+                ],
+                answer: "B",
+                exp: "Vua A Dục không chỉ xây tháp, dựng trụ đá mà còn xả ly tình thân, cho con trai (Ma Sán Đà/Mahinda) và con gái (Tăng Già Mật Đa/Sanghamitta) cùng em trai đi xuất gia, sau đó cử họ vào các phái đoàn đi truyền giáo khắp nơi (trong đó có thể đã đến Việt Nam bằng đường biển)."
+            },
+            {
+                q: 'Lý luận dịch thuật nổi tiếng "Ngũ chủng bất phiên" (5 trường hợp không dịch nghĩa mà giữ nguyên âm Phạn) là của vị đại sư nào?',
+                options: [
+                    "A. Ngài Cưu Ma La Thập",
+                    "B. Ngài Chân Đế",
+                    "C. Ngài Huyền Trang",
+                    "D. Ngài Đạo An"
+                ],
+                answer: "C",
+                exp: 'Ngài Huyền Trang đã đưa ra nguyên tắc "Ngũ chủng bất phiên" gồm: Bí mật bất phiên (thần chú), Đa nghĩa bất phiên (1 từ nhiều nghĩa như Bhagavat), Phi hữu bất phiên (TQ không có vật đó), Cổ dịch bất phiên (người xưa đã dịch quen), Thất nghĩa bất phiên (dịch ra sẽ mất đi ý nghĩa mầu nhiệm như chữ Bát Nhã).'
+            },
+            {
+                q: 'Dòng truyền thừa Mật tông từ Trung Quốc sang Nhật Bản diễn ra theo thứ tự nào dưới đây?',
+                options: [
+                    "A. Ngài Cưu Ma La Thập -> Ngài Tăng Triệu -> Ngài Tối Trừng",
+                    "B. Ngài Bất Không -> Ngài Huệ Quả -> Ngài Không Hải (lập ra Chân Ngôn Tông)",
+                    "C. Ngài Đạo An -> Ngài Huệ Viễn -> Ngài Nhật Liên",
+                    "D. Ngài Huyền Trang -> Ngài Khuy Cơ -> Ngài Đạo Nguyên"
+                ],
+                answer: "B",
+                exp: "Thời Tùy Đường, Mật tông phát triển rất mạnh. Dòng truyền thừa ghi nhận: Ngài Bất Không (Đại dịch giả Mật tông) truyền cho đệ tử là ngài Huệ Quả. Ngài Huệ Quả truyền pháp cho ngài Không Hải. Sau đó ngài Không Hải mang về Nhật Bản khai sáng ra Chân Ngôn Tông."
+            },
+            {
+                q: 'Vì sao bộ luật đầu tiên do ngài Ưu-ba-ly trùng tuyên trong kỳ kiết tập thứ nhất lại có tên là "Bát thập tụng luật"?',
+                options: [
+                    "A. Vì bộ luật này chia làm 80 chương",
+                    "B. Vì có 80 vị Tỳ-kheo cùng tụng",
+                    "C. Vì ngài phải đọc đi đọc lại (trùng tụng) tới 80 lần để đại chúng cùng nghe, ghi nhớ và thông qua",
+                    "D. Vì bộ luật này được kiết tập trong 80 ngày"
+                ],
+                answer: "C",
+                exp: 'Thời kỳ đầu hoàn toàn là "khẩu truyền" (truyền miệng), chưa có giấy bút. Để 500 vị A La Hán cùng nghe rõ, đồng thuận và ghi nhớ, ngài Ưu-ba-ly đã phải đọc đi đọc lại các giới điều tới 80 lần. Do đó, bộ luật đầu tiên mang tên "Bát thập tụng luật".'
+            },
+            {
+                q: 'Trong kỳ kiết tập lần thứ nhất, ngài A Nan đã bị ngài Đại Ca Diếp khiển trách vì những lý do nào dưới đây?',
+                options: [
+                    "A. Trộm cắp tài sản và nói dối đại chúng",
+                    "B. Tự ý ăn chiều và cất giữ vàng bạc",
+                    "C. Không thỉnh cầu Phật kéo dài thọ mạng, để phụ nữ khóc làm nước mắt rơi ô uế thân Phật, và xin cho di mẫu Kiều Đàm Di xuất gia",
+                    "D. Viết sai kinh điển trên lá bối"
+                ],
+                answer: "C",
+                exp: "Mặc dù đa văn đệ nhất, ngài A Nan vẫn bị đại sư huynh Ca Diếp khiển trách giữa đại hội vì các lỗi (ta gọi là đột-kiết-la): Không xin Phật kéo dài thọ mạng khi Phật gợi ý, vá y dẫm chân lên y Phật, cho phụ nữ vào viếng Phật trước làm nước mắt rớt lên thân Phật, và nài nỉ xin cho nữ giới (di mẫu Kiều Đàm Di) được xuất gia."
+            },
+            {
+                q: 'Trong 10 điều của nhóm Tỳ-kheo Bạt Kỳ đưa ra (dẫn đến kỳ kiết tập thứ 2), điều "Kim ngân tịnh" mang ý nghĩa gì?',
+                options: [
+                    "A. Tỳ kheo được quyền uống nước pha với vàng bạc",
+                    "B. Tỳ kheo được cất giữ vàng bạc, tiền bạc (không trái giới luật)",
+                    "C. Tỳ kheo được quyền đúc tượng Phật bằng vàng",
+                    "D. Tỳ kheo phải mặc y phục màu vàng"
+                ],
+                answer: "B",
+                exp: '"Kim ngân" là vàng bạc, "tịnh" là trong sạch/hợp lệ. Nhóm Bạt Kỳ cho rằng việc Tỳ kheo cất giữ tiền bạc, vàng bạc là hợp pháp. Điều này bị ngài Da Xá và các trưởng lão phản đối kịch liệt, phán quyết là phi pháp, dẫn đến sự phân phái Thượng Tọa Bộ và Đại Chúng Bộ.'
+            },
+            {
+                q: 'Tác phẩm "Nhiếp Đại Thừa Luận" làm nền tảng cho Nhiếp Luận tông (tiền thân của Duy Thức tông) là do vị đại dịch giả nào phiên dịch thời Nam Bắc Triều?',
+                options: [
+                    "A. Ngài Cưu Ma La Thập",
+                    "B. Ngài Chân Đế",
+                    "C. Ngài Bồ Đề Lưu Chi",
+                    "D. Ngài Huyền Trang"
+                ],
+                answer: "B",
+                exp: "Vào thời Nam Bắc Triều chiến tranh loạn lạc, ngài Chân Đế đã gánh kinh chạy loạn và kiên trì dịch bộ Nhiếp Đại Thừa Luận. Tác phẩm này ảnh hưởng đến việc thành lập Nhiếp Luận Tông (tiền thân của Duy Thức tông sau này). (Lưu ý: Bồ Đề Lưu Chi thì dịch Thập Địa Kinh Luận)."
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 120 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Trong kỳ kiết tập kinh điển lần thứ nhất, vì sao ban đầu Tôn giả A Nan KHÔNG được ngài Đại Ca Diếp cho phép tham dự hội nghị?',
+                options: [
+                    "A. Vì ngài A Nan là người trẻ tuổi nhất",
+                    "B. Vì ngài A Nan đang bận đi khất thực",
+                    "C. Vì ngài A Nan chưa chứng đắc thánh quả A La Hán",
+                    "D. Vì ngài A Nan bị bệnh"
+                ],
+                answer: "C",
+                exp: "Mặc dù ngài A Nan là người \"Đa văn đệ nhất\" (thuộc lòng lời Phật dạy), nhưng trước ngày hội nghị diễn ra, ngài vẫn chưa chứng quả A La Hán nên ngài Ca Diếp cương quyết không cho vào. Nhờ sự thúc đẩy đó, ngài A Nan đã nỗ lực tột cùng và chứng quả ngay trước thềm đại hội."
+            },
+            {
+                q: 'Nguyên nhân cốt lõi dẫn đến việc tổ chức kỳ kiết tập kinh điển lần thứ hai là gì?',
+                options: [
+                    "A. 10 điều phi pháp của nhóm Tỳ-kheo Bạt Kỳ",
+                    "B. Tỳ-kheo Bạc Nan Đà vui mừng khi Phật nhập diệt",
+                    "C. Ngoại đạo trà trộn vào Tăng đoàn",
+                    "D. Chư tăng có kiến giải bất đồng về kinh điển"
+                ],
+                answer: "A",
+                exp: "💡 Mẹo thi: Nhóm Tỳ-kheo Bạt Kỳ ở thành Tỳ Xá Ly đã đưa ra 10 điều lệ (như được ăn chiều, cất giữ vàng bạc...) mà các vị trưởng lão (đứng đầu là ngài Da Xá) xem là phi pháp, dẫn đến việc phải triệu tập đại hội lần 2 để giải quyết."
+            },
+            {
+                q: 'Sau kỳ kiết tập kinh điển lần thứ hai, Tăng đoàn Phật giáo đã xảy ra sự kiện lịch sử quan trọng nào?',
+                options: [
+                    "A. Bắt đầu dịch kinh sang tiếng Hán",
+                    "B. Thống nhất toàn bộ các tư tưởng bất đồng",
+                    "C. Phân chia thành hai bộ phái gốc: Thượng Tọa Bộ và Đại Chúng Bộ",
+                    "D. Bắt đầu chép kinh trên lá bối"
+                ],
+                answer: "C",
+                exp: "Do sự bất đồng sâu sắc về 10 điều phi pháp, Tăng đoàn đã phân chia thành hai bộ phái đầu tiên: Thượng Tọa Bộ (nhóm các trưởng lão giữ nghiêm giới luật) và Đại Chúng Bộ (nhóm Tỳ-kheo Bạt Kỳ muốn linh hoạt giới luật)."
+            },
+            {
+                q: 'Nguyên nhân dẫn đến việc tổ chức kỳ kiết tập kinh điển lần thứ ba (do vua A Dục bảo trợ) là gì?',
+                options: [
+                    "A. 10 điều phi pháp",
+                    "B. Chư tăng có kiến giải bất đồng",
+                    "C. Ngoại đạo trà trộn vào hàng ngũ Tăng đoàn",
+                    "D. Tỳ-kheo Bạc Nan Đà phát ngôn ngông cuồng"
+                ],
+                answer: "C",
+                exp: "Nhờ sự ủng hộ và cúng dường vô cùng to lớn của vua A Dục, Phật giáo rất hưng thịnh. Điều này vô tình khiến ngoại đạo trà trộn vào Tăng đoàn để thụ hưởng lợi dưỡng, làm Tăng chúng bất hòa, dẫn đến việc ngài Mục Kiền Liên Tử Đế Tu phải triệu tập hội nghị lần 3."
+            },
+            {
+                q: 'Đặc điểm nổi bật nhất về mặt NỘI DUNG của kỳ kiết tập kinh điển lần thứ ba là gì?',
+                options: [
+                    "A. Lần đầu tiên xuất hiện đầy đủ Tam Tạng: Kinh, Luật và Luận",
+                    "B. Lần đầu tiên có sớ giải",
+                    "C. Lần đầu tiên bắt đầu dịch kinh",
+                    "D. Mới chỉ có Kinh và Luật"
+                ],
+                answer: "A",
+                exp: "Lần 1 và lần 2 mới chỉ có Kinh tạng và Luật tạng. Phải đến lần thứ 3, Luận tạng mới chính thức ra đời, tạo thành Tam tạng hoàn chỉnh."
+            },
+            {
+                q: 'Nguyên nhân dẫn đến việc tổ chức kỳ kiết tập kinh điển lần thứ tư là gì?',
+                options: [
+                    "A. Ngoại đạo trà trộn",
+                    "B. Chư tăng các bộ phái có những kiến giải bất đồng về kinh điển",
+                    "C. Vua Ca Nị Sắc Ca ép buộc",
+                    "D. Do sự xuất hiện của Phật giáo Đại thừa"
+                ],
+                answer: "B",
+                exp: "Sau 400 năm, các bộ phái phát triển rất mạnh, mỗi bộ phái lại có cách hiểu và giải thích kinh điển khác nhau (bất đồng kiến giải). Do đó, vua Ca Nị Sắc Ca đã bảo trợ để tổ chức đại hội nhằm thống nhất tư tưởng."
+            },
+            {
+                q: 'Sự kiện nổi bật nhất về mặt NỘI DUNG của kỳ kiết tập kinh điển lần thứ tư là gì?',
+                options: [
+                    "A. Xuất hiện các bộ Sớ giải (chú thích) cho Kinh, Luật và Luận",
+                    "B. Bắt đầu chép kinh trên lá bối",
+                    "C. Phân chia bộ phái",
+                    "D. Hoàn thiện Luận tạng"
+                ],
+                answer: "A",
+                exp: "💡 Mẹo nhớ: Lần 3 có \"Luận\", thì lần 4 có \"Sớ giải\". Hội nghị lần này đã biên soạn ra các bản sớ giải (chú thích chi tiết) để thống nhất cách hiểu về Kinh, Luật và Luận giữa các bộ phái."
+            },
+            {
+                q: 'Thuyết "Khẩu truyền Phật giáo của sứ giả Y Tồn" (cuốn kinh Phù Đồ) được ghi nhận diễn ra vào thời kỳ nào?',
+                options: [
+                    "A. Đời Đông Hán",
+                    "B. Thời Tam Quốc",
+                    "C. Cuối thời Tây Hán (hoặc tiền Hán), năm 2 TCN",
+                    "D. Đời Tùy"
+                ],
+                answer: "C",
+                exp: "Ni sư rất lưu ý mốc thời gian này. Sự kiện sứ giả Y Tồn của nước Đại Nguyệt Chi khẩu truyền kinh Phù Đồ diễn ra vào năm -2 (trước Tây lịch), tương ứng với giai đoạn cuối Tây Hán (hay còn gọi là Tiền Hán)."
+            },
+            {
+                q: 'Câu nói cực kỳ nổi tiếng "Duy tuệ thị nghiệp" (Chỉ lấy trí tuệ làm sự nghiệp) xuất phát từ quyển kinh nào do ngài An Thế Cao dịch?',
+                options: [
+                    "A. Kinh An Ban Thủ Ý",
+                    "B. Kinh Bát Đại Nhân Giác",
+                    "C. Kinh Tứ Thập Nhị Chương",
+                    "D. Kinh Lục Độ Tập"
+                ],
+                answer: "B",
+                exp: "Câu \"Duy tuệ thị nghiệp\" nằm trong điều giác ngộ thứ ba của kinh Bát Đại Nhân Giác. Đây là một câu châm ngôn vô cùng quen thuộc đối với người học Phật."
+            },
+            {
+                q: 'Ngài Khương Tăng Hội (thời Ngô - Tam Quốc), người dịch quyển Lục độ tập kinh, có nguồn gốc xuất thân như thế nào?',
+                options: [
+                    "A. Cha mẹ người Khương Cư, ngài sanh ra và xuất gia tại Giao Châu (Việt Nam)",
+                    "B. Người Trung Quốc 100%, sang Ấn Độ thỉnh kinh",
+                    "C. Người Ấn Độ đi theo thuyền buôn đến Trung Quốc",
+                    "D. Người nước Đại Nguyệt Chi"
+                ],
+                answer: "A",
+                exp: "Đây là điểm tự hào của Phật giáo Việt Nam. Cha mẹ ngài từ Khương Cư sang Giao Châu (Việt Nam) lập nghiệp. Ngài sinh ra, lớn lên và xuất gia tại Việt Nam, sau đó mới sang nước Ngô (Trung Quốc) để truyền đạo."
+            },
+            {
+                q: 'Câu nói "Thiên hạ bát tri, bất xuất tam chi" (Sự hiểu biết trong thiên hạ không vượt qua ba vị họ Chi) là để tôn xưng ba vị đại sư nào thời Tam Quốc?',
+                options: [
+                    "A. Chi Lâu Ca Sấm, Chi Pháp Hộ, Chi Khiêm",
+                    "B. Chi Lâu Ca Sấm, Chi Lượng, Chi Khiêm",
+                    "C. Chi Độn, Chi Lượng, Chi Khiêm",
+                    "D. Chi Pháp Hộ, Chi Lượng, Chi Khiêm"
+                ],
+                answer: "B",
+                exp: "💡 Mẹo thi: Dòng truyền thừa \"Tam Chi\" xuất sắc này gồm: Sư tổ Chi Lâu Ca Sấm -> truyền cho đệ tử Chi Lượng -> truyền cho cư sĩ Chi Khiêm."
+            },
+            {
+                q: 'Vị cao tăng nào đã khởi xướng việc Tăng Ni khi xuất gia không lấy họ theo sư phụ nữa mà đều dùng họ "Thích"?',
+                options: [
+                    "A. Ngài Cưu Ma La Thập",
+                    "B. Ngài Huệ Viễn",
+                    "C. Ngài Đạo An",
+                    "D. Ngài Trúc Pháp Hộ"
+                ],
+                answer: "C",
+                exp: "Ngài Đạo An (thời Tiền Tần) là người đầu tiên khởi xướng việc Tăng Ni dùng họ \"Thích\" (đại diện cho Thích Ca), và quy định này được truyền đến tận Việt Nam ngày nay."
+            },
+            {
+                q: 'Vị đệ tử xuất sắc của ngài Cưu Ma La Thập đưa ra tư tưởng đi trước thời đại "Nhất xiển đề cũng có thể thành Phật" (Phật tánh luận) là ai?',
+                options: [
+                    "A. Ngài Tăng Triệu",
+                    "B. Ngài Đạo Sanh",
+                    "C. Ngài Đạo Dung",
+                    "D. Ngài Giác Hiền"
+                ],
+                answer: "B",
+                exp: "Dù kinh điển lúc bấy giờ chưa dịch tới phần xác nhận, ngài Đạo Sanh đã khẳng định \"Nhất xiển đề\" (người cực ác) vẫn có Phật tánh và có thể thành Phật. Dù ban đầu bị Tăng chúng trục xuất vì phát ngôn này, sau này ngài đã được minh oan khi bộ kinh Niết Bàn hoàn chỉnh được dịch ra."
+            },
+            {
+                q: 'Đệ tử xuất sắc của ngài Cưu Ma La Thập, người viết "Triệu Luận" và được tôn xưng là "Giải không đệ nhất", là ai?',
+                options: [
+                    "A. Ngài Đạo Sanh",
+                    "B. Ngài Tăng Triệu",
+                    "C. Ngài Huệ Viễn",
+                    "D. Ngài Đạo Lâm"
+                ],
+                answer: "B",
+                exp: "Ngài Tăng Triệu kế thừa xuất sắc tư tưởng Tánh Không của hệ Bát Nhã từ sư phụ mình, giúp đưa tư tưởng này về đúng tinh thần gốc rễ, nên được tôn xưng là Giải Không Đệ Nhất (giống như ngài Tu Bồ Đề thời Đức Phật)."
+            },
+            {
+                q: 'Trong phần "Tục tạng" (30 tập) của Đại Chánh Tạng, hai bộ nào dưới đây thuộc về kinh điển Đôn Hoàng (Trung Quốc) chứ không phải của người Nhật Bản biên soạn?',
+                options: [
+                    "A. Tục kinh sớ bộ, Tục luật sớ bộ",
+                    "B. Tất Đàm bộ, Tục luận sớ bộ",
+                    "C. Chư tông bộ, Sử truyện bộ",
+                    "D. Cổ dật bộ, Nghi tợ bộ"
+                ],
+                answer: "D",
+                exp: "Trong Tục tạng, hầu hết là sách của người Nhật, nhưng riêng 2 bộ \"Cổ dật\" (kinh sách cổ thất lạc) và \"Nghi tợ\" (kinh sách bị nghi ngờ tính chính thống) là được thu thập từ di tích Đôn Hoàng của Trung Quốc"
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 135 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Theo nguyên ý Phạn văn, chữ "Tạng" (Pitaka) trong danh xưng "Đại tạng kinh" mang ý nghĩa ban đầu là gì?',
+                options: [
+                    "A. Đám mây lớn",
+                    "B. Cái giỏ tre (để cắt chứa, đựng kinh điển)",
+                    "C. Cỗ xe lớn",
+                    "D. Sự thông thái"
+                ],
+                answer: "B",
+                exp: 'Ni sư giải thích rằng chữ "Tạng" ban đầu có nghĩa là cái giỏ tre. Các vị tăng sĩ Ấn Độ xưa thường chép kinh trên lá bối rồi đem cất vào trong những cái giỏ tre này, từ đó về sau chữ "Tạng" được dùng để chỉ cho sự chứa đựng kinh điển Phật giáo.'
+            },
+            {
+                q: 'Hình thức lưu giữ kinh điển Phật giáo đầu tiên bằng chữ viết (sau thời kỳ khẩu truyền) được thực hiện trên vật liệu gì?',
+                options: [
+                    "A. Giấy dó",
+                    "B. Vách đá",
+                    "C. Lá bối (lá buông)",
+                    "D. Mộc bản (gỗ)"
+                ],
+                answer: "C",
+                exp: 'Trước khi phát minh ra giấy hoặc kỹ thuật khắc gỗ, kinh sách lần đầu tiên được chép tay trên những chiếc lá bối (hay còn gọi là lá buông ở Đông Nam Á).'
+            },
+            {
+                q: 'Truyền thuyết thứ 12 (được giới Phật giáo công nhận) về việc Phật giáo truyền vào Trung Quốc gắn liền với giấc mộng của Vua Hán Minh Đế. Trong mộng, nhà vua đã thấy hiện tượng gì?',
+                options: [
+                    "A. Thấy hoa sen xanh nở trong giếng cạn",
+                    "B. Thấy một bầy ngựa trắng chở kinh sách bay từ phương Tây tới",
+                    "C. Thấy người vàng cao một trượng sáu, bay trên không trung",
+                    "D. Thấy cung điện rực sáng hào quang"
+                ],
+                answer: "C",
+                exp: 'Vua Hán Minh Đế nằm mộng thấy một người vàng bay trên không trung. Khi hỏi các quan, quan Phó Nghị giải đáp đó là Đức Phật ở Ấn Độ. Từ đó, vua sai phái đoàn 18 người sang Tây Vực thỉnh kinh, đánh dấu sự du nhập chính thức của Phật giáo vào Trung Quốc năm 67 (S.CN).'
+            },
+            {
+                q: 'Lịch sử phiên dịch Phật giáo Trung Quốc ghi nhận "3 cột mốc vĩ đại" ảnh hưởng đến sự nghiệp phiên dịch Hán Tạng. Đó là 3 vị đại sư nào?',
+                options: [
+                    "A. An Thế Cao, Chi Lâu Ca Sấm, Huyền Trang",
+                    "B. Trúc Pháp Hộ, Cưu Ma La Thập, Huyền Trang",
+                    "C. Cưu Ma La Thập, Chân Đế, Huyền Trang",
+                    "D. Phật Đồ Trừng, Đạo An, Huệ Viễn"
+                ],
+                answer: "B",
+                exp: '💡 Mẹo "chống lừa" từ Ni sư: Đừng nhầm lẫn giữa "Tứ đại dịch giả" (4 vị: La Thập, Chân Đế, Huyền Trang, Bất Không/Nghĩa Tịnh) và "3 cột mốc dịch kinh" (3 vị: Trúc Pháp Hộ, Cưu Ma La Thập, Huyền Trang).'
+            },
+            {
+                q: 'Ngài Huyền Trang đã đưa ra lý luận dịch thuật nổi tiếng "Ngũ chủng bất phiên". Trong đó, nguyên tắc "Bí mật bất phiên" nghĩa là gì?',
+                options: [
+                    "A. Những từ ngữ thiêng liêng như Bát Nhã thì không dịch",
+                    "B. Những thứ Trung Quốc không có (như chim ca lăng tần già) thì không dịch",
+                    "C. Những thần chú, đà la ni mang tính bí mật thì giữ nguyên âm Phạn, không dịch nghĩa",
+                    "D. Một từ có quá nhiều nghĩa thì không dịch"
+                ],
+                answer: "C",
+                exp: 'Bí mật bất phiên áp dụng cho các câu thần chú (Mật chú, Đà-la-ni). Dù ngài Huyền Trang uyên bác nhưng ngài chủ trương chú ngữ mang ý nghĩa thiêng liêng, bí mật nên chỉ phiên âm chứ không dịch nghĩa.'
+            },
+            {
+                q: 'Bộ "Đại Chánh Tân Tu Đại Tạng Kinh" (Đại Chánh tạng) gồm 100 tập. Phần "Biệt quyển" (15 tập) được chia thành 2 phần với cấu trúc cụ thể như thế nào?',
+                options: [
+                    "A. Đồ họa (10 tập), Tổng mục lục (5 tập)",
+                    "B. Đồ họa (12 tập), Tổng mục lục (3 tập)",
+                    "C. Âm nghĩa (12 tập), Tổng mục lục (3 tập)",
+                    "D. Từ điển (10 tập), Hình ảnh (5 tập)"
+                ],
+                answer: "B",
+                exp: '💡 Mẹo đếm số: Nhớ con số 12 và 3. 12 tập Đồ họa là phần cực kỳ đặc sắc chứa hình ảnh tượng Phật, mạn đà la, pháp khí... và 3 tập Tổng mục lục.'
+            },
+            {
+                q: 'Khi làm bài thi, nếu đề bài yêu cầu "Hãy chỉ ra KHUYẾT ĐIỂM của Đại Chánh Tạng", bạn phải khoanh vào đáp án có chứa cụm từ khóa nào dưới đây?',
+                options: [
+                    "A. Phạm Hán đối chiếu",
+                    "B. Bỏ sót các tác phẩm trước tác Phật giáo (như Ngũ Đăng Hội Nguyên), phân loại không hợp lý, chấm câu sai",
+                    "C. Nghiêm mật bát thiệp hiệu đính",
+                    "D. Chế định sách dẫn, tiện lợi giá thấp"
+                ],
+                answer: "B",
+                exp: '💡 Mẹo thi: Cứ nghe hỏi "khuyết điểm" thì tìm ngay đáp án có từ mang nghĩa tiêu cực như "Bỏ sót", "Không hợp lý", "Chấm câu sai sót". Dù tốn nhiều công sức, ban biên tập vẫn bỏ sót cuốn Ngũ Đăng Hội Nguyên và sai lầm trong việc phân loại lẫn lộn Tiểu thừa/Đại thừa.'
+            },
+            {
+                q: 'Trong số 10 điều của nhóm Tỳ-kheo Bạt Kỳ đưa ra (dẫn đến kỳ kiết tập thứ 2), điều "Kim ngân tịnh" mang ý nghĩa là gì?',
+                options: [
+                    "A. Được quyền ăn chiều",
+                    "B. Cất giữ vàng bạc, tiền bạc là hợp lệ, không trái giới luật",
+                    "C. Được quyền dùng tọa cụ kích thước lớn",
+                    "D. Được phép uống rượu lên men pha nước"
+                ],
+                answer: "B",
+                exp: '"Kim ngân" là vàng bạc, "tịnh" là trong sạch/hợp pháp. Nhóm Bạt Kỳ cho rằng Tỳ-kheo cất giữ tiền bạc là không sai, nhưng ngài Trưởng lão Da Xá và hội nghị 700 vị đã phán quyết đây là 1 trong 10 điều phi pháp.'
+            },
+            {
+                q: 'Trong kỳ kiết tập kinh điển lần thứ nhất, vì lý do gì ngài A Nan ban đầu bị ngài Đại Ca Diếp từ chối không cho tham gia hội nghị?',
+                options: [
+                    "A. Vì ngài A Nan bận đi khất thực ở xa",
+                    "B. Vì ngài A Nan là người bảo vệ cho tỳ-kheo Bạc Nan Đà",
+                    "C. Vì ngài A Nan lúc bấy giờ chưa chứng đắc thánh quả A La Hán",
+                    "D. Vì ngài A Nan vi phạm 10 điều phi pháp"
+                ],
+                answer: "C",
+                exp: 'Mặc dù mang danh "Đa văn đệ nhất", nhưng ngài A Nan chưa đắc quả A La Hán nên ngài Ca Diếp không cho vào. Nhờ vậy, ngài A Nan đã nỗ lực tột độ và chứng quả ngay trước thềm đại hội để được mời vào trùng tuyên Kinh tạng.'
+            },
+            {
+                q: 'Dịch phẩm "Thành Thực Luận" do đại dịch giả Cưu Ma La Thập dịch là kinh điển y cứ, ảnh hưởng trực tiếp đến sự thành lập của tông phái nào tại Trung Quốc?',
+                options: [
+                    "A. Thiên Thai Tông",
+                    "B. Thành Thực Tông",
+                    "C. Tam Luận Tông",
+                    "D. Hoa Nghiêm Tông"
+                ],
+                answer: "B",
+                exp: '💡 Mẹo thi: Câu này như "cho điểm". Thấy "Thành Thực Luận" thì chọn ngay "Thành Thực Tông". (Lưu ý: Nếu hỏi "Tứ Luận" thì chọn Tam Luận Tông).'
+            },
+            {
+                q: 'Ngài Đạo Sanh (đệ tử xuất sắc của ngài Cưu Ma La Thập) đã đưa ra một tư tưởng đi trước thời đại và gây chấn động đương thời. Tư tưởng đó là gì?',
+                options: [
+                    "A. Đề xướng việc Tăng Ni dùng họ Thích",
+                    "B. Bất lập văn tự",
+                    "C. Nhất xiển đề (kẻ cực ác) cũng có Phật tánh và có thể thành Phật",
+                    "D. Giải không đệ nhất"
+                ],
+                answer: "C",
+                exp: 'Ngài Đạo Sanh tuyên bố "Nhất xiển đề cũng có thể thành Phật". Lúc đầu ngài bị Tăng chúng trục xuất vì kinh điển chưa dịch tới đoạn đó. Về sau, khi bộ kinh Đại Bát Niết Bàn được dịch trọn vẹn xác nhận điều này, mọi người mới khâm phục tuệ giác của ngài.'
+            },
+            {
+                q: 'Bản Đại Tạng Kinh của nước Cao Ly (Hàn Quốc) được UNESCO đánh giá rất cao, khắc trên 80.000 tấm mộc bản nhằm mục đích cầu nguyện đẩy lùi quân Mông Cổ, còn được gọi bằng tên nào khác?',
+                options: [
+                    "A. Khai Bảo Tạng",
+                    "B. Bát Vạn Đại Tạng Kinh",
+                    "C. Kính Sơn Tạng",
+                    "D. Triệu Thành Tạng"
+                ],
+                answer: "B",
+                exp: 'Bát vạn có nghĩa là 8 vạn (80.000). Bộ kinh này khắc trên khoảng 80.000 bản gỗ, hiện lưu giữ tại chùa Hải Ấn (Haeinsa).'
+            },
+            {
+                q: 'Tác phẩm "Đại Đường Tây Vực Ký" có giá trị to lớn về lịch sử, địa lý và Phật học là do vị đại sư nào biên soạn?',
+                options: [
+                    "A. Ngài Pháp Hiển",
+                    "B. Ngài Nghĩa Tịnh",
+                    "C. Ngài Huyền Trang",
+                    "D. Ngài Đạo An"
+                ],
+                answer: "C",
+                exp: 'Đây là tác phẩm ghi chép lại toàn bộ hành trình thỉnh kinh qua các nước Tây Vực và Ấn Độ của ngài Huyền Trang.'
+            },
+            {
+                q: 'Xét về cấu trúc, "Hán văn Đại tạng kinh" bắt buộc phải bao gồm hai phần nội dung cốt lõi nào?',
+                options: [
+                    "A. Kinh điển phiên dịch và Kinh điển do người Nhật Bản biên soạn",
+                    "B. Tam tạng Nguyên thủy và Tam tạng Đại thừa",
+                    "C. Phần kinh điển phiên dịch (từ Phạn/Pali) và phần trước tác Phật học do người Trung Quốc (và các nước đồng văn) biên soạn",
+                    "D. Kinh tạng và Luật tạng"
+                ],
+                answer: "C",
+                exp: 'Ni sư Tuệ Liên nhấn mạnh rất kỹ: Đừng nghĩ Đại tạng kinh chỉ có kinh Phật phiên dịch. Nó bao gồm cả phần "phiên dịch" (Kinh, Luật, Luận) và phần "trước tác" (sớ giải, sử truyện, ngữ lục... của các tổ sư Trung Quốc).'
+            },
+            {
+                q: 'Sự kiện nổi bật nhất về mặt NỘI DUNG của kỳ kiết tập kinh điển lần thứ tư (do vua Ca Nị Sắc Ca bảo trợ) là gì?',
+                options: [
+                    "A. Lần đầu tiên có sớ giải (những bản chú thích chi tiết cho Kinh, Luật, Luận)",
+                    "B. Bắt đầu có Luận tạng",
+                    "C. Chia rẽ thành Thượng Tọa Bộ và Đại Chúng Bộ",
+                    "D. Bắt đầu chép kinh trên lá bối"
+                ],
+                answer: "A",
+                exp: '💡 Mẹo thi tổng kết:\nLần 1: Có Kinh + Luật.\nLần 2: Bàn về 10 điều phi pháp -> Phân phái.\nLần 3: Ra đời Luận tạng (Đầy đủ Kinh, Luật, Luận).\nLần 4: Ra đời Sớ giải (Bản chú thích để thống nhất kiến giải bất đồng giữa các bộ phái).'
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 150 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Trong tác phẩm "Đại Minh Độ Kinh" do cư sĩ Chi Khiêm dịch (thuộc hệ Bát Nhã), chữ "Độ" trong nhan đề kinh mang ý nghĩa là gì?',
+                options: [
+                    "A. Sự cứu rỗi chúng sanh",
+                    "B. Ba-la-mật (Đáo bỉ ngạn)",
+                    "C. Sự thấu hiểu pháp môn",
+                    "D. Đất nước (Quốc độ)"
+                ],
+                answer: "B",
+                exp: 'Ni sư phân tích cách dịch thuật thời Ngô rất hay: "Đại" dịch từ chữ Ma-ha, "Minh" dịch từ chữ Bát Nhã, và "Độ" dịch từ chữ Ba-la-mật (nghĩa là vượt qua bờ bên kia). Như vậy, Đại Minh Độ Kinh chính là Ma Ha Bát Nhã Ba La Mật Kinh.'
+            },
+            {
+                q: '"Tam chi" trong câu ca tụng thời Tam Quốc: "Thiên hạ bát tri, bất xuất tam chi" (Sự hiểu biết trong thiên hạ không vượt qua ba vị họ Chi) là chỉ cho dòng truyền thừa của 3 vị nào?',
+                options: [
+                    "A. Chi Pháp Hộ -> Chi Lượng -> Chi Khiêm",
+                    "B. Chi Lâu Ca Sấm -> Chi Độn -> Chi Khiêm",
+                    "C. Chi Lâu Ca Sấm -> Chi Lượng -> Chi Khiêm",
+                    "D. Chi Lâu Ca Sấm -> Chi Lượng -> Chi Pháp Hộ"
+                ],
+                answer: "C",
+                exp: '💡 Mẹo thi: Nhớ đúng dòng truyền thừa: Sư tổ là ngài Chi Lâu Ca Sấm (hay gọi tắt là Chi Sấm) truyền cho đệ tử là ngài Chi Lượng, sau đó ngài Chi Lượng truyền lại cho vị cư sĩ uyên bác Chi Khiêm.'
+            },
+            {
+                q: 'Ai là người Cư sĩ tại gia nhưng tài trí uyên bác, được vua nước Ngô vô cùng trọng dụng, mời vào cung để dạy học cho Thái tử?',
+                options: [
+                    "A. Chi Lượng",
+                    "B. Tạ Linh Vận",
+                    "C. Chi Khiêm",
+                    "D. Bàng Uẩn"
+                ],
+                answer: "C",
+                exp: 'Cư sĩ Chi Khiêm (người nước Đại Nguyệt Chi) rất thông minh, giỏi ngoại ngữ, được vua nước Ngô tôn trọng và mời vào cung dạy cho Thái tử. Ông cũng là người dịch bản kinh Duy Ma Cật đầu tiên khiến thính chúng nghe đông "như sập cả góc thành".'
+            },
+            {
+                q: 'Xét về cấu trúc 100 tập của Đại Chánh Tân Tu Đại Tạng Kinh, số lượng tập được phân bổ lần lượt cho Chánh Tạng, Tục Tạng và Biệt Quyển là bao nhiêu?',
+                options: [
+                    "A. 50 tập, 30 tập, 20 tập",
+                    "B. 55 tập, 30 tập, 15 tập",
+                    "C. 60 tập, 25 tập, 15 tập",
+                    "D. 55 tập, 35 tập, 10 tập"
+                ],
+                answer: "B",
+                exp: '💡 Mẹo đếm số từ Ni sư: Chánh tạng hơn một nửa (55 tập). Phần Tục tạng (30 tập) thì có số lượng gấp đôi phần Biệt quyển (15 tập). Tổng cộng vừa tròn 100 tập.'
+            },
+            {
+                q: 'Trong 55 tập của Chánh Tạng, phần "Tạp tạng" (Trước tác soạn thuật) chiếm bao nhiêu tập?',
+                options: [
+                    "A. 32 tập",
+                    "B. 16 tập",
+                    "C. 23 tập",
+                    "D. 30 tập"
+                ],
+                answer: "C",
+                exp: '💡 Mẹo đếm số: 55 tập Chánh tạng chia làm hai: Phiên dịch là 32 tập, Trước tác (tạp tạng) lộn ngược số lại là 23 tập. (32 + 23 = 55).'
+            },
+            {
+                q: 'Dịch phẩm "Thập địa kinh luận" thời Nam Bắc Triều là kinh điển y cứ, ảnh hưởng đến sự thành lập của Địa Luận Tông. Vị đại dịch giả nào đã dịch tác phẩm này?',
+                options: [
+                    "A. Ngài Chân Đế",
+                    "B. Ngài Cưu Ma La Thập",
+                    "C. Ngài Bồ Đề Lưu Chi",
+                    "D. Ngài Huyền Trang"
+                ],
+                answer: "C",
+                exp: 'Nhớ cặp đôi thời Nam Bắc Triều: Ngài Bồ Đề Lưu Chi dịch Thập địa kinh luận (lập Địa Luận tông). Còn ngài Chân Đế dịch Nhiếp Đại Thừa Luận (lập Nhiếp Luận tông).'
+            },
+            {
+                q: 'Mạng mạch truyền thừa của Mật Tông từ Trung Quốc sang Nhật Bản diễn ra theo thứ tự nào?',
+                options: [
+                    "A. Ngài Bất Không -> Ngài Tăng Triệu -> Ngài Không Hải",
+                    "B. Ngài Bất Không -> Ngài Huệ Quả -> Ngài Không Hải",
+                    "C. Ngài Thiện Vô Úy -> Ngài Bất Không -> Ngài Tối Trừng",
+                    "D. Ngài Chân Đế -> Ngài Huệ Quả -> Ngài Nhật Liên"
+                ],
+                answer: "B",
+                exp: 'Ngài Bất Không (đại tổ sư Mật tông đời Đường) truyền cho đệ tử là ngài Huệ Quả. Ngài Huệ Quả truyền pháp cho ngài Không Hải. Sau đó ngài Không Hải mang giáo pháp về Nhật Bản sáng lập ra Chân Ngôn Tông.'
+            },
+            {
+                q: 'Thuật ngữ "Ngụy Kinh" mà giới học giả hay sử dụng để chỉ cho loại kinh sách nào?',
+                options: [
+                    "A. Kinh điển được dịch sai từ tiếng Phạn",
+                    "B. Kinh điển do các bộ phái Tiểu thừa biên soạn",
+                    "C. Kinh sách không phải do chính Đức Phật thuyết mà do người đời sau (ở Trung Quốc) tự biên soạn, sáng tác thêm vào",
+                    "D. Kinh điển thuộc hệ phái Mật tông"
+                ],
+                answer: "C",
+                exp: 'Ni sư giải thích rằng "Ngụy kinh" là từ các học giả dùng để chỉ những bộ kinh không xuất phát từ Ấn Độ (không phải lời Phật dạy) mà do các vị tổ sư hay học giả Trung Quốc tự viết thêm và mượn danh Đức Phật. Ví dụ được nhắc đến là kinh Bát Dương.'
+            },
+            {
+                q: 'Trong 4 kỳ kiết tập kinh điển, kỳ kiết tập nào LẦN ĐẦU TIÊN xuất hiện đầy đủ Tam Tạng (Kinh tạng, Luật tạng, Luận tạng)?',
+                options: [
+                    "A. Kỳ kiết tập lần thứ nhất",
+                    "B. Kỳ kiết tập lần thứ hai",
+                    "C. Kỳ kiết tập lần thứ ba",
+                    "D. Kỳ kiết tập lần thứ tư"
+                ],
+                answer: "C",
+                exp: 'Lần 1 và 2 chỉ mới có Kinh và Luật. Phải đến kỳ kiết tập thứ 3 (do vua A Dục bảo trợ), "Luận tạng" mới chính thức ra đời, làm cho Tam Tạng được đầy đủ.'
+            },
+            {
+                q: 'Sự kiện nổi bật nhất về mặt NỘI DUNG của kỳ kiết tập kinh điển lần thứ tư (do vua Ca Nị Sắc Ca bảo trợ) là gì?',
+                options: [
+                    "A. Bắt đầu có Luận tạng",
+                    "B. Lần đầu tiên có sớ giải (những bản chú giải, phân tích chi tiết cho Kinh, Luật, Luận)",
+                    "C. Sự phân chia thành Thượng Tọa Bộ và Đại Chúng Bộ",
+                    "D. Hoàn thiện hệ kinh Nikaya"
+                ],
+                answer: "B",
+                exp: 'Nếu lần 3 đẻ ra "Luận tạng", thì lần 4 đẻ ra "Sớ giải" (các bản chú giải để giải quyết sự bất đồng kiến giải giữa các bộ phái).'
+            },
+            {
+                q: 'Bản dịch "Hoa Nghiêm 60 quyển" và bản dịch "Hoa Nghiêm 80 quyển" lần lượt là công trình của 2 vị đại sư nào?',
+                options: [
+                    "A. Giác Hiền (60 quyển) và Thực Xoa Nan Đà (80 quyển)",
+                    "B. Thực Xoa Nan Đà (60 quyển) và Giác Hiền (80 quyển)",
+                    "C. Cưu Ma La Thập (60 quyển) và Huyền Trang (80 quyển)",
+                    "D. Phật Đồ Trừng (60 quyển) và Đạo An (80 quyển)"
+                ],
+                answer: "A",
+                exp: 'Ni sư dặn rất kỹ đừng nhầm lẫn con số này: Ngài Giác Hiền dịch bản 60 quyển (thời Đông Tấn). Ngài Thực Xoa Nan Đà dịch bản 80 quyển (thời nhà Đường).'
+            },
+            {
+                q: 'Tác phẩm "Tọa thiền tam muội kinh" và "Thiền pháp yếu giải" do ngài Cưu Ma La Thập dịch có ảnh hưởng trực tiếp đến sự phát triển của tông phái nào?',
+                options: [
+                    "A. Hoa Nghiêm Tông",
+                    "B. Luật Tông",
+                    "C. Thiền Tông",
+                    "D. Tịnh Độ Tông"
+                ],
+                answer: "C",
+                exp: 'Nhìn vào nhan đề sách chứa chữ "Thiền", ta chọn ngay Thiền Tông. (Cũng như kinh Kim Cang ảnh hưởng đến Thiền tông).'
+            },
+            {
+                q: 'Trong phần "Tục tạng" (30 tập) của Đại Chánh Tạng, bộ "Tất Đàm bộ" chứa đựng nội dung gì?',
+                options: [
+                    "A. Sách của người Trung Quốc chuyên về luật",
+                    "B. Kinh điển lấy từ Đôn Hoàng",
+                    "C. Sách của người Nhật Bản sưu tầm các văn bản, tài liệu liên quan đến chữ viết Tất Đàm (Sanskrit) của Ấn Độ",
+                    "D. Các bản sớ giải của Mật tông"
+                ],
+                answer: "C",
+                exp: 'Tất Đàm (Siddham) là một loại chữ Phạn. Người Nhật đã dành hẳn một bộ trong Tục tạng để sưu tầm những tài liệu, văn bản liên quan đến chữ viết này.'
+            },
+            {
+                q: 'Trong 10 điều phi pháp của nhóm Tỳ-kheo Bạt Kỳ, điều "Kim ngân tịnh" mang ý nghĩa gì?',
+                options: [
+                    "A. Tỳ kheo được quyền uống nước đựng trong bát vàng, bạc",
+                    "B. Tỳ kheo được cất giữ tiền bạc, vàng bạc là hợp pháp (không trái giới luật)",
+                    "C. Tỳ kheo phải đúc tượng Phật bằng vàng",
+                    "D. Tỳ kheo được phép xài tiền để mua y phục"
+                ],
+                answer: "B",
+                exp: '"Kim ngân" là vàng bạc, "tịnh" là hợp pháp/trong sạch. Nhóm Bạt Kỳ cho rằng người tu cất giữ tiền bạc là hợp lệ, nhưng ngài Da Xá và các trưởng lão đã bác bỏ và tuyên bố đây là 1 trong 10 điều phi pháp.'
+            },
+            {
+                q: '🚨 [Câu hỏi chống sai sót trong phòng thi] Theo hướng dẫn của Ni sư Tuệ Liên, khi điền "Số báo danh" vào phiếu trả lời trắc nghiệm, học viên lấy mã số sinh viên của mình và phải thực hiện thao tác nào?',
+                options: [
+                    "A. Ghi đầy đủ 10 số của mã số sinh viên",
+                    "B. Bỏ 2 số đầu, lấy 8 số cuối",
+                    "C. Bỏ 4 số 0 ở chính giữa, chỉ lấy 3 số đầu và 3 số cuối (tạo thành 6 số)",
+                    "D. Ghi 6 số cuối cùng của mã sinh viên"
+                ],
+                answer: "C",
+                exp: 'Câu này tuy là quy chế thi nhưng cực kỳ quan trọng vì nếu sai sẽ mất điểm. Mã số sinh viên gồm 10 số. Học viên phải bỏ 4 con số 0 ở chính giữa, ráp 3 số đầu và 3 số cuối lại thành 6 số để ghi vào ô Số báo danh. (Ví dụ: Mã SV 2420000075 -> Bỏ 4 số 0 -> Số báo danh là 242075).'
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 165 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Trong kỳ kiết tập kinh điển lần thứ nhất, vì lý do gì mà ban đầu Tôn giả A Nan KHÔNG được ngài Đại Ca Diếp cho phép tham dự hội nghị?',
+                options: [
+                    "A. Vì ngài A Nan bận đi khất thực ở xa.",
+                    "B. Vì ngài A Nan đang vi phạm giới luật.",
+                    "C. Vì lúc đó ngài A Nan chưa chứng đắc thánh quả A La Hán.",
+                    "D. Vì ngài A Nan là người trẻ tuổi nhất trong Tăng đoàn."
+                ],
+                answer: "C",
+                exp: 'Mặc dù ngài A Nan là người "Đa văn đệ nhất" (nghe nhiều nhớ dai), nhưng trước khi đại hội diễn ra ngài vẫn chưa chứng thánh quả nên ngài Ca Diếp cương quyết không cho vào. Nhờ sự thúc đẩy đó, ngài A Nan đã nỗ lực tột cùng và chứng quả A La Hán ngay trước thềm đại hội để được mời vào trùng tuyên Kinh tạng.'
+            },
+            {
+                q: 'Trong 10 điều của nhóm Tỳ-kheo Bạt Kỳ đưa ra (nguyên nhân dẫn đến kỳ kiết tập thứ 2), điều "Kim ngân tịnh" mang ý nghĩa là gì?',
+                options: [
+                    "A. Tỳ-kheo được quyền ăn thức ăn đựng trong bát vàng, bạc.",
+                    "B. Tỳ-kheo được phép cất giữ tiền bạc, vàng bạc là hợp lệ (không trái giới luật).",
+                    "C. Tỳ-kheo được quyền đúc tượng Phật bằng vàng.",
+                    "D. Tỳ-kheo được phép mua bán trao đổi bằng vàng bạc."
+                ],
+                answer: "B",
+                exp: '"Kim ngân" là vàng bạc, "tịnh" là trong sạch/hợp pháp. Nhóm Bạt Kỳ cho rằng Tỳ-kheo cất giữ tiền bạc là không sai. Tuy nhiên, ngài Trưởng lão Da Xá và hội nghị 700 vị đã bác bỏ và phán quyết đây là 1 trong 10 điều phi pháp.'
+            },
+            {
+                q: 'Năm 1998, Phật giáo Trung Quốc tổ chức đại lễ kỷ niệm 2000 năm Phật giáo truyền vào Trung Quốc. Cột mốc 2000 năm này được tính dựa trên truyền thuyết nào?',
+                options: [
+                    "A. Thuyết Vua A Dục phái đoàn truyền giáo.",
+                    "B. Thuyết Khổng Tử ca ngợi bậc thánh giả phương Tây.",
+                    "C. Thuyết Khẩu truyền Phật giáo (kinh Phù Đồ) của sứ giả Y Tồn (năm 2 TCN).",
+                    "D. Thuyết Vua Hán Minh Đế nằm mộng thấy người vàng (năm 67 S.CN)."
+                ],
+                answer: "C",
+                exp: 'Thuyết truyền vào Trung Quốc đầu tiên được ghi nhận là vào năm 2 trước Công Nguyên (2 TCN) do sứ giả Y Tồn khẩu truyền kinh Phù Đồ. Lấy năm 1998 cộng với 2 năm TCN sẽ ra tròn 2000 năm.'
+            },
+            {
+                q: 'Ai là vị tu sĩ người Trung Quốc ĐẦU TIÊN xuất gia (được đắp y Sa-di) nhưng lúc bấy giờ CHƯA được thọ đại giới Tỳ-kheo vì chưa có giới đàn?',
+                options: [
+                    "A. Ngài Chu Sĩ Hành.",
+                    "B. Ngài Nghiêm Phật Điều.",
+                    "C. Cư sĩ Chi Khiêm.",
+                    "D. Ngài Đạo An."
+                ],
+                answer: "B",
+                exp: 'Ngài Nghiêm Phật Điều là đệ tử của ngài An Thế Cao, được đắp y Sa-di. Ngài là người Trung Quốc đầu tiên xuất gia nhưng vì lúc bấy giờ tại Trung Quốc chưa có giới đàn nên chưa được thọ đại giới Tỳ-kheo.'
+            },
+            {
+                q: 'Nhờ công lao dịch Giới bổn và Yết-ma của hai ngài họ Đàm thời Ngụy, vị tu sĩ người Trung Quốc ĐẦU TIÊN được chính thức thọ đại giới Tỳ-kheo là ai?',
+                options: [
+                    "A. Ngài Huyền Trang.",
+                    "B. Ngài Nghiêm Phật Điều.",
+                    "C. Ngài Khương Tăng Hội.",
+                    "D. Ngài Chu Sĩ Hành."
+                ],
+                answer: "D",
+                exp: 'Nhờ có giới đàn do 10 vị Sa-môn Ấn Độ lập ra thời Ngụy, ngài Chu Sĩ Hành trở thành người Trung Quốc đầu tiên được thọ đại giới. Ngài cũng là người mở đường "Nhập trúc cầu pháp" (đi Tây Vực thỉnh kinh).'
+            },
+            {
+                q: 'Mẹo ghi nhớ tên gọi của các thời kỳ phiên dịch thứ 3, thứ 4 và thứ 5 dựa trên số lượng chữ đếm giảm dần là gì?',
+                options: [
+                    "A. Nam Bắc Triều (3 chữ) -> Tùy Đường (2 chữ) -> Tống (1 chữ).",
+                    "B. Lưỡng Tấn Nhị Tần (4 chữ) -> Nam Bắc Triều (3 chữ) -> Tùy Đường (2 chữ).",
+                    "C. Tùy Đường (2 chữ) -> Tống (1 chữ) -> Nguyên (1 chữ).",
+                    "D. Lưỡng Hán (2 chữ) -> Tam Quốc (2 chữ) -> Tấn (1 chữ)."
+                ],
+                answer: "A",
+                exp: '💡 Mẹo làm bài trắc nghiệm của Ni sư: Thời kỳ 3 có 3 chữ (Nam Bắc Triều), thời kỳ 4 giảm còn 2 chữ (Tùy Đường), thời kỳ 5 còn 1 chữ (Tống).'
+            },
+            {
+                q: 'Vị cao tăng nào thời Tiền Tần đã khởi xướng quy định Tăng Ni khi xuất gia không lấy họ theo sư phụ nữa mà đều dùng họ "Thích"?',
+                options: [
+                    "A. Ngài Trúc Pháp Hộ.",
+                    "B. Ngài Cưu Ma La Thập.",
+                    "C. Ngài Đạo An.",
+                    "D. Ngài Huệ Viễn."
+                ],
+                answer: "C",
+                exp: 'Ngài Đạo An (thời Tiền Tần) là người đầu tiên khởi xướng việc Tăng Ni dùng họ "Thích" (đại diện cho dòng dõi Thích Ca Mâu Ni), và quy định này được truyền đến tận Việt Nam ngày nay.'
+            },
+            {
+                q: 'Dịch phẩm "Thập trụ Tỳ bà sa luận" do Đại dịch giả Cưu Ma La Thập dịch là tác phẩm y cứ ảnh hưởng trực tiếp đến sự thành lập của tông phái nào?',
+                options: [
+                    "A. Thiền Tông.",
+                    "B. Tam Luận Tông.",
+                    "C. Hoa Nghiêm Tông.",
+                    "D. Thiên Thai Tông."
+                ],
+                answer: "C",
+                exp: '💡 Mẹo phòng thi: Các tác phẩm của ngài La Thập ảnh hưởng nhiều tông phái. Tuy nhiên, quyển Thập trụ Tỳ bà sa luận hơi lạ và khó nhớ, bạn cần khắc cốt ghi tâm nó thuộc về Hoa Nghiêm Tông.'
+            },
+            {
+                q: 'Ngài Huệ Viễn (Sơ tổ Tịnh Độ Tông) đã y cứ vào quyển kinh nào do ngài Chi Lâu Ca Sấm dịch để tiến hành kiết xã niệm Phật tại Lư Sơn?',
+                options: [
+                    "A. Kinh Đạo Hành Bát Nhã.",
+                    "B. Kinh Bát Chu Tam Muội.",
+                    "C. Kinh A Di Đà.",
+                    "D. Kinh Duy Ma Cật."
+                ],
+                answer: "B",
+                exp: 'Ngài Chi Lâu Ca Sấm dịch quyển Bát Chu Tam Muội. Tới thời Đông Tấn, ngài Huệ Viễn đã lấy pháp môn trong quyển kinh này để kiết xã niệm Phật cùng hơn 100 người, tạo tiền đề để đời sau tôn ngài làm Sơ tổ Tịnh Độ tông.'
+            },
+            {
+                q: 'Trong lý luận dịch thuật "Ngũ chủng bất phiên" (5 trường hợp không dịch nghĩa) của ngài Huyền Trang, nguyên tắc "Bí mật bất phiên" mang ý nghĩa gì?',
+                options: [
+                    "A. Những từ ngữ có ý nghĩa quá sâu sắc như \"Bát Nhã\" thì không dịch.",
+                    "B. Những danh từ Trung Quốc không có (như chim Ca lăng tần già) thì không dịch.",
+                    "C. Những thần chú, Đà-la-ni (Mật chú) mang tính thiêng liêng, bí mật thì giữ nguyên âm Phạn, không dịch nghĩa.",
+                    "D. Một từ tiếng Phạn có quá nhiều nghĩa thì không dịch."
+                ],
+                answer: "C",
+                exp: 'Bí mật bất phiên áp dụng cho các câu thần chú. Ngài Huyền Trang chủ trương chú ngữ mang ý nghĩa thiêng liêng, bí mật nên chỉ phiên âm chứ tuyệt đối không dịch nghĩa.'
+            },
+            {
+                q: 'Xét về cấu trúc tổng thể 100 tập của Đại Chánh Tân Tu Đại Tạng Kinh, số lượng tập được phân bổ lần lượt cho 3 phần (Chánh tạng, Tục tạng, Biệt quyển) là bao nhiêu?',
+                options: [
+                    "A. 50 tập, 30 tập, 20 tập.",
+                    "B. 60 tập, 25 tập, 15 tập.",
+                    "C. 55 tập, 30 tập, 15 tập.",
+                    "D. 55 tập, 35 tập, 10 tập."
+                ],
+                answer: "C",
+                exp: '💡 Mẹo đếm số từ Ni sư: Phần Chánh tạng chiếm hơn một nửa (55 tập). Phần Tục tạng (30 tập) thì có số lượng gấp đôi phần Biệt quyển (15 tập). Tổng là 100 tập.'
+            },
+            {
+                q: 'Trong 55 tập của phần Chánh Tạng, số lượng tập được chia cho "Kinh điển phiên dịch" và "Phần trước tác" (Tạp tạng) lần lượt là bao nhiêu?',
+                options: [
+                    "A. 30 tập và 25 tập.",
+                    "B. 32 tập và 23 tập.",
+                    "C. 40 tập và 15 tập.",
+                    "D. 35 tập và 20 tập."
+                ],
+                answer: "B",
+                exp: '💡 Mẹo đếm số: Nhớ con số lộn ngược nhau. Phần Phiên dịch là 32 tập, phần Trước tác (Tạp tạng) lộn ngược số lại là 23 tập (32 + 23 = 55).'
+            },
+            {
+                q: '🚨 [Mẹo loại trừ sống còn] Khi làm trắc nghiệm, nếu câu hỏi là "Kinh tạng gồm có những bộ nào?", bạn CẦN TÌM VÀ GẠCH BỎ những bộ nào dưới đây ra khỏi đáp án?',
+                options: [
+                    "A. A Hàm, Bản duyên, Bát Nhã.",
+                    "B. Pháp Hoa, Hoa Nghiêm, Bảo Tích.",
+                    "C. Tỳ đàm bộ, Trung quán bộ, Du già bộ, Thích kinh luận bộ, Luận tập bộ.",
+                    "D. Niết Bàn, Đại Tập, Kinh Tập."
+                ],
+                answer: "C",
+                exp: 'Khi hỏi "Kinh tạng", tuyệt đối không chọn các đáp án có chữ "Luận" hoặc các tên lạ như "Tỳ đàm", "Trung quán", "Du già" vì đó là 5 bộ thuộc về Luận tạng.'
+            },
+            {
+                q: 'Dù có 450.000 người tham gia biên soạn, Đại Chánh Tạng vẫn mắc khuyết điểm "bỏ sót sách". Tác phẩm nổi tiếng nào của Phật giáo Trung Quốc đã bị bỏ sót không được đưa vào tạng này?',
+                options: [
+                    "A. Ngũ Đăng Hội Nguyên.",
+                    "B. Lục Độ Tập Kinh.",
+                    "C. Đại Đường Tây Vực Ký.",
+                    "D. Sa Môn Bất Bái Vương Giả Luận."
+                ],
+                answer: "A",
+                exp: 'Ni sư Tuệ Liên nhấn mạnh rằng khi tra cứu tác phẩm Ngũ Đăng Hội Nguyên (một tác phẩm rất quan trọng của Thiền tông) trong Đại Chánh Tạng thì không thấy, minh chứng rõ ràng cho khuyết điểm bỏ sót các trước tác của tạng kinh này.'
+            },
+            {
+                q: '🚨 [Quy chế thi] Theo lời dặn của Ni sư Tuệ Liên, khi điền "Số báo danh" (có 6 ô) vào phiếu trả lời trắc nghiệm từ Mã số sinh viên (10 số), học viên phải thực hiện thao tác nào để máy chấm không bị lỗi?',
+                options: [
+                    "A. Điền 6 số cuối cùng của mã số sinh viên.",
+                    "B. Điền 6 số đầu tiên của mã số sinh viên.",
+                    "C. Bỏ 4 con số 0 ở chính giữa, chỉ lấy 3 số đầu và 3 số cuối ráp lại.",
+                    "D. Ghi đầy đủ 10 số tràn ra ngoài ô."
+                ],
+                answer: "C",
+                exp: 'Mã số sinh viên có 10 số (VD: 2420000075). Để điền đúng 6 ô Số báo danh, học viên bắt buộc phải bỏ 4 con số 0 ở giữa, lấy 3 số đầu (242) ráp với 3 số cuối (075) thành 242075. Đánh sai thao tác này máy sẽ chấm rớt hoặc điểm bay sang người khác.'
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 180 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Thuyết "Khẩu truyền Phật giáo" của sứ giả Y Tồn (thuyết thứ 11 được giới Phật giáo công nhận) diễn ra vào năm nào và thuộc triều đại nào của Trung Quốc?',
+                options: [
+                    "A. Năm 67 S.CN, đời Hậu Hán (Đông Hán).",
+                    "B. Năm 2 TCN, cuối thời Tây Hán (Tiền Hán).",
+                    "C. Năm 126 TCN, đời Hán Võ Đế.",
+                    "D. Năm 2 TCN, đầu thời Đông Hán."
+                ],
+                answer: "B",
+                exp: "Sự kiện sứ giả Y Tồn khẩu truyền kinh Phù Đồ cho Cảnh Lô diễn ra vào khoảng năm -2 (trước Tây lịch). Khoảng thời gian này tương ứng với giai đoạn cuối thời Tây Hán (hoặc có thể gọi là Tiền Hán)."
+            },
+            {
+                q: 'Theo truyền thuyết thứ 5 về Vua A Dục (người bảo trợ kỳ kiết tập thứ 3), nhà vua đã có hành động vĩ đại nào để truyền bá Phật pháp?',
+                options: [
+                    "A. Ép toàn bộ quan lại trong triều đình phải cạo đầu xuất gia.",
+                    "B. Xây dựng 1000 ngôi chùa bằng vàng.",
+                    "C. Cho con trai là Ma Sán Đà, con gái là Tăng Già Mật Đa và em trai đi xuất gia, sau đó cử dẫn đầu các phái đoàn truyền giáo.",
+                    "D. Nhường lại ngôi vua cho ngài Mục Kiền Liên Tử Đế Tu."
+                ],
+                answer: "C",
+                exp: "Vua A Dục đã xả ly tình thân, cho những người con của mình (con trai Ma Sán Đà, con gái Tăng Già Mật Đa) cùng em trai đi xuất gia. Sau đó, ngài cử họ tham gia vào các phái đoàn đi truyền giáo khắp nơi."
+            },
+            {
+                q: 'Trong kỳ kiết tập kinh điển lần thứ nhất, ngài A Nan đã bị ngài Đại Ca Diếp khiển trách giữa đại hội vì những lỗi lầm nào dưới đây?',
+                options: [
+                    "A. Vá y đạp chân lên y Phật, để phụ nữ khóc rơi nước mắt lên thân Phật.",
+                    "B. Xin cho di mẫu Kiều Đàm Di xuất gia và không thỉnh cầu Đức Phật kéo dài thọ mạng.",
+                    "C. Không đi lấy nước khi Đức Phật bị bệnh khát nước.",
+                    "D. Tất cả các ý trên đều đúng."
+                ],
+                answer: "D",
+                exp: 'Mặc dù là người "Đa văn đệ nhất", ngài A Nan vẫn bị ngài Ca Diếp khiển trách vì các lỗi (đột-kiết-la) như: đạp chân lên y Phật khi vá, cho phụ nữ vào viếng làm nước mắt rơi lên thân Phật, cố xin cho nữ giới xuất gia, và không thỉnh Phật trụ thế thêm.'
+            },
+            {
+                q: 'Trong số 10 điều phi pháp do nhóm Tỳ-kheo Bạt Kỳ đưa ra (nguyên nhân của kỳ kiết tập thứ 2), điều "Giác diêm tịnh" mang ý nghĩa là gì?',
+                options: [
+                    "A. Được quyền dùng tọa cụ kích thước lớn.",
+                    "B. Đồ ăn ướp muối để cách đêm vẫn ăn được, không trái giới luật.",
+                    "C. Ăn rồi dùng hai ngón tay cầm thức ăn khác vẫn được ăn.",
+                    "D. Sữa pha với nước uống sau giờ ngọ không trái giới luật."
+                ],
+                answer: "B",
+                exp: '"Giác diêm tịnh" nghĩa là đồ ăn ướp muối để qua đêm hôm sau vẫn lấy ra ăn được. Theo truyền thống khất thực thời bấy giờ, đồ ăn để qua đêm là không đúng với giới luật.'
+            },
+            {
+                q: 'Nguyên nhân cốt lõi dẫn đến việc ngài Mục Kiền Liên Tử Đế Tu phải triệu tập kỳ kiết tập kinh điển lần thứ ba là gì?',
+                options: [
+                    "A. Do chư tăng các bộ phái có kiến giải bất đồng về kinh điển.",
+                    "B. Do ngoại đạo trà trộn vào hàng ngũ Tăng đoàn để thọ hưởng những lợi dưỡng do vua A Dục cúng dường.",
+                    "C. Do 10 điều phi pháp của nhóm Tỳ-kheo Bạt Kỳ.",
+                    "D. Do sự suy tàn của Phật giáo tại Ấn Độ."
+                ],
+                answer: "B",
+                exp: "Vì vua A Dục hết lòng ủng hộ Tăng đoàn, ngoại đạo không được ủng hộ nên đã trà trộn vào hàng ngũ Tăng đoàn để thụ hưởng lợi dưỡng, làm Phật pháp hỗn loạn."
+            },
+            {
+                q: 'Trong kỳ kiết tập lần thứ tư, vị cao tăng nào được tôn xưng là "Đệ nhị chủ tọa", người nổi tiếng với hạnh nguyện "không đặt lưng xuống chiếu ngủ"?',
+                options: [
+                    "A. Ngài Thế Hữu.",
+                    "B. Ngài Mã Minh.",
+                    "C. Ngài Hiếp Tôn Giả.",
+                    "D. Trưởng lão Da Xá."
+                ],
+                answer: "C",
+                exp: "Ngài Hiếp Tôn Giả xuất gia khi đã 80 tuổi, bị chê cười nên ngài phát nguyện không bao giờ đặt sườn (hiếp) xuống chiếu để ngủ cho đến khi chứng quả. Dù là người khởi xướng hội nghị, ngài vẫn nhường ngôi Đệ nhất chủ tọa cho ngài Thế Hữu và tự lùi xuống làm Đệ nhị chủ tọa."
+            },
+            {
+                q: 'Đạo giáo thời bấy giờ đã mượn pháp môn trong quyển kinh nào do ngài An Thế Cao dịch để lập ra pháp "Thai tức" (điều hòa hơi thở)?',
+                options: [
+                    "A. Kinh Bát Đại Nhân Giác.",
+                    "B. Kinh An Ban Thủ Ý.",
+                    "C. Kinh Tứ Thập Nhị Chương.",
+                    "D. Kinh Lục Độ Tập."
+                ],
+                answer: "B",
+                exp: 'Kinh An Ban Thủ Ý là quyển kinh hướng dẫn pháp môn thiền đếm hơi thở. Đạo giáo rất xem trọng quyển kinh này và đã lấy các pháp môn trong đó để lập ra "pháp thai tức" của riêng họ.'
+            },
+            {
+                q: 'Quyển kinh "Bát Châu Tam Muội" do ngài Chi Lâu Ca Sấm dịch sau này đã trở thành kinh điển y cứ cho vị đại sư nào kiết xã niệm Phật?',
+                options: [
+                    "A. Ngài Cưu Ma La Thập.",
+                    "B. Ngài Đạo Sanh.",
+                    "C. Ngài Đạo An.",
+                    "D. Ngài Huệ Viễn (Sơ tổ Tịnh Độ tông)."
+                ],
+                answer: "D",
+                exp: "Tới thời Đông Tấn, ngài Huệ Viễn đã lấy pháp môn trong quyển kinh Bát Châu Tam Muội này để kiết xã niệm Phật cùng hơn 100 người, tạo tiền đề để đời sau tôn ngài làm Sơ tổ Tịnh Độ tông."
+            },
+            {
+                q: 'Trong tác phẩm "Lục độ tập kinh" do ngài Khương Tăng Hội dịch thời Tam Quốc, từ "Lục độ" (6 pháp ba-la-mật) thời bấy giờ được ngài dịch bằng danh từ nào?',
+                options: [
+                    "A. Đáo bỉ ngạn.",
+                    "B. Độ vô cực / Vô cực.",
+                    "C. Giải thoát.",
+                    "D. Niết bàn."
+                ],
+                answer: "B",
+                exp: 'Thời của ngài Khương Tăng Hội, danh từ "Ba-la-mật" chưa được sử dụng phổ biến. Thay vào đó, ngài dùng từ "Vô cực" (ví dụ: bố thí độ vô cực, giới độ vô cực).'
+            },
+            {
+                q: 'Trong số các đệ tử xuất chúng (Tứ thánh) của ngài Cưu Ma La Thập, hai vị nào nổi tiếng nhất với tư tưởng "Phật tánh luận" và "Giải không đệ nhất"?',
+                options: [
+                    "A. Ngài Đạo Dung và ngài Đạo Hằng.",
+                    "B. Ngài Đạo Sanh và ngài Tăng Triệu.",
+                    "C. Ngài Tăng Duệ và ngài Đạo Ảnh.",
+                    "D. Ngài Huệ Quán và ngài Đạo Tiêu."
+                ],
+                answer: "B",
+                exp: 'Ngài Đạo Sanh là người đưa ra tư tưởng đi trước thời đại "Nhất xiển đề cũng có thể thành Phật" (Phật tánh luận). Ngài Tăng Triệu là người kế thừa tư tưởng Bát Nhã xuất sắc nên được tôn là "Giải không đệ nhất".'
+            },
+            {
+                q: 'Tác phẩm "Thập trụ Tỳ bà sa luận" do ngài Cưu Ma La Thập dịch là kinh điển y cứ, ảnh hưởng trực tiếp đến sự thành lập của tông phái nào?',
+                options: [
+                    "A. Thiên Thai Tông.",
+                    "B. Tam Luận Tông.",
+                    "C. Hoa Nghiêm Tông.",
+                    "D. Thiền Tông."
+                ],
+                answer: "C",
+                exp: "💡 Mẹo thi: Tác phẩm này có cái tên rất lạ và khó nhớ, nhưng Ni sư dặn phải \"khắc cốt ghi tâm\" vì nó là bộ luận nền tảng thuộc về Hoa Nghiêm Tông."
+            },
+            {
+                q: 'Trong lý luận dịch thuật "Ngũ chủng bất phiên" (5 trường hợp không dịch nghĩa) của ngài Huyền Trang, nguyên tắc "Phi hữu bất phiên" mang ý nghĩa gì?',
+                options: [
+                    "A. Những thần chú mang tính bí mật thì không dịch.",
+                    "B. Một từ có quá nhiều nghĩa (như Bhagavat) thì không dịch.",
+                    "C. Những thứ ở Trung Quốc không có vật đó (như cây Diêm Phù Đề, chim Ca-lăng-tần-già) thì giữ nguyên âm Phạn, không dịch.",
+                    "D. Người xưa đã dịch quen rồi thì giữ nguyên."
+                ],
+                answer: "C",
+                exp: '"Phi hữu" nghĩa là không có. Ở Trung Quốc không có những vật đó nên ngài Huyền Trang chủ trương chỉ phiên âm chứ không cố gắng dịch nghĩa.'
+            },
+            {
+                q: 'Dòng truyền thừa của Mật tông từ Trung Quốc sang Nhật Bản được tiếp nối theo thứ tự qua 3 vị đại sư nào?',
+                options: [
+                    "A. Ngài Thiện Vô Úy -> Ngài Tối Trừng -> Ngài Nhật Liên.",
+                    "B. Ngài Huyền Trang -> Ngài Khuy Cơ -> Ngài Đạo Nguyên.",
+                    "C. Ngài Bất Không -> Ngài Huệ Quả -> Ngài Không Hải (Lập ra Chân Ngôn Tông).",
+                    "D. Ngài Chân Đế -> Ngài Tăng Triệu -> Ngài Tối Trừng."
+                ],
+                answer: "C",
+                exp: "Ngài Bất Không (Đại dịch giả Mật tông đời Đường) truyền cho đệ tử là ngài Huệ Quả. Ngài Huệ Quả truyền pháp cho ngài Không Hải. Sau đó ngài Không Hải mang giáo pháp về Nhật Bản sáng lập ra Chân Ngôn Tông."
+            },
+            {
+                q: 'Trong 55 tập Chánh Tạng của Đại Chánh Tân Tu Đại Tạng Kinh, phần "Tạp tạng" (Trước tác soạn thuật) gồm 23 tập chủ yếu chứa đựng những nội dung gì?',
+                options: [
+                    "A. Chỉ chứa kinh điển hệ A Hàm và Bổn Duyên.",
+                    "B. Kinh sớ, luật sớ, luận sớ, chư tông, sử truyện, mục lục... do các vị cao tăng và học giả Trung Quốc biên soạn.",
+                    "C. Kinh điển được thu thập từ hang động Đôn Hoàng.",
+                    "D. Tác phẩm của người Nhật Bản và chữ Tất Đàm."
+                ],
+                answer: "B",
+                exp: 'Tạp tạng (Trước tác) chủ yếu bao gồm các phần "sớ" (những bài chú giải, phân tích kinh, luật, luận) cùng với các tài liệu về tông phái, sử sách, và mục lục do chính người Trung Quốc viết.'
+            },
+            {
+                q: '🚨 [Quy chế phòng thi] Lỗi sai "chết người" nào dưới đây sẽ khiến hệ thống chấm thi trắc nghiệm (Ayota) chấm rớt bài của bạn hoặc tính điểm đó cho người khác?',
+                options: [
+                    "A. Điền sai Mã đề thi (Ví dụ: đề 410 nhưng tô 101).",
+                    "B. Quên không ghi Số báo danh hoặc tô Số báo danh sai quy cách (Không bỏ 4 số 0 ở giữa mã sinh viên).",
+                    "C. Dùng bút mực bôi xóa lem nhem 2 đáp án trong cùng 1 câu.",
+                    "D. Tất cả các lỗi trên đều khiến máy chấm sai hoặc hủy kết quả."
+                ],
+                answer: "D",
+                exp: "Ni sư Tuệ Liên cực kỳ nhấn mạnh điều này. Điền sai mã đề sẽ khiến hệ thống áp sai đáp án. Tô sai Số báo danh (không tuân thủ quy tắc lấy 3 số đầu + 3 số cuối) sẽ khiến điểm bay sang người khác hoặc mất bài."
+            },
+            // Nhớ đảm bảo có dấu phẩy ở cuối khối { ... } của câu 195 trước khi dán đoạn này vào nhé!
+            {
+                q: 'Trong kỳ kiết tập kinh điển lần thứ nhất, bộ luật đầu tiên được ngài Ưu-ba-ly (Upali) trùng tuyên có tên gọi là gì?',
+                options: [
+                    "A. Tứ phần luật.",
+                    "B. Ngũ phần luật.",
+                    "C. Tăng kỳ giới bổn.",
+                    "D. Bát thập tụng luật."
+                ],
+                answer: "D",
+                exp: 'Thời đó chưa có giấy bút để chép, ngài Ưu-ba-ly đã phải dùng miệng đọc đi đọc lại (trùng tụng) các giới điều tới 80 lần để 500 vị A-la-hán cùng nghe rõ, ghi nhớ và thông qua. Do đó, bộ luật đầu tiên mang tên "Bát thập tụng luật" (Bộ luật được tụng 80 lần).'
+            },
+            {
+                q: 'Theo quan điểm của môn Văn học Hán Tạng (Phật giáo Bắc truyền), trong kỳ kiết tập lần thứ nhất, ngài A Nan đã trùng tuyên hệ kinh điển nào?',
+                options: [
+                    "A. Hệ kinh Nikaya (Trường Bộ, Trung Bộ...).",
+                    "B. Kinh điển Đại thừa (Pháp Hoa, Hoa Nghiêm).",
+                    "C. Hệ kinh A Hàm (Trường A Hàm, Trung A Hàm...).",
+                    "D. Kinh điển Mật Tông."
+                ],
+                answer: "C",
+                exp: '💡 Mẹo thi từ Ni sư: Nếu học môn Văn học Pali (Nam truyền), đáp án sẽ là hệ Nikaya. Nhưng vì chúng ta đang học Văn học Hán Tạng (Bắc truyền), nên bắt buộc phải chọn là hệ kinh A Hàm.'
+            },
+            {
+                q: 'Sự kiện nổi bật nhất về mặt NỘI DUNG của kỳ kiết tập kinh điển lần thứ ba (do vua A Dục bảo trợ) là gì?',
+                options: [
+                    "A. Lần đầu tiên có sớ giải.",
+                    "B. Mới chỉ có Kinh và Luật.",
+                    "C. Lần đầu tiên xuất hiện đầy đủ Tam Tạng: Kinh, Luật và Luận.",
+                    "D. Bắt đầu dịch kinh sang tiếng Hán."
+                ],
+                answer: "C",
+                exp: 'Lần 1 và lần 2 mới chỉ có Kinh tạng và Luật tạng. Phải đến kỳ kiết tập thứ 3 (do vua A Dục bảo trợ, ngài Mục Kiền Liên Tử Đế Tu làm chủ tọa), phần "Luận tạng" mới chính thức ra đời, tạo thành Tam Tạng hoàn chỉnh.'
+            },
+            {
+                q: '🚨 [Mẹo nhớ địa điểm] Bốn kỳ kiết tập kinh điển được tổ chức lần lượt tại 4 địa điểm nào dưới đây?',
+                options: [
+                    "A. Tỳ Xá Ly -> Vương Xá -> Ca Thấp Di La -> Hoa Thị.",
+                    "B. Vương Xá -> Hoa Thị -> Tỳ Xá Ly -> Ca Thấp Di La.",
+                    "C. Hoa Thị -> Vương Xá -> Tỳ Xá Ly -> Ca Thấp Di La.",
+                    "D. Vương Xá -> Tỳ Xá Ly -> Hoa Thị -> Ca Thấp Di La."
+                ],
+                answer: "D",
+                exp: 'Bạn hãy nhẩm thần chú thứ tự của Ni sư: Lần 1 (Vương Xá) -> Lần 2 (Tỳ Xá Ly) -> Lần 3 (Hoa Thị) -> Lần 4 là cái tên 4 chữ khó nhớ nhất: Ca Thấp Di La.'
+            },
+            {
+                q: 'Trong 10 điều của nhóm Tỳ-kheo Bạt Kỳ đưa ra (nguyên nhân dẫn đến kỳ kiết tập thứ 2), điều "Giác diêm tịnh" mang ý nghĩa là gì?',
+                options: [
+                    "A. Tỳ-kheo được quyền đúc tượng Phật bằng vàng.",
+                    "B. Tỳ-kheo được phép cất giữ tiền bạc, vàng bạc.",
+                    "C. Sữa pha với nước uống sau giờ ngọ không trái giới luật.",
+                    "D. Đồ ăn ướp muối để cách đêm hôm sau vẫn ăn được, không trái giới luật."
+                ],
+                answer: "D",
+                exp: '"Giác diêm tịnh" nghĩa là đồ ăn ướp muối để qua đêm hôm sau lấy ra ăn vẫn hợp pháp. Theo giới luật khất thực thời bấy giờ, đồ ăn để qua đêm là sai luật, nhưng nhóm Bạt Kỳ lại cho là đúng, dẫn đến việc ngài Da Xá phải triệu tập hội nghị để phán quyết đây là điều phi pháp.'
+            },
+            {
+                q: 'Ni sư Tuệ Liên lấy ví dụ câu nói "Trâu cày không được giết" (nếu phẩy sai chỗ sẽ thành "Trâu cày không được, giết") là để làm nổi bật lên ƯU ĐIỂM nào của Đại Chánh Tân Tu Đại Tạng Kinh?',
+                options: [
+                    "A. Chế định sách dẫn.",
+                    "B. Phạm Hán đối chiếu.",
+                    "C. Xếp in và chấm câu rõ ràng.",
+                    "D. Nghiêm mật bát thiệp hiệu đính."
+                ],
+                answer: "C",
+                exp: 'Các bộ Đại Tạng Kinh chữ Hán cổ xưa khắc trên gỗ (như Càn Long Tạng) thường viết liền mạch, không có dấu chấm phẩy, khiến người đọc dễ hiểu sai ý nghĩa kinh sách. Đại Chánh Tạng có kỹ thuật "xếp in và chấm câu" rõ ràng giúp giải quyết triệt để vấn đề này.'
+            },
+            {
+                q: '🚨 [Mẹo đếm số Đại Chánh Tạng] Về mặt cấu trúc, 100 tập của Đại Chánh Tạng được phân bổ thành 3 phần (Chánh Tạng, Tục Tạng, Biệt Quyển) với số lượng tập lần lượt là bao nhiêu?',
+                options: [
+                    "A. 60 tập, 25 tập, 15 tập.",
+                    "B. 55 tập, 30 tập, 15 tập.",
+                    "C. 50 tập, 30 tập, 20 tập.",
+                    "D. 55 tập, 35 tập, 10 tập."
+                ],
+                answer: "B",
+                exp: '💡 Nhẩm mẹo của Ni sư: Chánh tạng chiếm hơn một nửa (55 tập). Hai phần còn lại thì Tục tạng (30 tập) gấp đôi số lượng của Biệt quyển (15 tập). Tổng cộng: 55 + 30 + 15 = 100 tập.'
+            },
+            {
+                q: 'Trong 55 tập của phần "Chánh Tạng", số lượng tập được chia cho "Kinh điển phiên dịch" và "Phần trước tác" (Tạp tạng) lần lượt là bao nhiêu?',
+                options: [
+                    "A. 30 tập và 25 tập.",
+                    "B. 40 tập và 15 tập.",
+                    "C. 32 tập và 23 tập.",
+                    "D. 35 tập và 20 tập."
+                ],
+                answer: "C",
+                exp: '💡 Nhẩm mẹo đảo số: Phần Phiên dịch là 32 tập, phần Trước tác (Tạp tạng) lộn ngược hai con số lại là 23 tập. (32 + 23 = 55).'
+            },
+            {
+                q: 'Phần "Biệt quyển" (15 tập) của Đại Chánh Tạng được chia làm hai mảng chính nào với cấu trúc ra sao?',
+                options: [
+                    "A. Đồ họa (10 tập), Tổng mục lục (5 tập).",
+                    "B. Đồ họa (12 tập), Tổng mục lục (3 tập).",
+                    "C. Từ điển (10 tập), Hình ảnh (5 tập).",
+                    "D. Âm nghĩa (12 tập), Tổng mục lục (3 tập)."
+                ],
+                answer: "B",
+                exp: 'Biệt quyển 15 tập chia thành 12 tập Đồ họa (cung cấp hình ảnh tượng Phật, Bồ Tát, Mạn đà la, pháp khí...) và 3 tập Tổng mục lục.'
+            },
+            {
+                q: '🚨 [Tuyệt kỹ loại trừ] Khi làm bài thi, nếu đề bài hỏi "Kinh tạng gồm có những bộ nào?", bạn BẮT BUỘC PHẢI TÌM VÀ GẠCH BỎ những bộ nào dưới đây ra khỏi đáp án?',
+                options: [
+                    "A. Tỳ đàm bộ, Trung quán bộ, Du già bộ, Thích kinh luận bộ, Luận tập bộ.",
+                    "B. A Hàm, Bản duyên, Bát Nhã, Pháp Hoa.",
+                    "C. Hoa Nghiêm, Bảo Tích, Niết Bàn.",
+                    "D. Đại Tập, Kinh Tập, Mật Giáo."
+                ],
+                answer: "A",
+                exp: '💡 Đây là bí kíp ăn điểm tuyệt đối từ Ni sư: Khi đề hỏi về "Kinh tạng", hãy dò tìm các đáp án có chứa chữ "Luận" (Thích kinh luận, Luận tập) và 3 cái tên lạ (Tỳ đàm, Trung Quán, Du già) để LOẠI TRỪ ngay lập tức, vì đó là 5 bộ thuộc Luận tạng.'
+            },
+            {
+                q: 'Sự vĩ đại của ngài Huyền Trang thời nhà Đường được thể hiện qua việc ngài đã dịch bộ kinh đồ sộ nhất và quyển kinh ngắn nhất. Đó là hai tác phẩm nào?',
+                options: [
+                    "A. Đại Bát Niết Bàn Kinh (40 quyển) và Kinh Lục Độ Tập.",
+                    "B. Đại Bát Nhã (600 quyển, chiếm 3 tập Đại Chánh Tạng) và Bát Nhã Tâm Kinh (hơn 200 chữ).",
+                    "C. Hoa Nghiêm Kinh (80 quyển) và Kinh Pháp Cú.",
+                    "D. Kinh Pháp Hoa (7 quyển) và Kinh Tứ Thập Nhị Chương."
+                ],
+                answer: "B",
+                exp: 'Ngài Huyền Trang ban đầu định dịch tóm tắt bộ Đại Bát Nhã, nhưng thấy tâm bất an nên quyết định dịch trọn vẹn 600 quyển (rất đồ sộ). Trái ngược lại, ngài cũng dịch quyển Bát Nhã Tâm Kinh vô cùng ngắn gọn (hơn 200 chữ) được tụng đọc hàng ngày ở Bắc truyền.'
+            },
+            {
+                q: 'Danh xưng "Tứ đại dịch giả" (4 vị dịch giả vĩ đại nhất) của Phật giáo Trung Quốc gồm những ai?',
+                options: [
+                    "A. Trúc Pháp Hộ, Cưu Ma La Thập, Huyền Trang, Đạo An.",
+                    "B. An Thế Cao, Chi Lâu Ca Sấm, Huyền Trang, Nghĩa Tịnh.",
+                    "C. Cưu Ma La Thập, Chân Đế, Huyền Trang, Bất Không (hoặc Nghĩa Tịnh).",
+                    "D. Đàm Vô Sấm, Chân Đế, Bồ Đề Lưu Chi, Cưu Ma La Thập."
+                ],
+                answer: "C",
+                exp: 'Tứ đại dịch giả bao gồm: La Thập, Chân Đế, Huyền Trang. Vị thứ 4 tùy theo tài liệu đánh giá có thể xếp là ngài Bất Không hoặc ngài Nghĩa Tịnh đều được.'
+            },
+            {
+                q: 'Lịch sử phiên dịch Phật giáo Trung Quốc ghi nhận "3 cột mốc dịch kinh vĩ đại". Đó là 3 vị đại sư nào?',
+                options: [
+                    "A. An Thế Cao, Chi Lâu Ca Sấm, Huyền Trang.",
+                    "B. Trúc Pháp Hộ, Cưu Ma La Thập, Huyền Trang.",
+                    "C. Phật Đồ Trừng, Đạo An, Huệ Viễn.",
+                    "D. Cưu Ma La Thập, Chân Đế, Bồ Đề Lưu Chi."
+                ],
+                answer: "B",
+                exp: '💡 Chống nhầm lẫn: "Tứ đại dịch giả" là 4 người. Còn "3 cột mốc vĩ đại" định hình lịch sử phiên dịch Hán Tạng lần lượt là: Ngài Trúc Pháp Hộ (Tây Tấn) -> Ngài Cưu Ma La Thập (Hậu Tần) -> Ngài Huyền Trang (nhà Đường).'
+            },
+            {
+                q: '🚨 [Cảnh báo phòng thi] Theo dặn dò "sống còn" của Ni sư Tuệ Liên, khi điền Mã số sinh viên (gồm 10 số) vào ô Số Báo Danh (gồm 6 ô) trên phiếu trả lời trắc nghiệm, bạn phải làm thao tác nào để máy chấm không bị lỗi?',
+                options: [
+                    "A. Viết dồn cả 10 số tràn ra ngoài ô.",
+                    "B. Viết 6 số đầu tiên.",
+                    "C. Viết 6 số cuối cùng.",
+                    "D. Bỏ 4 con số 0 ở chính giữa, chỉ lấy 3 số đầu và 3 số cuối ráp lại."
+                ],
+                answer: "D",
+                exp: 'Đây là lỗi khiến thí sinh bị rớt oan nhiều nhất. Bạn phải bỏ 4 con số 0 ở giữa mã số sinh viên. Ví dụ MSSV là 2420000075 -> Bỏ 4 số 0 -> Ghi vào ô Số Báo Danh là 242075. Đánh sai sẽ bị mất bài hoặc điểm văng qua người khác.'
+            },
+            {
+                q: 'Theo truyền thống của môn Văn học Hán Tạng do Ni sư Tuệ Liên giảng dạy, nếu một ngày nào đó Học viện không cho phép thi trắc nghiệm nữa, thì hình thức thi sẽ chuyển sang tự luận. Câu hỏi TỔNG QUÁT đầu tiên chắc chắn sẽ ra là gì?',
+                options: [
+                    "A. Trình bày nội dung Kinh Pháp Hoa.",
+                    "B. Trình bày lịch sử Phật giáo Ấn Độ.",
+                    "C. Trình bày quá trình hình thành Đại tạng kinh Hán văn.",
+                    "D. Phân tích 10 điều phi pháp."
+                ],
+                answer: "C",
+                exp: 'Ni sư đã khẳng định nếu chuyển sang thi viết (tự luận), câu hỏi đầu tiên bao quát toàn bộ môn học chính là "Trình bày quá trình hình thành Đại tạng kinh Hán văn". Sinh viên sẽ phải tóm lược từ việc định nghĩa, 4 kỳ kiết tập, sự du nhập vào TQ, cho đến các thời kỳ phiên dịch và các đại dịch giả.'
+            }
+        ];
+
+        // Thuật toán trộn mảng (Fisher-Yates)
+        function shuffleArray(array) {
+            let currentIndex = array.length, randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+
+        // Hàm render câu hỏi ra HTML
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = ''; // Xóa trắng nội dung cũ
+
+            // Trộn câu hỏi
+            const shuffledQuestions = shuffleArray([...questionData]);
+
+            shuffledQuestions.forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-card';
+
+                // Render danh sách options
+                let optionsHTML = '';
+                item.options.forEach(opt => {
+                    optionsHTML += `<li class="option-item">${opt}</li>`;
+                });
+
+                questionDiv.innerHTML = `
+                    <div class="question-title">Câu ${index + 1}: ${item.q}</div>
+                    <ul class="options-list">
+                        ${optionsHTML}
+                    </ul>
+                    <button class="btn-reveal" onclick="toggleAnswer('ans-${index}')">👁️ Xem Đáp Án</button>
+                    
+                    <div id="ans-${index}" class="answer-section">
+                        <div class="correct-ans">Đáp án đúng: ${item.answer}</div>
+                        <div class="explanation">
+                            <strong>💡 Giải thích:</strong> ${item.exp}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+        // Hàm Khảo bài 1 câu ngẫu nhiên
+        function renderSingleRandomQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = ''; // Xóa trắng danh sách hiện tại
+
+            // Chọn ngẫu nhiên 1 vị trí trong mảng dữ liệu
+            const randomIndex = Math.floor(Math.random() * questionData.length);
+            const item = questionData[randomIndex];
+
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question-card';
+
+            // Render danh sách các đáp án (A, B, C, D)
+            let optionsHTML = '';
+            item.options.forEach(opt => {
+                optionsHTML += `<li class="option-item">${opt}</li>`;
+            });
+
+            // In ra giao diện 1 câu duy nhất (ID đáp án là ans-random)
+            questionDiv.innerHTML = `
+                <div class="question-title"> ${item.q}</div>
+                <ul class="options-list">
+                    ${optionsHTML}
+                </ul>
+                <button class="btn-reveal" onclick="toggleAnswer('ans-random')"> Xem Đáp Án</button>
+                
+                <div id="ans-random" class="answer-section">
+                    <div class="correct-ans">Đáp án đúng: ${item.answer}</div>
+                    <div class="explanation">
+                        <strong>💡 Giải thích:</strong> ${item.exp}
+                    </div>
+                </div>
+            `;
+            container.appendChild(questionDiv);
+        }
+
+        // Hàm Ẩn/Hiện đáp án
+        function toggleAnswer(id) {
+            const ansDiv = document.getElementById(id);
+            if (ansDiv.style.display === "none" || ansDiv.style.display === "") {
+                ansDiv.style.display = "block";
+            } else {
+                ansDiv.style.display = "none";
+            }
+        }
+
+        // Tự động load câu hỏi khi vừa mở trang
+        window.onload = renderQuiz;
+    </script>
+</body>
+</html>
