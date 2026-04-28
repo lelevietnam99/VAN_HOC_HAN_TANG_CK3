@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Thi Tự Luận - Văn Học Hán Tạng</title>
+    <style>
+        :root {
+            --primary-color: #8a3324; /* Đỏ đô trầm, mang tính trang nghiêm */
+            --secondary-color: #2c3e50;
+            --accent-color: #d35400;
+            --bg-color: #fdfbf7; /* Màu nền hơi ngả vàng của giấy cũ */
+            --card-bg: #ffffff;
+            --border-color: #e0d4c8;
+            --text-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .exam-note {
+            background-color: #fff8e1;
+            border-left: 5px solid #f39c12;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-style: italic;
+            color: #555;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .exam-note strong {
+            color: #d35400;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 25px 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+        }
+
+        .section-title {
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .number-badge {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .content-list {
+            list-style-type: none;
+        }
+
+        .content-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .sub-highlight {
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .section-card { padding: 20px; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Trình Bày Quá Trình Hình Thành<br>Đại Tạng Kinh Hán Văn</h1>
+        </header>
+
+        <div class="exam-note">
+            💡 <strong>Gợi ý từ Ni sư Tuệ Liên:</strong> Nếu môn Văn học Hán Tạng thi theo hình thức tự luận, thì đây chắc chắn sẽ là câu hỏi tổng quát đầu tiên. Để trả lời trọn vẹn và đạt điểm tối đa, bài làm cần trình bày tóm lược qua 5 nội dung cốt lõi dưới đây.
+        </div>
+
+        <div class="section-card">
+            <h2 class="section-title"><span class="number-badge">1</span> Định nghĩa Đại tạng kinh</h2>
+            <ul class="content-list">
+                <li><span class="highlight">Về nghĩa hẹp:</span> Chỉ cho Kinh bộ (Kinh tạng). <span class="highlight">Về nghĩa rộng:</span> Bao gồm trọn vẹn Tam tạng (Kinh, Luật, Luận).</li>
+                <li><span class="highlight">Tên gọi sơ khai:</span> Trong giai đoạn đầu, kinh điển được gọi bằng các tên như: toàn thư, chúng kinh, quần kinh hay nhất thiết kinh. Phải từ đời nhà Tùy trở về sau, danh xưng "Đại tạng kinh" mới chính thức xuất hiện.</li>
+                <li><span class="highlight">Cấu trúc cốt lõi:</span> Đại tạng kinh Hán văn không chỉ bao gồm phần kinh điển phiên dịch (từ tiếng Phạn, tiếng Pali sang tiếng Hán), mà <strong>bắt buộc phải có</strong> phần trước tác Phật học (gồm sớ giải, sử truyện, ngữ lục...) do chính các cao tăng và học giả Trung Quốc biên soạn.</li>
+            </ul>
+        </div>
+
+        <div class="section-card">
+            <h2 class="section-title"><span class="number-badge">2</span> Các kỳ kiết tập kinh điển</h2>
+            <p style="margin-bottom: 10px;">Kinh điển ban đầu xuất phát từ Ấn Độ thông qua 4 kỳ kiết tập quan trọng:</p>
+            <ul class="content-list">
+                <li><span class="sub-highlight">Lần 1:</span> Ngài Ưu-ba-ly trùng tuyên Luật tạng (tụng 80 lần gọi là Bát thập tụng luật) và ngài A Nan trùng tuyên Kinh tạng (Hệ A Hàm).</li>
+                <li><span class="sub-highlight">Lần 2:</span> Trọng tâm là giải quyết 10 điều phi pháp của nhóm Tỳ-kheo Bạt Kỳ, dẫn đến sự phân chia Tăng đoàn thành hai bộ phái gốc: Thượng Tọa Bộ và Đại Chúng Bộ.</li>
+                <li><span class="sub-highlight">Lần 3:</span> Dưới sự bảo trợ của Vua A Dục, phần Luận tạng ra đời, làm cho Tam tạng (Kinh, Luật, Luận) lần đầu tiên được xuất hiện đầy đủ.</li>
+                <li><span class="sub-highlight">Lần 4:</span> Dưới sự bảo trợ của Vua Ca Nị Sắc Ca, xuất hiện thêm các bộ sớ giải chi tiết cho cả Kinh, Luật và Luận nhằm thống nhất những kiến giải bất đồng giữa các bộ phái.</li>
+            </ul>
+        </div>
+
+        <div class="section-card">
+            <h2 class="section-title"><span class="number-badge">3</span> Sự du nhập Phật giáo vào Trung Quốc</h2>
+            <p style="margin-bottom: 10px;">Kinh điển bắt đầu được truyền sang Trung Quốc, nổi bật nhất với 2 truyền thuyết được giới Phật giáo công nhận:</p>
+            <ul class="content-list">
+                <li><span class="sub-highlight">Thuyết thứ 11:</span> Sứ giả Y Tồn (nước Đại Nguyệt Chi) đã khẩu truyền quyển kinh Phù Đồ vào cuối thời Tây Hán (năm 2 TCN).</li>
+                <li><span class="sub-highlight">Thuyết thứ 12:</span> Đời vua Hán Minh Đế (năm 67 S.CN), ngài Ca Diếp Ma Đằng và Trúc Pháp Lan dùng ngựa trắng chở kinh sách, tượng Phật về và dịch quyển kinh viết tay đầu tiên là <em>Tứ Thập Nhị Chương</em> tại Bạch Mã Tự.</li>
+            </ul>
+        </div>
+
+        <div class="section-card">
+            <h2 class="section-title"><span class="number-badge">4</span> Các thời kỳ phiên dịch và Đại dịch giả</h2>
+            <p style="margin-bottom: 10px;">Quá trình phiên dịch Hán Tạng kéo dài hơn 1000 năm, trải qua 5 thời kỳ chính:</p>
+            <ul class="content-list">
+                <li><span class="sub-highlight">Lưỡng Hán - Tam Quốc:</span> Bắt đầu dịch kinh Nguyên thủy (Ngài An Thế Cao) và kinh Đại thừa phát triển (Ngài Chi Lâu Ca Sấm).</li>
+                <li><span class="sub-highlight">Lưỡng Tấn - Nhị Tần:</span> Kỷ nguyên rực rỡ với sự xuất hiện của ngài Trúc Pháp Hộ. Đặc biệt là Đại dịch giả Cưu Ma La Thập với các bản dịch chuẩn mực (Định bản) như Pháp Hoa, Duy Ma, Kim Cang. Giai đoạn này còn có các cao tăng kiệt xuất như Phật Đồ Trừng, Đạo An, Huệ Viễn.</li>
+                <li><span class="sub-highlight">Nam Bắc Triều:</span> Tăng sĩ Trung Quốc trực tiếp qua Ấn Độ thỉnh kinh, nổi bật với hệ tư tưởng Phật tánh luận (Đại Bát Niết Bàn, Thắng Man, Lăng Già) và sự hình thành các tông phái mới.</li>
+                <li><span class="sub-highlight">Tùy - Đường:</span> Thời kỳ dịch kinh thành thục và hưng thịnh nhất, tiêu biểu với ngài Huyền Trang (sơ tổ Duy Thức Tông, đưa ra lý luận Ngũ chủng bất phiên) và ngài Bất Không (Tổ sư Mật Tông).</li>
+                <li><span class="sub-highlight">Tống:</span> Công tác phiên dịch từ tiếng nước ngoài khép lại, Đại tạng kinh thời kỳ này chủ yếu tập trung vào việc tập hợp các tác phẩm trước tác do chính người Trung Quốc biên soạn.</li>
+            </ul>
+        </div>
+
+        <div class="section-card">
+            <h2 class="section-title"><span class="number-badge">5</span> Các hình thức lưu truyền</h2>
+            <p>Hình thức của Đại tạng kinh thay đổi và phát triển theo tiến trình lịch sử:</p>
+            <ul class="content-list">
+                <li>Bắt đầu từ <strong>Tụng đọc</strong> (khẩu truyền bằng miệng).</li>
+                <li>Tiến tới <strong>Chép tay</strong> (trên lá bối, trên giấy, chép bằng máu).</li>
+                <li>Phát triển thành <strong>Khắc in</strong> (khắc trên vách đá hang động, khắc mộc bản/bản gỗ để in hàng loạt).</li>
+                <li>Hoàn thiện bằng hình thức <strong>Số hóa điện tử</strong> như ngày nay (CD, Website trực tuyến).</li>
+            </ul>
+        </div>
+
+        <footer>
+            Tài liệu ôn tập môn Văn Học Hán Tạng - Chúc bạn đạt điểm cao!
+        </footer>
+    </div>
+
+</body>
+</html>

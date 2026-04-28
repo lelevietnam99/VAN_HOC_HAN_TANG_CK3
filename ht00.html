@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Thi Trắc Nghiệm - Văn Học Hán Tạng</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #e74c3c;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .alert-box {
+            background-color: #fff3f3;
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .alert-box h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .alert-box ul {
+            list-style-type: none;
+        }
+
+        .alert-box li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .alert-box li::before {
+            content: "👉";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #c0392b;
+        }
+
+        .syllabus-section {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .syllabus-section h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 15px;
+        }
+
+        .module {
+            margin-bottom: 25px;
+        }
+
+        .module h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            background-color: #ecf0f1;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .module p {
+            padding: 0 15px;
+            color: #555;
+        }
+
+        .action-area {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        .btn-start {
+            background-color: #27ae60;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.4);
+        }
+
+        .btn-start:hover {
+            background-color: #2ecc71;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.6);
+        }
+
+        footer {
+            text-align: center;
+            color: #95a5a6;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Hệ Thống Ôn Thi Trắc Nghiệm</h1>
+            <p class="subtitle">Môn: Văn Học Hán Tạng (Giảng viên: Ni sư Tuệ Liên)</p>
+        </header>
+
+        <section class="alert-box">
+            <h2>🚨 LƯU Ý CỰC KỲ QUAN TRỌNG VỀ HÌNH THỨC THI</h2>
+            <ul>
+                <li><strong>Hình thức:</strong> Thi trắc nghiệm <span class="highlight">100 CÂU</span>, hoàn toàn KHÔNG thi tự luận hay viết tiểu luận.</li>
+                <li><strong>Vật dụng:</strong> Làm trên phiếu trả lời trắc nghiệm. Cần mang theo bút chì và gôm, hoặc bút bi loại xóa được để tiện tô đáp án.</li>
+                <li><strong>Ghi thông tin (Số báo danh):</strong> Đây là lỗi cực kỳ hay sai! Đối với mã số sinh viên, bạn phải <span class="highlight">bỏ 4 số 0 ở giữa</span>, chỉ lấy 3 số đầu và 3 số cuối để điền vào ô số báo danh (6 số).</li>
+                <li><strong>Hậu quả tô sai:</strong> Máy sẽ không chấm được hoặc điểm bay qua người khác!</li>
+            </ul>
+        </section>
+
+        <section class="syllabus-section">
+            <h2>CẤU TRÚC ĐỀ CƯƠNG ÔN TẬP</h2>
+            
+            <div class="module">
+                <h3>Phần 1: Quá trình hình thành Đại tạng kinh Hán văn</h3>
+                <p>Nắm vững định nghĩa Đại tạng kinh, 5 yếu tố của 4 kỳ kiết tập (chủ tọa, nguyên nhân, số lượng, thời gian, địa điểm), các thuyết Phật giáo truyền vào Trung Quốc và các hình thức lưu truyền của Đại tạng kinh.</p>
+            </div>
+
+            <div class="module">
+                <h3>Phần 2: Các thời kỳ phiên dịch kinh điển & Đại dịch giả</h3>
+                <p>Ôn tập các mốc lịch sử quan trọng và các vị đại dịch giả nổi bật qua các thời kỳ: Lưỡng Hán, Tam Quốc, Lưỡng Tấn - Nhị Tần (trọng tâm), Nam Bắc Triều và Tùy - Đường (Huyền Trang, Bất Không/Nghĩa Tịnh).</p>
+            </div>
+
+            <div class="module">
+                <h3>Phần 3: Các ấn bản và Cấu trúc Đại Chính tạng</h3>
+                <p>Nắm rõ các bản in Đại tạng kinh của Trung Quốc, Cao Ly. Đặc biệt hiểu rõ cấu trúc 100 tập của Đại Chính Tân Tu Đại tạng kinh (Chánh tạng, Tục tạng, Biệt quyển) cùng ưu/khuyết điểm của bản này.</p>
+            </div>
+        </section>
+
+        <div class="action-area">
+            <button class="btn-start" onclick="alert('Trang làm bài trắc nghiệm đang được chuẩn bị. Bạn chờ chút nhé!')">BẮT ĐẦU ÔN TẬP NGAY</button>
+        </div>
+
+        <footer>
+            <p>Hệ thống được thiết kế dựa trên đề cương ôn thi cuối kỳ.</p>
+            <p>Chúc các bạn ôn tập tốt và đạt điểm cao!</p>
+        </footer>
+    </div>
+
+</body>
+</html>
