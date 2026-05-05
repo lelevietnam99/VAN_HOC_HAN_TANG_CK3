@@ -136,6 +136,7 @@
             border-top: 2px dashed #bdc3c7;
             animation: fadeIn 0.5s;
         }
+        
 
         .correct-ans {
             color: var(--correct-color);
@@ -180,7 +181,30 @@
             gap: 8px;
             font-weight: bold;
         }
+ .btn-previous-exams {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
 
+        .btn-previous-exams:hover {
+            background: linear-gradient(135deg, #8e44ad, #7d3c98);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            color: white;
+            text-decoration: none;
+        }
         .btn-structure:hover {
             background-color: #138d75;
             transform: translateY(-3px);
@@ -211,6 +235,7 @@
         <div class="controls">
             <a href="ht00.html" class="btn-structure" target="_blank">📋 CẤU TRÚC ĐỀ THI</a>
             <a href="ht22.html" class="btn-special-essay" target="_blank">📝 CÂU TỰ LUẬN ĐẶC BIỆT</a>
+             <a href="https://haitran-pm.github.io/trac-nghiem-van-hoc-han-tang-hk3/" class="btn-previous-exams" target="_blank">📚 THI THỬ CÁC NĂM TRƯỚC</a>
             <button class="btn-shuffle" onclick="renderQuiz()">🔀 Trộn Ngẫu Nhiên & Làm Lại</button>
             <button class="btn-random-single" onclick="renderSingleRandomQuiz()">🎯 Khảo Bài 1 Câu Ngẫu Nhiên</button>
         </div>
