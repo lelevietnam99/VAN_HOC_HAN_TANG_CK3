@@ -205,6 +205,32 @@
             color: white;
             text-decoration: none;
         }
+        .btn-reload {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+        }
+
+        .btn-reload:hover {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn-reload:active {
+            transform: translateY(-1px);
+        }
         .btn-structure:hover {
             background-color: #138d75;
             transform: translateY(-3px);
@@ -236,8 +262,8 @@
             <a href="ht00.html" class="btn-structure" target="_blank">📋 CẤU TRÚC ĐỀ THI</a>
             <a href="ht22.html" class="btn-special-essay" target="_blank">📝 CÂU TỰ LUẬN ĐẶC BIỆT</a>
              <a href="https://haitran-pm.github.io/trac-nghiem-van-hoc-han-tang-hk3/" class="btn-previous-exams" target="_blank">📚 THI THỬ CÁC NĂM TRƯỚC</a>
-            <button class="btn-shuffle" onclick="renderQuiz()">🔀 Trộn Ngẫu Nhiên & Làm Lại</button>
             <button class="btn-random-single" onclick="renderSingleRandomQuiz()">🎯 Khảo Bài 1 Câu Ngẫu Nhiên</button>
+         <button class="btn-reload" onclick="location.reload()">🔄 Reload Trang</button>
         </div>
 
         <div id="quiz-container">
@@ -2589,10 +2615,8 @@
             const container = document.getElementById('quiz-container');
             container.innerHTML = ''; // Xóa trắng nội dung cũ
 
-            // Trộn câu hỏi
-            const shuffledQuestions = shuffleArray([...questionData]);
-
-            shuffledQuestions.forEach((item, index) => {
+            // Không trộn - giữ nguyên thứ tự từ 1 đến 210
+            questionData.forEach((item, index) => {
                 const questionDiv = document.createElement('div');
                 questionDiv.className = 'question-card';
 
